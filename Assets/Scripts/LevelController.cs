@@ -1,4 +1,4 @@
-using System.Threading;
+using TMPro;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour
     public ObstacleController obstacle;
     public CollectableController collectable;
     public LivesController livesController;
+    public TextMeshProUGUI distanceText;
 
     private float elapsedTime = 0f;
     private float timeNextObstacle = 3f;
@@ -54,6 +55,9 @@ public class LevelController : MonoBehaviour
 
             timeNextObstacle = elapsedTime + Random.Range(minTimeBetweenObstacles, maxTimeBetweenObstacles);
         }
+
+        int distance = (int) (elapsedTime * 10);
+        distanceText.SetText(distance + " m.");
     }
 }
 
