@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerJump : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float jumpForce = 5f; // Fuerza del salto
     private Rigidbody2D rb;
     private bool isGrounded;
+
+    private UnityAction collideObstacleAction;
+    private UnityAction collideCollectableAction;
 
     void Start()
     {
@@ -21,12 +25,33 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    // Detectar si toca el suelo
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Obstacle"))
+        {
+            collideObstacleAction();
+        }
+        else if (collider.CompareTag("Collectable"))
+        {
+            collideCollectableAction();
+        }
+    }
+
+    public void SetCollideObstacleAction(UnityAction action)
+    {
+        collideObstacleAction = action;
+    }
+
+    public void SetCollideCollectableAction(UnityAction action)
+    {
+        collideCollectableAction = action;
     }
 }

@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    public PlayerController player;
     public ObstacleController obstacle;
     public CollectableController collectable;
+    public LivesController livesController;
 
     private float elapsedTime = 0f;
     private float timeNextObstacle = 3f;
@@ -17,6 +19,15 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
+        player.SetCollideObstacleAction(() =>
+        {
+            livesController.RemoveLife();
+        });
+
+        player.SetCollideCollectableAction(() =>
+        {
+            print("Coleccionable");
+        });
     }
 
     // Update is called once per frame
