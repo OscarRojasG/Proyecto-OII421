@@ -1,8 +1,11 @@
 using UnityEngine;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
+    private QuestionData questionData;
 
     private int currentLevel;
 
@@ -12,6 +15,8 @@ public class GameController : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Mantiene el objeto al cambiar de escena
+
+            questionData = LoadQuestions();
         }
         else
         {
@@ -29,5 +34,15 @@ public class GameController : MonoBehaviour
         this.currentLevel = currentLevel;
     }
 
+    private QuestionData LoadQuestions()
+    {
+        TextAsset asset = Resources.Load<TextAsset>("questions");
+        return JsonConvert.DeserializeObject<QuestionData>(asset.text);
+    }
+
+    public List<Question> GetQuestions()
+    {
+        return new List<Question>(questionData.data[currentLevel]);
+    }
     
 }

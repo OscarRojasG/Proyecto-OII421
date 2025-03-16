@@ -1,0 +1,34 @@
+{
+    "data":
+    {
+        "1": [
+            {
+                "question": "¿A qué elemento químico corresponde el siguiente símbolo: Cu?",
+                "correctAnswer": "Cobre",
+                "wrongAnswers": [
+                    "Curio",
+                    "Carbono",
+                    "Calcio"
+                ]
+            },
+            {
+                "question": "¿A qué elemento químico corresponde el siguiente símbolo: Ag?",
+                "correctAnswer": "Plata",
+                "wrongAnswers": [
+                    "Aluminio",
+                    "Argón",
+                    "Azufre"
+                ]
+            },
+            {
+                "question": "¿A qué elemento químico corresponde el siguiente símbolo: Fe?",
+                "correctAnswer": "Hierro",
+                "wrongAnswers": [
+                    "Francio",
+                    "Fósforo",
+                    "Fluor"
+                ]
+            }
+        ]
+    }
+}

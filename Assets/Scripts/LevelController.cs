@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ public class LevelController : MonoBehaviour
     public CollectableController collectable;
     public LivesController livesController;
     public TextMeshProUGUI distanceText;
+
+    private GameController gameController;
+    private List<Question> questions;
 
     private float elapsedTime = 0f;
     private float timeNextObstacle = 3f;
@@ -20,9 +24,13 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
+        gameController = GameController.Instance;
+
         player.SetCollideObstacleAction(() =>
         {
             livesController.RemoveLife();
+            Question question = GetQuestion();
+            print(question.question);
         });
 
         player.SetCollideCollectableAction(() =>
@@ -58,6 +66,20 @@ public class LevelController : MonoBehaviour
 
         int distance = (int) (elapsedTime * 10);
         distanceText.SetText(distance + " m.");
+    }
+
+    private Question GetQuestion()
+    {
+        if (questions == null || questions.Count == 0)
+        {
+            questions = gameController.GetQuestions();
+        }
+
+        int randomIndex = Random.Range(0, questions.Count);
+        Question question = questions[randomIndex];
+        questions.RemoveAt(randomIndex);
+
+        return question;
     }
 }
 

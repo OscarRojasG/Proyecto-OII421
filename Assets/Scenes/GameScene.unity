@@ -197,6 +197,7 @@ MonoBehaviour:
   obstacle: {fileID: 5539002663844992863, guid: e70480f16c9f0634ca966643a12902d2, type: 3}
   collectable: {fileID: 4296765802496020528, guid: ecae8f707ea91c14ca5b2362084474a7, type: 3}
   livesController: {fileID: 662670603}
+  distanceText: {fileID: 1900971333}
 --- !u!4 &154262147
 Transform:
   m_ObjectHideFlags: 0
