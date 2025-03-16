@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour
     public ObstacleController obstacle;
     public CollectableController collectable;
     public LivesController livesController;
+    public CollectableBarController collectableBar;
     public TextMeshProUGUI distanceText;
 
     private GameController gameController;
@@ -35,7 +36,7 @@ public class LevelController : MonoBehaviour
 
         player.SetCollideCollectableAction(() =>
         {
-            print("Coleccionable");
+            collectableBar.AddCollectable();
         });
     }
 
