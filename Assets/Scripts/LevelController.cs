@@ -14,6 +14,9 @@ public class LevelController : MonoBehaviour
     private GameController gameController;
     private List<Question> questions;
 
+    public Canvas questionPanelCanvas;
+    public QuestionPanelController questionPanel;
+
     private float elapsedTime = 0f;
     private float timeNextObstacle = 3f;
     private float minTimeBetweenObstacles = 3f;
@@ -30,13 +33,25 @@ public class LevelController : MonoBehaviour
         player.SetCollideObstacleAction(() =>
         {
             livesController.RemoveLife();
-            Question question = GetQuestion();
-            print(question.question);
         });
 
         player.SetCollideCollectableAction(() =>
         {
-            collectableBar.AddCollectable();
+            Question question = GetQuestion();
+
+            QuestionPanelController questionPanelController = Instantiate(questionPanel, questionPanelCanvas.transform);
+            questionPanelController.SetQuestion(question);
+            questionPanelController.SetCorrectOptionAction(() =>
+            {
+                collectableBar.AddCollectable();
+            });
+
+            questionPanelController.SetDismissAction(() =>
+            {
+                Time.timeScale = 1;
+            });
+
+            Time.timeScale = 0;
         });
     }
 
