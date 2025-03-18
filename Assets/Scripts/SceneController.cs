@@ -45,4 +45,9 @@ public class SceneController : MonoBehaviour
             Debug.LogWarning("No hay una escena anterior en el historial.");
         }
     }
+
+    public void ClearHistory()
+    {
+        sceneHistory.Clear();
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
@@ -17,18 +18,22 @@ public class LevelController : MonoBehaviour
     public Canvas questionPanelCanvas;
     public QuestionPanelController questionPanel;
 
+    public Button pauseButton;
+    public PauseScreenController pauseScreen;
+
     private float elapsedTime = 0f;
-    private float timeNextObstacle = 3f;
-    private float minTimeBetweenObstacles = 3f;
-    private float maxTimeBetweenObstacles = 5f;
+    private float timeNextObstacle = 2.5f;
+    private float minTimeBetweenObstacles = 2.5f;
+    private float maxTimeBetweenObstacles = 4.5f;
 
     private float obstaclesBeforeCollectableCount = 0;
-    private float minObstaclesBeforeCollectable = 5;
-    private float maxObstaclesBeforeCollectable = 10;
+    private float minObstaclesBeforeCollectable = 4;
+    private float maxObstaclesBeforeCollectable = 8;
 
     void Start()
     {
         gameController = GameController.Instance;
+        StartPhysics();
 
         player.SetCollideObstacleAction(() =>
         {
@@ -48,10 +53,22 @@ public class LevelController : MonoBehaviour
 
             questionPanelController.SetDismissAction(() =>
             {
-                Time.timeScale = 1;
+                StartPhysics();
             });
 
-            Time.timeScale = 0;
+            PausePhysics();
+        });
+
+        pauseButton.onClick.AddListener(() =>
+        {
+            PausePhysics();
+            pauseScreen.Show();
+        });
+
+        pauseScreen.SetContinueAction(() =>
+        {
+            StartPhysics();
+            pauseScreen.Hide();
         });
     }
 
@@ -97,5 +114,15 @@ public class LevelController : MonoBehaviour
 
         return question;
     }
-}
 
+    private void PausePhysics()
+    {
+        Time.timeScale = 0;
+        player.enabled = false;
+    }
+    private void StartPhysics()
+    {
+        Time.timeScale = 1;
+        player.enabled = true;
+    }
+}
