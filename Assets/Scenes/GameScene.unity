@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 89435019}
   - component: {fileID: 89435020}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 421853122}
   - component: {fileID: 421853124}
   m_Layer: 5
-  m_Name: UpperPanel
+  m_Name: Barra Superior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2643,7 +2643,7 @@ GameObject:
   - component: {fileID: 2026603125}
   - component: {fileID: 2026603124}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: "Cuadr\xEDcula"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
