@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class LivesController : MonoBehaviour
 {
     private int livesLeft;
+    public Sprite emptyHeartSprite;
 
     void Awake()
     {
@@ -16,7 +17,7 @@ public class LivesController : MonoBehaviour
         if (livesLeft >= 1)
         {
             Image life = transform.GetChild(livesLeft-1).GetComponent<Image>();
-            life.sprite = null;
+            life.sprite = emptyHeartSprite;
 
             livesLeft--;
         }
