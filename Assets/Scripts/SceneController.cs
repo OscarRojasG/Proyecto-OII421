@@ -31,8 +31,8 @@ public class SceneController : MonoBehaviour
     {
         if (sceneHistory.Count >= 2)
         {
-            sceneHistory.RemoveAt(sceneHistory.Count - 1);
             string previousSceneIndex = sceneHistory[sceneHistory.Count - 1];
+            sceneHistory.RemoveAt(sceneHistory.Count - 1);
             SceneManager.LoadScene(previousSceneIndex);
         }
         else if (sceneHistory.Count == 1)

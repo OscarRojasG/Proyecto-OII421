@@ -38,6 +38,10 @@ public class LevelController : MonoBehaviour
         player.SetCollideObstacleAction(() =>
         {
             livesController.RemoveLife();
+            if (livesController.GetLivesLeft() == 0)
+            {
+                SceneController.Instance.ChangeScene("GameOverScene");
+            }
         });
 
         player.SetCollideCollectableAction(() =>
