@@ -296,7 +296,7 @@ Transform:
   m_GameObject: {fileID: 460418682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -400, y: 0, z: 10}
+  m_LocalPosition: {x: -400, y: -158, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,7 +373,7 @@ BoxCollider2D:
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 77.3, y: 105.59}
+  m_Size: {x: 60, y: 90}
   m_EdgeRadius: 0
 --- !u!114 &460418687
 MonoBehaviour:
@@ -904,8 +904,8 @@ Tilemap:
   - first: {x: -7, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1745,17 +1745,17 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 70
     m_Data: {fileID: 11400000, guid: 0e5d5d66f7c3da24aaa2f979d3172cdc, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 943da8052600804449b08cd0591729ed, type: 2}
-  - m_RefCount: 13
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 14
     m_Data: {fileID: 11400000, guid: f56a0271f8f77504194516773e445fbf, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 70
     m_Data: {fileID: -5643105228771564274, guid: e63d1f9ebb812f842a189228e86caf6d, type: 3}
-  - m_RefCount: 13
+  - m_RefCount: 14
     m_Data: {fileID: -7543764589799624567, guid: 8e49bce2585e69e4da6d7202832fef0f, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -5326632412588773011, guid: fca8b9699ded64244acf51a33c952bb5, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 84
     m_Data:
@@ -3226,6 +3226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026603125}
   - component: {fileID: 2026603124}
+  - component: {fileID: 2026603126}
   m_Layer: 0
   m_Name: "Cuadr\xEDcula"
   m_TagString: Untagged
@@ -3261,6 +3262,19 @@ Transform:
   - {fileID: 1059852362}
   m_Father: {fileID: 1475639636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026603126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026603123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acc04340e1bcb840910bc806eef7269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -300
 --- !u!1 &2105106004
 GameObject:
   m_ObjectHideFlags: 0
