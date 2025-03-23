@@ -22,8 +22,6 @@ public class LevelController : MonoBehaviour
     public PauseScreenController pauseScreen;
 
     private float elapsedTime = 0f;
-    //private float startTime;
-
     private float timeNextObstacle = 2.5f;
     private float minTimeBetweenObstacles = 2.5f;
     private float maxTimeBetweenObstacles = 4.5f;
@@ -51,30 +49,18 @@ public class LevelController : MonoBehaviour
             Question question = GetQuestion();
 
             QuestionPanelController questionPanelController = Instantiate(questionPanel, questionPanelCanvas.transform);
+            float startTime = Time.unscaledTime;
             
             questionPanelController.SetQuestion(question);
-            questionPanelController.SetCorrectOptionAction(() =>
+            questionPanelController.SetCorrectOptionAction((OptionController optionController) =>
             {
                 collectableBar.AddCollectable();
-                ProgressData progressData = gameController.GetProgressData();
-                AnsweredQuestion answeredQuestion = new AnsweredQuestion();
-                answeredQuestion.playerAnswer = "";
-                answeredQuestion.question = question;
-                answeredQuestion.level = gameController.GetCurrentLevel();
-                answeredQuestion.isCorrect = true;
-                answeredQuestion.responseTime = 1;
+                SaveAnswer(question, optionController.GetText(), true, System.Math.Round(Time.unscaledTime - startTime, 2));
+            });
 
-                AnsweredQuestion[] newAnsweredQuestions = new AnsweredQuestion[progressData.answeredQuestions.Length + 1];
-
-                // Copiar los elementos del array original al nuevo array
-                progressData.answeredQuestions.CopyTo(newAnsweredQuestions, 0);
-
-                // Agregar el nuevo elemento
-                newAnsweredQuestions[newAnsweredQuestions.Length - 1] = answeredQuestion;
-
-                progressData.answeredQuestions = newAnsweredQuestions;
-
-                gameController.SaveProgressData();
+            questionPanelController.SetWrongOptionAction((OptionController optionController) =>
+            {
+                SaveAnswer(question, optionController.GetText(), false, System.Math.Round(Time.unscaledTime - startTime, 2));
             });
 
             questionPanelController.SetDismissAction(() =>
@@ -96,6 +82,25 @@ public class LevelController : MonoBehaviour
             StartPhysics();
             pauseScreen.Hide();
         });
+    }
+
+    private void SaveAnswer(Question question, string playerAnswer, bool isCorrect, double time)
+    {
+        ProgressData progressData = gameController.GetProgressData();
+        AnsweredQuestion answeredQuestion = new AnsweredQuestion();
+        answeredQuestion.playerAnswer = playerAnswer;
+        answeredQuestion.question = question;
+        answeredQuestion.level = gameController.GetCurrentLevel();
+        answeredQuestion.isCorrect = isCorrect;
+        answeredQuestion.responseTime = time;
+
+        // Agregar pregunta respondida al arreglo progressData.answeredQuestions
+        AnsweredQuestion[] newAnsweredQuestions = new AnsweredQuestion[progressData.answeredQuestions.Length + 1];
+        progressData.answeredQuestions.CopyTo(newAnsweredQuestions, 0);
+        newAnsweredQuestions[newAnsweredQuestions.Length - 1] = answeredQuestion;
+        progressData.answeredQuestions = newAnsweredQuestions;
+
+        gameController.SaveProgressData();
     }
 
     // Update is called once per frame

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3266560159944495937}
   - component: {fileID: 1898935179018579292}
   - component: {fileID: 8650633748017059988}
+  - component: {fileID: 1331578593802995135}
   m_Layer: 5
   m_Name: Option B
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1331578593802995135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564786046460546231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b1bb8536c33554db76e0bae50d6c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 644846270571638941}
 --- !u!1 &2470729471634992777
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +283,7 @@ GameObject:
   - component: {fileID: 1834739836723401837}
   - component: {fileID: 2035455317461432991}
   - component: {fileID: 1899372934041897412}
+  - component: {fileID: 2919403897740750706}
   m_Layer: 5
   m_Name: Option D
   m_TagString: Untagged
@@ -378,6 +393,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2919403897740750706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250456530806852091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b1bb8536c33554db76e0bae50d6c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 7803421566049614781}
 --- !u!1 &4307455457214612408
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,10 +496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 8740232545549802979}
-  optionA: {fileID: 2725836860119109602}
-  optionB: {fileID: 8650633748017059988}
-  optionC: {fileID: 8179090258041473527}
-  optionD: {fileID: 1899372934041897412}
+  optionA: {fileID: 5386354850301804638}
+  optionB: {fileID: 1331578593802995135}
+  optionC: {fileID: 6432920879436647410}
+  optionD: {fileID: 2919403897740750706}
 --- !u!1 &4469312202715163612
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +593,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 37.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -621,6 +649,7 @@ GameObject:
   - component: {fileID: 2864187661630741429}
   - component: {fileID: 4921188066958832157}
   - component: {fileID: 8179090258041473527}
+  - component: {fileID: 6432920879436647410}
   m_Layer: 5
   m_Name: Option C
   m_TagString: Untagged
@@ -730,6 +759,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6432920879436647410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084483341233868581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b1bb8536c33554db76e0bae50d6c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 1072848969238381103}
 --- !u!1 &5551908993098337516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1242,7 @@ GameObject:
   - component: {fileID: 6071451152681635697}
   - component: {fileID: 8603593691285052811}
   - component: {fileID: 2725836860119109602}
+  - component: {fileID: 5386354850301804638}
   m_Layer: 5
   m_Name: Option A
   m_TagString: Untagged
@@ -1309,6 +1352,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5386354850301804638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256658651448946846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b1bb8536c33554db76e0bae50d6c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 5088362147555047211}
 --- !u!1 &7270622320787346280
 GameObject:
   m_ObjectHideFlags: 0

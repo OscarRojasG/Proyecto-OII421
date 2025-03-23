@@ -22,8 +22,6 @@ public class GameController : MonoBehaviour
 
             questionData = LoadQuestions();
 
-            CreateJsonUserProgress();
-
             try
             {
                 progressData = ReadJson();
@@ -89,6 +87,5 @@ public class GameController : MonoBehaviour
         File.WriteAllText(path, progressJson);
         print(progressJson);
     }
-
 
 }

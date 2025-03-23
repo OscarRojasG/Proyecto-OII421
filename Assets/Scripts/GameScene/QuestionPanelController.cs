@@ -7,60 +7,58 @@ public class QuestionPanelController : MonoBehaviour
 {
     public TextMeshProUGUI questionText;
 
-    public Button optionA;
-    public Button optionB;
-    public Button optionC;
-    public Button optionD;
+    public OptionController optionA;
+    public OptionController optionB;
+    public OptionController optionC;
+    public OptionController optionD;
 
-    private UnityAction correctOptionAction = (() => {});
-    private UnityAction wrongOptionAction = (() => {});
+    private UnityAction<OptionController> correctOptionAction;
+    private UnityAction<OptionController> wrongOptionAction;
     private UnityAction dismissAction = (() => {});
 
     public void SetQuestion(Question question)
     {
         questionText.SetText(question.question);
 
-        Button[] options = new Button[] { optionA, optionB, optionC, optionD };
+        OptionController[] options = new OptionController[] { optionA, optionB, optionC, optionD };
         int correctOptionIndex = Random.Range(0, 4);
 
         string[] wrongAnswers = (string[]) question.wrongAnswers.Clone();
         Util.Shuffle(question.wrongAnswers);
-        int nextWrongAnswer = 0;
+        int currentWrongAnswer = 0;
 
         for (int i = 0; i < options.Length; i++)
         {
-            TextMeshProUGUI optionText = options[i].GetComponentInChildren<TextMeshProUGUI>();
-
             if (i == correctOptionIndex)
             {
-                options[i].onClick.AddListener(() =>
+                options[i].SetOnClickAction((OptionController optionController) =>
                 {
-                    correctOptionAction();
+                    correctOptionAction(optionController);
                     Dismiss();
                 });
 
-                optionText.SetText(question.correctAnswer);
+                options[i].SetText(question.correctAnswer);
             }
             else
             {
-                options[i].onClick.AddListener(() =>
+                options[i].SetOnClickAction((OptionController optionController) =>
                 {
-                    wrongOptionAction();
+                    wrongOptionAction(optionController);
                     Dismiss();
                 });
 
-                optionText.SetText(wrongAnswers[nextWrongAnswer]);
-                nextWrongAnswer++;
+                options[i].SetText(question.wrongAnswers[currentWrongAnswer]);
+                currentWrongAnswer++;
             }
         }
     }
 
-    public void SetCorrectOptionAction(UnityAction action)
+    public void SetCorrectOptionAction(UnityAction<OptionController> action)
     {
         correctOptionAction = action;
     }
 
-    public void SetWrongOptionAction(UnityAction action)
+    public void SetWrongOptionAction(UnityAction<OptionController> action)
     {
         wrongOptionAction = action;
     }
