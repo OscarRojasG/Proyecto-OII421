@@ -13,19 +13,19 @@ public class LevelSelectionController : MonoBehaviour
         buttonLevelOne.onClick.AddListener(() =>
         {
             SceneController.Instance.ChangeScene("GameScene");
-            GameController.Instance.SetCurrentLevel(1);
+            GameController.Instance.SetCurrentLevel("1");
         });
 
         buttonLevelTwo.onClick.AddListener(() =>
         {
             SceneController.Instance.ChangeScene("GameScene");
-            GameController.Instance.SetCurrentLevel(2);
+            GameController.Instance.SetCurrentLevel("2");
         });
 
         buttonLevelThree.onClick.AddListener(() =>
         {
             SceneController.Instance.ChangeScene("GameScene");
-            GameController.Instance.SetCurrentLevel(3);
+            GameController.Instance.SetCurrentLevel("3");
         });
         
     }

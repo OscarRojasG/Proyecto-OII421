@@ -1,22 +1,37 @@
 using UnityEngine;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System;
+using System.IO;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
     private QuestionData questionData;
+    private ProgressData progressData;
 
-    private int currentLevel;
+    private string currentLevel;
 
     private void Awake()
     {
-        if (Instance == null)
+
+        if (Instance == null) 
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Mantiene el objeto al cambiar de escena
 
             questionData = LoadQuestions();
+
+            CreateJsonUserProgress();
+
+            try
+            {
+                progressData = ReadJson();
+            }
+            catch (Exception)
+            {
+                progressData = CreateJsonUserProgress();
+            }
         }
         else
         {
@@ -24,12 +39,12 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public int GetCurrentLevel()
+    public string GetCurrentLevel()
     {
         return currentLevel;
     }
 
-    public void SetCurrentLevel(int currentLevel)
+    public void SetCurrentLevel(string currentLevel)
     {
         this.currentLevel = currentLevel;
     }
@@ -45,4 +60,35 @@ public class GameController : MonoBehaviour
         return new List<Question>(questionData.data[currentLevel]);
     }
     
+    public ProgressData CreateJsonUserProgress()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "Usuario.json");
+        ProgressData progressData = new ProgressData();
+        progressData.answeredQuestions = new AnsweredQuestion[0];
+        string progressJson = JsonUtility.ToJson(progressData, true);
+        File.WriteAllText(path, progressJson);
+        return progressData;
+    }
+
+    public ProgressData ReadJson()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "Usuario.json");
+        string progressJson = File.ReadAllText(path);
+        return JsonUtility.FromJson<ProgressData>(progressJson);
+    }
+
+    public ProgressData GetProgressData()
+    {
+        return progressData;
+    }
+
+    public void SaveProgressData()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "Usuario.json");
+        string progressJson = JsonUtility.ToJson(progressData, true);
+        File.WriteAllText(path, progressJson);
+        print(progressJson);
+    }
+
+
 }

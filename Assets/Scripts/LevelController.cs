@@ -22,6 +22,8 @@ public class LevelController : MonoBehaviour
     public PauseScreenController pauseScreen;
 
     private float elapsedTime = 0f;
+    //private float startTime;
+
     private float timeNextObstacle = 2.5f;
     private float minTimeBetweenObstacles = 2.5f;
     private float maxTimeBetweenObstacles = 4.5f;
@@ -49,10 +51,30 @@ public class LevelController : MonoBehaviour
             Question question = GetQuestion();
 
             QuestionPanelController questionPanelController = Instantiate(questionPanel, questionPanelCanvas.transform);
+            
             questionPanelController.SetQuestion(question);
             questionPanelController.SetCorrectOptionAction(() =>
             {
                 collectableBar.AddCollectable();
+                ProgressData progressData = gameController.GetProgressData();
+                AnsweredQuestion answeredQuestion = new AnsweredQuestion();
+                answeredQuestion.playerAnswer = "";
+                answeredQuestion.question = question;
+                answeredQuestion.level = gameController.GetCurrentLevel();
+                answeredQuestion.isCorrect = true;
+                answeredQuestion.responseTime = 1;
+
+                AnsweredQuestion[] newAnsweredQuestions = new AnsweredQuestion[progressData.answeredQuestions.Length + 1];
+
+                // Copiar los elementos del array original al nuevo array
+                progressData.answeredQuestions.CopyTo(newAnsweredQuestions, 0);
+
+                // Agregar el nuevo elemento
+                newAnsweredQuestions[newAnsweredQuestions.Length - 1] = answeredQuestion;
+
+                progressData.answeredQuestions = newAnsweredQuestions;
+
+                gameController.SaveProgressData();
             });
 
             questionPanelController.SetDismissAction(() =>
@@ -87,7 +109,7 @@ public class LevelController : MonoBehaviour
             float rand = Random.Range(0f, 1f);
 
             // Generar coleccionable
-            if (rand <= prob)
+            if (rand <= prob || true)
             {
                 Instantiate(collectable);
                 obstaclesBeforeCollectableCount = 0;
