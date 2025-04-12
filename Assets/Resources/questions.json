@@ -3,30 +3,22 @@
     {
         "1": [
             {
-                "question": "¿A qué elemento químico corresponde el siguiente símbolo: Cu?",
-                "correctAnswer": "Cobre",
+                "question": "¿A qué concepto hace referencia la siguiente definición? Región del ADN que codifica para una característica hereditaria determinada de un organismo.",
+                "correctAnswer": "Gen",
                 "wrongAnswers": [
-                    "Curio",
-                    "Carbono",
-                    "Calcio"
+                    "Cromosoma",
+                    "Nucleótido",
+                    "Cromátida"
                 ]
             },
             {
-                "question": "¿A qué elemento químico corresponde el siguiente símbolo: Ag?",
-                "correctAnswer": "Plata",
+                "question": "¿A qué componente de la célula corresponde la siguiente imagen?",
+                "image": "mitocondria",
+                "correctAnswer": "Mitocondria",
                 "wrongAnswers": [
-                    "Aluminio",
-                    "Argón",
-                    "Azufre"
-                ]
-            },
-            {
-                "question": "¿A qué elemento químico corresponde el siguiente símbolo: Fe?",
-                "correctAnswer": "Hierro",
-                "wrongAnswers": [
-                    "Francio",
-                    "Fósforo",
-                    "Fluor"
+                    "Núcleo",
+                    "RER",
+                    "Lisosoma"
                 ]
             }
         ]

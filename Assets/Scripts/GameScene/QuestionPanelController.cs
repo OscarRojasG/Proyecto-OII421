@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class QuestionPanelController : MonoBehaviour
 {
     public TextMeshProUGUI questionText;
+    public Image questionImage;
 
     public OptionController optionA;
     public OptionController optionB;
@@ -19,6 +20,12 @@ public class QuestionPanelController : MonoBehaviour
     public void SetQuestion(Question question)
     {
         questionText.SetText(question.question);
+
+        if (question.image != null)
+        {
+            questionImage.sprite = Resources.Load<Sprite>("images/" + question.image);
+            questionImage.gameObject.SetActive(true);
+        }
 
         OptionController[] options = new OptionController[] { optionA, optionB, optionC, optionD };
         int correctOptionIndex = Random.Range(0, 4);
