@@ -15,6 +15,7 @@ public class Question
     public string correctAnswer;
     public string[] wrongAnswers;
     public string image;
+    public string feedback;
 }
 
 [Serializable]

@@ -200,8 +200,9 @@ MonoBehaviour:
   livesController: {fileID: 662670603}
   collectableBar: {fileID: 2105106008}
   distanceText: {fileID: 1900971333}
-  questionPanelCanvas: {fileID: 1475639635}
+  panelCanvas: {fileID: 1475639635}
   questionPanel: {fileID: 5794309435650943349, guid: a2a77f2c00154074f9149c928105fa51, type: 3}
+  feedbackPanel: {fileID: 455154498941179396, guid: 1a6f8dbbd4a615d4a89d4d2ea8a36131, type: 3}
   pauseButton: {fileID: 1995864960}
   pauseScreen: {fileID: 6256533361581546938}
 --- !u!4 &154262147

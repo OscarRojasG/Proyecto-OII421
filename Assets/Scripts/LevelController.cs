@@ -15,8 +15,9 @@ public class LevelController : MonoBehaviour
     private GameController gameController;
     private List<Question> questions;
 
-    public Canvas questionPanelCanvas;
+    public Canvas panelCanvas;
     public QuestionPanelController questionPanel;
+    public FeedbackPanelController feedbackPanel;
 
     public Button pauseButton;
     public PauseScreenController pauseScreen;
@@ -48,7 +49,7 @@ public class LevelController : MonoBehaviour
         {
             Question question = GetQuestion();
 
-            QuestionPanelController questionPanelController = Instantiate(questionPanel, questionPanelCanvas.transform);
+            QuestionPanelController questionPanelController = Instantiate(questionPanel, panelCanvas.transform);
             float startTime = Time.unscaledTime;
             
             questionPanelController.SetQuestion(question);
@@ -56,17 +57,29 @@ public class LevelController : MonoBehaviour
             {
                 collectableBar.AddCollectable();
                 SaveAnswer(question, optionController.GetText(), true, System.Math.Round(Time.unscaledTime - startTime, 2));
+                StartPhysics();
             });
 
             questionPanelController.SetWrongOptionAction((OptionController optionController) =>
             {
+                FeedbackPanelController feedbackPanelController = Instantiate(feedbackPanel, panelCanvas.transform);
+                feedbackPanelController.SetContinueAction(() =>
+                {
+                    StartPhysics();
+                });
+                feedbackPanelController.SetCorrectAnswer(question.correctAnswer);
+                feedbackPanelController.SetPlayerAnswer(optionController.GetText());
+                feedbackPanelController.SetFeedback(question.feedback);
+
                 SaveAnswer(question, optionController.GetText(), false, System.Math.Round(Time.unscaledTime - startTime, 2));
             });
 
+            /*
             questionPanelController.SetDismissAction(() =>
             {
                 StartPhysics();
             });
+            */
 
             PausePhysics();
         });
