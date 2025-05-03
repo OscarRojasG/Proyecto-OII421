@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class LevelController : MonoBehaviour
 {
     public PlayerController player;
-    public ObstacleController obstacle;
-    public CollectableController collectable;
     public LivesController livesController;
     public CollectableBarController collectableBar;
     public TextMeshProUGUI distanceText;
+
+    public ObstacleController barrel;
+    public ObstacleController virus;
+
+
+    public CollectableController collectable;
 
     private GameController gameController;
     private List<Question> questions;
@@ -23,13 +27,13 @@ public class LevelController : MonoBehaviour
     public PauseScreenController pauseScreen;
 
     private float elapsedTime = 0f;
-    private float timeNextObstacle = 2.5f;
-    private float minTimeBetweenObstacles = 2.5f;
-    private float maxTimeBetweenObstacles = 4.5f;
+    private float timeNextObstacle = 2f;
+    private float minTimeBetweenObstacles = 1.75f;
+    private float maxTimeBetweenObstacles = 3.5f;
 
     private float obstaclesBeforeCollectableCount = 0;
-    private float minObstaclesBeforeCollectable = 4;
-    private float maxObstaclesBeforeCollectable = 8;
+    private float minObstaclesBeforeCollectable = 2;
+    private float maxObstaclesBeforeCollectable = 5;
 
     void Start()
     {
@@ -127,14 +131,14 @@ public class LevelController : MonoBehaviour
             float rand = Random.Range(0f, 1f);
 
             // Generar coleccionable
-            if (rand <= prob || true)
+            if (rand <= prob)
             {
                 Instantiate(collectable);
                 obstaclesBeforeCollectableCount = 0;
             }
             else // Generar obstáculo
             {
-                Instantiate(obstacle);
+                GenerateObstacle(); 
                 obstaclesBeforeCollectableCount++;
             }
 
@@ -143,6 +147,20 @@ public class LevelController : MonoBehaviour
 
         int distance = (int) (elapsedTime * 10);
         distanceText.SetText(distance + " m.");
+    }
+
+    private void GenerateObstacle()
+    {
+        float rand = Random.Range(0f, 1f);
+
+        if (rand <= 0.5)
+        {
+            Instantiate(barrel);
+        }
+        else
+        {
+            Instantiate(virus);
+        }
     }
 
     private Question GetQuestion()
