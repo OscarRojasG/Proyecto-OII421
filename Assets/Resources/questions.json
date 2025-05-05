@@ -3,24 +3,86 @@
     {
         "1": [
             {
-                "question": "¿A qué concepto hace referencia la siguiente definición? Región del ADN que codifica para una característica hereditaria determinada de un organismo.",
-                "correctAnswer": "Gen",
-                "feedback": "Un gen es una región del ADN que codifica para una característica hereditaria determinada de un organismo.",
-                "wrongAnswers": [
-                    "Cromosoma",
-                    "Nucleótido",
-                    "Cromátida"
-                ]
-            },
-            {
-                "question": "¿A qué componente de la célula corresponde la siguiente imagen?",
-                "image": "mitocondria",
-                "feedback": "Las mitocondrias son orgánulos celulares que producen la mayor parte de la energía de la célula. Se encuentran en el citoplasma, el líquido que rodea al núcleo de la célula.",
-                "correctAnswer": "Mitocondria",
-                "wrongAnswers": [
-                    "Núcleo",
-                    "RER",
-                    "Lisosoma"
+                "question": "Respecto a la profase de la mitosis, ¿qué afirmaciones son ciertas?",
+                "image": "profase",
+                "concept": "Profase",
+                "assertions": [
+                    {
+                        "subconcept": "Cantidad de cromosomas",
+                        "feedbackText": "En la profase la cantidad de cromosomas se mantiene igual (2n), pero cada cromosoma ya se ha duplicado durante la fase S del ciclo celular, por lo que está compuesto por dos cromátidas hermanas unidas por el centrómero.",
+                        "feedbackImage": "feedback_ejemplo",
+                        "forms": [
+                            {
+                                "statement": "Durante la profase, la célula humana tiene 92 cromosomas porque el ADN ya se ha duplicado.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En la profase, una célula humana tiene 2n = 46 cromosomas.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "En la profase, el número de cromosomas se duplica.",
+                                "answer": false
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Estructura de los cromosomas",
+                        "feedbackText": "Pendiente.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "En la profase, cada cromosoma está formado por dos cromátidas hermanas unidas por un centrómero.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "Durante la profase, los cromosomas están formados por una sola hebra de ADN en lugar de dos cromátidas hermanas.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "Los cromosomas en profase se encuentran completamente desenrollados y no tienen una forma definida.",
+                                "answer": false
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Envoltura nuclear",
+                        "feedbackText": "Pendiente.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Durante la profase, la envoltura nuclear permanece intacta hasta que los cromosomas se separan.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En la profase, la envoltura nuclear comienza a romperse para permitir que los cromosomas interactúen con el huso mitótico.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "La ruptura de la envoltura nuclear es un paso esencial para el contacto entre los microtúbulos y los cromosomas.",
+                                "answer": true
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Centrosoma",
+                        "feedbackText": "Pendiente.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "En la profase, los centrosomas se duplican y migran hacia extremos opuestos de la célula.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "Durante la profase, los centrosomas permanecen juntos cerca del núcleo.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "La migración de los centrosomas es necesaria para organizar el huso mitótico.",
+                                "answer": true
+                            }
+                        ]
+                    }
                 ]
             }
         ]

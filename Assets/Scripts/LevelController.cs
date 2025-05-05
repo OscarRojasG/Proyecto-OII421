@@ -17,7 +17,7 @@ public class LevelController : MonoBehaviour
     public CollectableController collectable;
 
     private GameController gameController;
-    private List<Question> questions;
+    private List<QuestionNew> questions;
 
     public Canvas panelCanvas;
     public QuestionPanelController questionPanel;
@@ -51,39 +51,30 @@ public class LevelController : MonoBehaviour
 
         player.SetCollideCollectableAction(() =>
         {
-            Question question = GetQuestion();
+            QuestionNew question = GetQuestion();
 
             QuestionPanelController questionPanelController = Instantiate(questionPanel, panelCanvas.transform);
             float startTime = Time.unscaledTime;
             
-            questionPanelController.SetQuestion(question);
-            questionPanelController.SetCorrectOptionAction((OptionController optionController) =>
-            {
-                collectableBar.AddCollectable();
-                SaveAnswer(question, optionController.GetText(), true, System.Math.Round(Time.unscaledTime - startTime, 2));
-                StartPhysics();
-            });
-
-            questionPanelController.SetWrongOptionAction((OptionController optionController) =>
+            questionPanelController.SetQuestion(question, 0);
+            questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
             {
                 FeedbackPanelController feedbackPanelController = Instantiate(feedbackPanel, panelCanvas.transform);
                 feedbackPanelController.SetContinueAction(() =>
                 {
                     StartPhysics();
                 });
-                feedbackPanelController.SetCorrectAnswer(question.correctAnswer);
-                feedbackPanelController.SetPlayerAnswer(optionController.GetText());
-                feedbackPanelController.SetFeedback(question.feedback);
 
-                SaveAnswer(question, optionController.GetText(), false, System.Math.Round(Time.unscaledTime - startTime, 2));
-            });
+                for (int i = 0; i < assertionControllers.Length; i++)
+                {
+                    AssertionForm assertionForm = assertionControllers[i].GetAssertion();
+                    bool playerAnswer = assertionControllers[i].GetPlayerAnswer();
+                    string feedbackText = question.assertions[i].feedbackText;
+                    string feedbackImage = question.assertions[i].feedbackImage;
 
-            /*
-            questionPanelController.SetDismissAction(() =>
-            {
-                StartPhysics();
+                    feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
+                }
             });
-            */
 
             PausePhysics();
         });
@@ -131,7 +122,7 @@ public class LevelController : MonoBehaviour
             float rand = Random.Range(0f, 1f);
 
             // Generar coleccionable
-            if (rand <= prob)
+            if (rand <= prob || true)
             {
                 Instantiate(collectable);
                 obstaclesBeforeCollectableCount = 0;
@@ -163,7 +154,7 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    private Question GetQuestion()
+    private QuestionNew GetQuestion()
     {
         if (questions == null || questions.Count == 0)
         {
@@ -171,7 +162,7 @@ public class LevelController : MonoBehaviour
         }
 
         int randomIndex = Random.Range(0, questions.Count);
-        Question question = questions[randomIndex];
+        QuestionNew question = questions[randomIndex];
         questions.RemoveAt(randomIndex);
 
         return question;

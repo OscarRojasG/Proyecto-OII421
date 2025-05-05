@@ -7,7 +7,7 @@ using System.IO;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
-    private QuestionData questionData;
+    private QuestionDataNew questionData;
     private ProgressData progressData;
 
     private string currentLevel;
@@ -47,15 +47,15 @@ public class GameController : MonoBehaviour
         this.currentLevel = currentLevel;
     }
 
-    private QuestionData LoadQuestions()
+    private QuestionDataNew LoadQuestions()
     {
         TextAsset asset = Resources.Load<TextAsset>("questions");
-        return JsonConvert.DeserializeObject<QuestionData>(asset.text);
+        return JsonConvert.DeserializeObject<QuestionDataNew>(asset.text);
     }
 
-    public List<Question> GetQuestions()
+    public List<QuestionNew> GetQuestions()
     {
-        return new List<Question>(questionData.data[currentLevel]);
+        return new List<QuestionNew>(questionData.data[currentLevel]);
     }
     
     public ProgressData CreateJsonUserProgress()

@@ -7,17 +7,23 @@ public class QuestionPanelController : MonoBehaviour
 {
     public TextMeshProUGUI questionText;
     public Image questionImage;
+    public Button continueButton;
 
-    public OptionController optionA;
-    public OptionController optionB;
-    public OptionController optionC;
-    public OptionController optionD;
+    public AssertionController[] assertionControllers = new AssertionController[4];
 
-    private UnityAction<OptionController> correctOptionAction;
-    private UnityAction<OptionController> wrongOptionAction;
-    private UnityAction dismissAction = (() => {});
+    private UnityAction<AssertionController[]> continueAction;
 
-    public void SetQuestion(Question question)
+    void Start()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
+        continueButton.onClick.AddListener(() =>
+        {
+            continueAction(assertionControllers);
+            Destroy(gameObject);
+        });
+    }
+
+    public void SetQuestion(QuestionNew question, int formIndex)
     {
         questionText.SetText(question.question);
 
@@ -25,59 +31,20 @@ public class QuestionPanelController : MonoBehaviour
         {
             questionImage.sprite = Resources.Load<Sprite>("images/" + question.image);
             questionImage.gameObject.SetActive(true);
-        }
-
-        OptionController[] options = new OptionController[] { optionA, optionB, optionC, optionD };
-        int correctOptionIndex = Random.Range(0, 4);
-
-        string[] wrongAnswers = (string[]) question.wrongAnswers.Clone();
-        Util.Shuffle(question.wrongAnswers);
-        int currentWrongAnswer = 0;
-
-        for (int i = 0; i < options.Length; i++)
+        } 
+        else
         {
-            if (i == correctOptionIndex)
-            {
-                options[i].SetOnClickAction((OptionController optionController) =>
-                {
-                    correctOptionAction(optionController);
-                    Dismiss();
-                });
+            questionImage.gameObject.SetActive(false);
+        }
 
-                options[i].SetText(question.correctAnswer);
-            }
-            else
-            {
-                options[i].SetOnClickAction((OptionController optionController) =>
-                {
-                    wrongOptionAction(optionController);
-                    Dismiss();
-                });
-
-                options[i].SetText(question.wrongAnswers[currentWrongAnswer]);
-                currentWrongAnswer++;
-            }
+        for (int i = 0; i < assertionControllers.Length; i++)
+        {
+            assertionControllers[i].SetAssertionForm(question.assertions[i].forms[formIndex]);
         }
     }
 
-    public void SetCorrectOptionAction(UnityAction<OptionController> action)
+    public void SetContinueAction(UnityAction<AssertionController[]> action)
     {
-        correctOptionAction = action;
-    }
-
-    public void SetWrongOptionAction(UnityAction<OptionController> action)
-    {
-        wrongOptionAction = action;
-    }
-
-    public void SetDismissAction(UnityAction action)
-    {
-        dismissAction = action;
-    }
-
-    public void Dismiss()
-    {
-        dismissAction();
-        Destroy(gameObject);
+        continueAction = action; 
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 69bdd94bbb8b56a4e9ab988d815fd2f8
+guid: 21db7b698fc5fda49a544a6425d52435
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3060132846921028100
-    second: feedback_0
+      213: -2917478248558968482
+    second: cross_mark_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: feedback_0
+      name: cross_mark_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 831
-        height: 508
+        x: 15
+        y: 15
+        width: 482
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cfd64c593693885d0800000000000000
-      internalID: -3060132846921028100
+      spriteID: e51c6ba8df80387d0800000000000000
+      internalID: -2917478248558968482
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cross_mark_0: -2917478248558968482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
