@@ -16,6 +16,7 @@ public class LevelSelectionController : MonoBehaviour
             GameController.Instance.SetCurrentLevel("1");
         });
 
+        /*
         buttonLevelTwo.onClick.AddListener(() =>
         {
             SceneController.Instance.ChangeScene("GameScene");
@@ -27,6 +28,7 @@ public class LevelSelectionController : MonoBehaviour
             SceneController.Instance.ChangeScene("GameScene");
             GameController.Instance.SetCurrentLevel("3");
         });
+        */
         
     }
 }

@@ -28,8 +28,8 @@ public class LevelController : MonoBehaviour
 
     private float elapsedTime = 0f;
     private float timeNextObstacle = 2f;
-    private float minTimeBetweenObstacles = 1.75f;
-    private float maxTimeBetweenObstacles = 3.5f;
+    private float minTimeBetweenObstacles = 1.4f;
+    private float maxTimeBetweenObstacles = 2.5f;
 
     private float obstaclesBeforeCollectableCount = 0;
     private float minObstaclesBeforeCollectable = 2;
@@ -65,6 +65,7 @@ public class LevelController : MonoBehaviour
                     StartPhysics();
                 });
 
+                bool allCorrect = true;
                 for (int i = 0; i < assertionControllers.Length; i++)
                 {
                     AssertionForm assertionForm = assertionControllers[i].GetAssertion();
@@ -72,7 +73,14 @@ public class LevelController : MonoBehaviour
                     string feedbackText = question.assertions[i].feedbackText;
                     string feedbackImage = question.assertions[i].feedbackImage;
 
+                    if (playerAnswer != assertionForm.answer) allCorrect = false;
+
                     feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
+                }
+
+                if (allCorrect)
+                {
+                    collectableBar.AddCollectable();
                 }
             });
 
@@ -122,7 +130,7 @@ public class LevelController : MonoBehaviour
             float rand = Random.Range(0f, 1f);
 
             // Generar coleccionable
-            if (rand <= prob || true)
+            if (rand <= prob)
             {
                 Instantiate(collectable);
                 obstaclesBeforeCollectableCount = 0;

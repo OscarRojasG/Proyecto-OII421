@@ -28,7 +28,7 @@
                     },
                     {
                         "subconcept": "Estructura de los cromosomas",
-                        "feedbackText": "Pendiente.",
+                        "feedbackText": "En la profase, cada cromosoma está formado por dos cromátidas hermanas unidas por un centrómero, lo que significa que cada cromosoma contiene dos hebras de ADN idénticas. Además, durante esta fase, los cromosomas se condensan y se hacen visibles bajo el microscopio, adquiriendo una forma definida y no permanecen desenrollados.",
                         "feedbackImage": null,
                         "forms": [
                             {
@@ -47,7 +47,7 @@
                     },
                     {
                         "subconcept": "Envoltura nuclear",
-                        "feedbackText": "Pendiente.",
+                        "feedbackText": "La envoltura nuclear no permanece intacta durante toda la profase; de hecho, comienza a desintegrarse en esta fase para permitir que los microtúbulos del huso mitótico interactúen con los cromosomas. La ruptura de la envoltura nuclear es un paso esencial para que ocurra esta interacción y el correcto reparto de los cromosomas durante la mitosis.",
                         "feedbackImage": null,
                         "forms": [
                             {
@@ -66,7 +66,7 @@
                     },
                     {
                         "subconcept": "Centrosoma",
-                        "feedbackText": "Pendiente.",
+                        "feedbackText": "Durante la profase, los centrosomas se duplican y migran hacia polos opuestos de la célula, lo cual es fundamental para organizar el huso mitótico. Por lo tanto, la migración de los centrosomas es necesaria para la correcta formación del huso, y no permanecen juntos cerca del núcleo en esta etapa.",
                         "feedbackImage": null,
                         "forms": [
                             {
@@ -79,6 +79,172 @@
                             },
                             {
                                 "statement": "La migración de los centrosomas es necesaria para organizar el huso mitótico.",
+                                "answer": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "question": "Según la imagen, es correcto afirmar que:",
+                "image": "metafase_y_anafase",
+                "concept": "Metafase y anafase",
+                "assertions": [
+                    {
+                        "subconcept": "Posicion de los cromosomas",
+                        "feedbackText": "Recuerda que durante la metafase los cromosomas se alinean ordenadamente en el plano ecuatorial de la célula, formando la placa metafásica. En cambio, en la anafase, los cromosomas ya no están alineados, sino que se separan y se dirigen hacia los polos opuestos de la célula. Por lo tanto, los cromosomas no están dispersos ni desordenados en estas fases, sino que siguen una organización específica según la etapa de la mitosis.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "En anafase, los cromosomas se alinean en el plano ecuatorial de la célula.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En ambas fases los cromosomas están dispersos sin un orden definido.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En metafase, los cromosomas se alinean en el plano ecuatorial, formando la placa metafásica.",
+                                "answer": true
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Movimiento de los cromosomas",
+                        "feedbackText": "Durante la anafase, las cromátidas hermanas se separan y migran hacia polos opuestos de la célula, proceso que ocurre después de la metafase. En la metafase, los cromosomas se alinean en el ecuador de la célula, pero la separación de las cromátidas aún no ocurre. Además, en la anafase, los cromosomas ya no están unidos por el centrómero, ya que este se divide permitiendo la migración de las cromátidas.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "En anafase, las cromátidas hermanas se separan y se desplazan hacia polos opuestos.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "Durante metafase, las cromátidas hermanas se separan activamente.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En anafase, los cromosomas aún están unidos por el centrómero.",
+                                "answer": false
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Compactación del material genético",
+                        "feedbackText": "El ADN no siempre se encuentra en forma de cromatina laxa; durante la metafase y la anafase, el material genético está altamente condensado formando cromosomas visibles, lo que facilita su correcta separación. Por lo tanto, en metafase, el ADN no está descondensado, sino compactado para asegurar la distribución equitativa entre las células hijas.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "En ambas fases, el ADN se encuentra en forma de cromatina laxa.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En metafase y anafase, el ADN está altamente condensado en forma de cromosomas visibles.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "En metafase, el material genético aún se encuentra descondensado.",
+                                "answer": false
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Comportamiento del centrómero en la división celular",
+                        "feedbackText": "El centrómero no desaparece durante la división celular; más bien, cumple una función clave al servir como punto de unión para las fibras del huso mitótico y permitir la correcta separación de las cromátidas hermanas durante la anafase.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El centrómero desaparece en metafase, permitiendo la separacion de los cromosomas.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "En anafase el centrómero se divide y se queda en el centro de la célula.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "El centrómero desaparece con la unión del huso mitótico.",
+                                "answer": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "question": "Si tenemos una célula en telofase, sería incorrecto afirmar:",
+                "image": null,
+                "concept": "Telofase y citocinesis",
+                "assertions": [
+                    {
+                        "subconcept": "Formación de núcleos",
+                        "feedbackText": "Durante la telofase, el material genético previamente separado se reorganiza y se forman nuevas envolturas nucleares alrededor de los cromosomas en cada polo celular, permitiendo así la formación de núcleos hijos y marcando el final de la división nuclear.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Durante la telofase se forman los núcleos a partir del material genético ya separado.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "En telofase, los cromosomas se condensan aún más para facilitar la división del núcleo.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "La envoltura nuclear se reorganiza alrededor de los cromosomas en cada polo.",
+                                "answer": true
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Citocinesis",
+                        "feedbackText": "El anillo contráctil es una estructura formada principalmente por filamentos de actina y miosina, cuya función es facilitar la separación física de las células hijas durante la citocinesis. Esta estructura es característica de las células animales, no de las vegetales, ya que en las células vegetales la división se realiza mediante la formación de una placa celular.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El anillo contráctil sólo aparece en células vegetales durante la división celular.",
+                                "answer": false
+                            },
+                            {
+                                "statement": "El anillo contráctil está compuesto principalmente por filamentos de actina y miosina.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "La acción del anillo contráctil da origen a la separacion física entre las dos células hijas.",
+                                "answer": true
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Reorganízación celular",
+                        "feedbackText": "Durante la telofase, la célula experimenta una reorganización importante: los cromosomas llegan a los polos opuestos, el nucléolo reaparece en los núcleos recién formados y el citoplasma comienza a reestructurar los orgánulos, preparando la célula para regresar a la interfase.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El nucléolo puede comenzar a reaparecer dentro de los núcleos recién formados.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "En esta fase el citoplasma comienza a reorganizar los organelos mientras la célula se prepara para volver al estado interfásico.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "En telofase, los cromosomas se mueven hacia los polos.",
+                                "answer": false
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Transición final del proceso mitótico",
+                        "feedbackText": "Durante la telofase, el ADN se descondensa y vuelve a su estado de cromatina, lo que permite que la célula recupere sus funciones habituales y finalice el proceso mitótico, preparando el núcleo para la siguiente etapa celular.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "En telofase, el ADN comienza a descompactarse, volviendo a su forma de cromatina.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "Desde esta fase el ADN se descompacta, permitiendo que la célula regrese a sus funciones normales en interfase.",
+                                "answer": true
+                            },
+                            {
+                                "statement": "La transición entre telofase a citocinesis completa y marca el final del proceso mitótico.",
                                 "answer": true
                             }
                         ]

@@ -7,15 +7,15 @@ using System.Collections.Generic;
 public class FeedbackAssertion
 {
     public AssertionForm assertionForm;
+    public bool playerAnswer;
     public string feedbackText;
     public Sprite feedbackImageSprite;
-    public Sprite playerAnswerIconSprite;
-    public Sprite playerAnswerStatusSprite;
 }
 
 public class FeedbackPanelController : MonoBehaviour
 {
     public TextMeshProUGUI assertionText;
+    public Image panelImage;
 
     public Image playerAnswerIcon;
     public Image playerAnswerStatus;
@@ -31,8 +31,31 @@ public class FeedbackPanelController : MonoBehaviour
     private UnityAction continueButtonAction;
     private int currentIndex = 0;
 
+    private Sprite playerAnswerTrueSprite;
+    private Sprite playerAnswerFalseSprite;
+    private Sprite playerAnswerCorrectSprite;
+    private Sprite playerAnswerWrongSprite;
+
+    public Image imageButton;
+
+    private Color panelColorCorrect = new Color(204f / 255f, 250f / 255f, 209f / 255f);
+    private Color panelColorWrong = new Color(255f / 255f, 191f / 255f, 196f / 255f);
+
+    private Color buttonColorCorrect = new Color(122f / 255f, 236f / 255f, 115f / 255f);
+    private Color buttonColorWrong = new Color(248f / 255f, 144f / 255f, 151f / 255f);
+
+    void Awake()
+    {
+        playerAnswerTrueSprite = Resources.Load<Sprite>("icons/test_tube_true");
+        playerAnswerFalseSprite = Resources.Load<Sprite>("icons/test_tube_false");
+        playerAnswerCorrectSprite = Resources.Load<Sprite>("icons/check_mark");
+        playerAnswerWrongSprite = Resources.Load<Sprite>("icons/cross_mark");
+    }
+
     void Start()
     {
+        imageButton = continueButton.gameObject.GetComponent<Image>();
+
         continueButton.onClick.AddListener(() =>
         {
             continueButtonAction();
@@ -61,29 +84,12 @@ public class FeedbackPanelController : MonoBehaviour
     {
         FeedbackAssertion feedbackAssertion = new FeedbackAssertion();
         feedbackAssertion.assertionForm = assertionForm;
+        feedbackAssertion.playerAnswer = playerAnswer;
         feedbackAssertion.feedbackText = feedbackText;
 
         if (feedbackImagePath != null)
         {
             feedbackAssertion.feedbackImageSprite = Resources.Load<Sprite>("images/" + feedbackImagePath);
-        }
-
-        if (playerAnswer)
-        {
-            feedbackAssertion.playerAnswerIconSprite = Resources.Load<Sprite>("icons/test_tube_true");
-        }
-        else
-        {
-            feedbackAssertion.playerAnswerIconSprite = Resources.Load<Sprite>("icons/test_tube_false");
-        }
-
-        if (playerAnswer == assertionForm.answer)
-        {
-            feedbackAssertion.playerAnswerStatusSprite = Resources.Load<Sprite>("icons/check_mark");
-        }
-        else
-        {
-            feedbackAssertion.playerAnswerStatusSprite = Resources.Load<Sprite>("icons/cross_mark");
         }
 
         feedbackAssertions.Add(feedbackAssertion);
@@ -96,8 +102,28 @@ public class FeedbackPanelController : MonoBehaviour
 
         assertionText.text = feedbackAssertion.assertionForm.statement;
         feedbackText.text = feedbackAssertion.feedbackText;
-        playerAnswerIcon.sprite = feedbackAssertion.playerAnswerIconSprite;
-        playerAnswerStatus.sprite = feedbackAssertion.playerAnswerStatusSprite;
+
+        if (feedbackAssertion.playerAnswer)
+        {
+            playerAnswerIcon.sprite = playerAnswerTrueSprite;
+        }
+        else
+        {
+            playerAnswerIcon.sprite = playerAnswerFalseSprite;
+        }
+
+        if (feedbackAssertion.playerAnswer == feedbackAssertion.assertionForm.answer)
+        {
+            playerAnswerStatus.sprite = playerAnswerCorrectSprite;
+            panelImage.color = panelColorCorrect;
+            imageButton.color = buttonColorCorrect;
+        }
+        else
+        {
+            playerAnswerStatus.sprite = playerAnswerWrongSprite;
+            panelImage.color = panelColorWrong;
+            imageButton.color = buttonColorWrong;
+        }
 
         if (feedbackAssertion.feedbackImageSprite == null)
         {

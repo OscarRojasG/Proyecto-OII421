@@ -202,8 +202,8 @@ MonoBehaviour:
   virus: {fileID: 5539002663844992863, guid: afb70a0311e3df54189d684796dc0802, type: 3}
   collectable: {fileID: 4296765802496020528, guid: ecae8f707ea91c14ca5b2362084474a7, type: 3}
   panelCanvas: {fileID: 1475639635}
-  questionPanel: {fileID: 6869977578273428743, guid: 42985e4990657c4459c24ca82325735b, type: 3}
-  feedbackPanel: {fileID: 6933499644254522697, guid: 8c532eabef7768749a066cbaf80f2c47, type: 3}
+  questionPanel: {fileID: 1541057589336869983, guid: f4b58653fdb0b9b49af186098922235d, type: 3}
+  feedbackPanel: {fileID: 8431405942149684481, guid: 8c532eabef7768749a066cbaf80f2c47, type: 3}
   pauseButton: {fileID: 1995864960}
   pauseScreen: {fileID: 6256533361581546938}
 --- !u!4 &154262147
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb321ee8a144ec4e9ec18863a972263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 600
+  jumpForce: 530
 --- !u!212 &460418688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3175,7 +3175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acc04340e1bcb840910bc806eef7269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -300
+  speed: -500
 --- !u!1 &2105106004
 GameObject:
   m_ObjectHideFlags: 0
