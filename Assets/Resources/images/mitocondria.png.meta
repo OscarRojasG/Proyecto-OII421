@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mitocondria_0: -5730729477342674965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

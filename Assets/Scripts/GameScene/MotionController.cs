@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
+using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class MotionController : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class MotionController : MonoBehaviour
     void Start()
     {
         Tilemap tilemap = GetComponentInChildren<Tilemap>();
-        tilemap.CompressBounds(); // Eliminar tiles vacíos
+        tilemap.CompressBounds(); // Eliminar tiles vacï¿½os
 
         float width = tilemap.cellBounds.size.x * tilemap.layoutGrid.cellSize.x * transform.localScale.x;
         cloneStartX = width;
