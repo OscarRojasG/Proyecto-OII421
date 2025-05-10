@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
 
 public class MotionController : MonoBehaviour
 {
@@ -14,7 +12,7 @@ public class MotionController : MonoBehaviour
     void Start()
     {
         Tilemap tilemap = GetComponentInChildren<Tilemap>();
-        tilemap.CompressBounds(); // Eliminar tiles vac�os
+        tilemap.CompressBounds(); // Eliminar tiles vacíos
 
         float width = tilemap.cellBounds.size.x * tilemap.layoutGrid.cellSize.x * transform.localScale.x;
         cloneStartX = width;
@@ -28,7 +26,7 @@ public class MotionController : MonoBehaviour
         {
             GameObject clone = Instantiate(gameObject, transform.parent);
             clone.name = gameObject.name;
-            clone.transform.localPosition = new Vector3((float) Math.Floor(transform.localPosition.x) + cloneStartX, 0, 0);
+            clone.transform.localPosition = new Vector3((float)Math.Floor(transform.localPosition.x) + cloneStartX, 0, 0);
             cloned = true;
         }
         if (transform.localPosition.x <= -cloneStartX)

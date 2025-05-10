@@ -5,7 +5,7 @@ public class MainSceneController : MonoBehaviour
 {
     public Button playButton;
 
-    private void Start()
+    void Start()
     {
         playButton.onClick.AddListener(() =>
         {
