@@ -13,11 +13,10 @@ public class LevelController : MonoBehaviour
     public ObstacleController barrel;
     public ObstacleController virus;
 
-
     public CollectableController collectable;
 
     private GameController gameController;
-    private List<QuestionNew> questions;
+    private QuestionManager questionManager;
 
     public Canvas panelCanvas;
     public QuestionPanelController questionPanel;
@@ -38,6 +37,10 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         gameController = GameController.Instance;
+        
+        List<Question> questions = gameController.GetQuestions();
+        questionManager = new QuestionManager(questions);
+
         StartPhysics();
 
         player.SetCollideObstacleAction(() =>
@@ -51,12 +54,12 @@ public class LevelController : MonoBehaviour
 
         player.SetCollideCollectableAction(() =>
         {
-            QuestionNew question = GetQuestion();
+            GameQuestion gameQuestion = questionManager.GetQuestion();
 
             QuestionPanelController questionPanelController = Instantiate(questionPanel, panelCanvas.transform);
             float startTime = Time.unscaledTime;
             
-            questionPanelController.SetQuestion(question, 0);
+            questionPanelController.SetQuestion(gameQuestion);
             questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
             {
                 FeedbackPanelController feedbackPanelController = Instantiate(feedbackPanel, panelCanvas.transform);
@@ -70,8 +73,8 @@ public class LevelController : MonoBehaviour
                 {
                     AssertionForm assertionForm = assertionControllers[i].GetAssertion();
                     bool playerAnswer = assertionControllers[i].GetPlayerAnswer();
-                    string feedbackText = question.assertions[i].feedbackText;
-                    string feedbackImage = question.assertions[i].feedbackImage;
+                    string feedbackText = gameQuestion.question.assertions[i].feedbackText;
+                    string feedbackImage = gameQuestion.question.assertions[i].feedbackImage;
 
                     if (playerAnswer != assertionForm.answer) allCorrect = false;
 
@@ -81,6 +84,10 @@ public class LevelController : MonoBehaviour
                 if (allCorrect)
                 {
                     collectableBar.AddCollectable();
+                }
+                else
+                {
+                    questionManager.MarkQuestionAsUnsolved(gameQuestion);
                 }
             });
 
@@ -100,6 +107,7 @@ public class LevelController : MonoBehaviour
         });
     }
 
+    /*
     private void SaveAnswer(Question question, string playerAnswer, bool isCorrect, double time)
     {
         ProgressData progressData = gameController.GetProgressData();
@@ -118,6 +126,7 @@ public class LevelController : MonoBehaviour
 
         gameController.SaveProgressData();
     }
+    */
 
     // Update is called once per frame
     void Update()
@@ -130,7 +139,7 @@ public class LevelController : MonoBehaviour
             float rand = Random.Range(0f, 1f);
 
             // Generar coleccionable
-            if (rand <= prob)
+            if (rand <= prob || true)
             {
                 Instantiate(collectable);
                 obstaclesBeforeCollectableCount = 0;
@@ -160,20 +169,6 @@ public class LevelController : MonoBehaviour
         {
             Instantiate(virus);
         }
-    }
-
-    private QuestionNew GetQuestion()
-    {
-        if (questions == null || questions.Count == 0)
-        {
-            questions = gameController.GetQuestions();
-        }
-
-        int randomIndex = Random.Range(0, questions.Count);
-        QuestionNew question = questions[randomIndex];
-        questions.RemoveAt(randomIndex);
-
-        return question;
     }
 
     private void PausePhysics()

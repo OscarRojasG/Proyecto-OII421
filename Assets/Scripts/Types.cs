@@ -1,6 +1,16 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+
+
+/*
+[Serializable]
+public class ProgressData
+{
+    public string playerID;
+    public AnsweredQuestion[] answeredQuestions;
+}
+*/
+
 
 [Serializable]
 public class QuestionData
@@ -10,39 +20,6 @@ public class QuestionData
 
 [Serializable]
 public class Question
-{
-    public string question;
-    public string correctAnswer;
-    public string[] wrongAnswers;
-    public string image;
-    public string feedback;
-}
-
-[Serializable]
-public class ProgressData
-{
-    public string playerID;
-    public AnsweredQuestion[] answeredQuestions;
-}
-
-[Serializable]
-public class AnsweredQuestion
-{
-    public Question question;
-    public string playerAnswer;
-    public bool isCorrect;
-    public double responseTime;
-    public string level;
-}
-
-[Serializable]
-public class QuestionDataNew
-{
-    public Dictionary<string, QuestionNew[]> data;
-}
-
-[Serializable]
-public class QuestionNew
 {
     public string question;
     public string concept;
@@ -64,4 +41,28 @@ public class AssertionForm
 {
     public string statement;
     public bool answer;
+}
+
+public class GameQuestion
+{
+    public Question question { get; }
+    public List<GameAssertion> assertions { get; }
+
+    public GameQuestion(Question question, List<GameAssertion> assertions)
+    {
+        this.question = question;
+        this.assertions = assertions;
+    }
+}
+
+public class GameAssertion
+{
+    public Assertion assertion { get; }
+    public AssertionForm assertionForm { get; }
+
+    public GameAssertion(Assertion assertion, AssertionForm assertionForm)
+    {
+        this.assertion = assertion;
+        this.assertionForm = assertionForm;
+    }
 }

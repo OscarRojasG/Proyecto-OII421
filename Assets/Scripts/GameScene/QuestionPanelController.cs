@@ -23,8 +23,9 @@ public class QuestionPanelController : MonoBehaviour
         });
     }
 
-    public void SetQuestion(QuestionNew question, int formIndex)
+    public void SetQuestion(GameQuestion gameQuestion)
     {
+        Question question = gameQuestion.question;
         questionText.SetText(question.question);
 
         if (question.image != null)
@@ -39,7 +40,7 @@ public class QuestionPanelController : MonoBehaviour
 
         for (int i = 0; i < assertionControllers.Length; i++)
         {
-            assertionControllers[i].SetAssertionForm(question.assertions[i].forms[formIndex]);
+            assertionControllers[i].SetAssertionForm(gameQuestion.assertions[i].assertionForm);
         }
     }
 

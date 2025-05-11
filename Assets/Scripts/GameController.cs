@@ -7,8 +7,8 @@ using System.IO;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
-    private QuestionDataNew questionData;
-    private ProgressData progressData;
+    private QuestionData questionData;
+    // private ProgressData progressData;
 
     private string currentLevel;
 
@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
 
             questionData = LoadQuestions();
 
+            /*
             try
             {
                 progressData = ReadJson();
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
             {
                 progressData = CreateJsonUserProgress();
             }
+            */
         }
         else
         {
@@ -47,17 +49,18 @@ public class GameController : MonoBehaviour
         this.currentLevel = currentLevel;
     }
 
-    private QuestionDataNew LoadQuestions()
+    private QuestionData LoadQuestions()
     {
         TextAsset asset = Resources.Load<TextAsset>("questions");
-        return JsonConvert.DeserializeObject<QuestionDataNew>(asset.text);
+        return JsonConvert.DeserializeObject<QuestionData>(asset.text);
     }
 
-    public List<QuestionNew> GetQuestions()
+    public List<Question> GetQuestions()
     {
-        return new List<QuestionNew>(questionData.data[currentLevel]);
+        return new List<Question>(questionData.data[currentLevel]);
     }
     
+    /*
     public ProgressData CreateJsonUserProgress()
     {
         string path = Path.Combine(Application.persistentDataPath, "Usuario.json");
@@ -87,5 +90,6 @@ public class GameController : MonoBehaviour
         File.WriteAllText(path, progressJson);
         print(progressJson);
     }
+    */
 
 }

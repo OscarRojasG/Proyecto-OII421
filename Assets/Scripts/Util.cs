@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Util
+public static class Util
 {
     public static void Shuffle<T>(T[] array)
     {
@@ -9,6 +10,19 @@ public class Util
         {
             int j = Random.Range(0, i + 1);
             (array[i], array[j]) = (array[j], array[i]); // Intercambio de valores
+        }
+    }
+
+    public static void Shuffle<T>(this IList<T> lista)
+    {
+        int n = lista.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0, n + 1);
+            T valor = lista[k];
+            lista[k] = lista[n];
+            lista[n] = valor;
         }
     }
 }
