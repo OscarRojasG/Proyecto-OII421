@@ -28,4 +28,10 @@ public class ObjectController : MonoBehaviour
 
         transform.Rotate(rotationVelocity * Time.deltaTime);
     }
+
+    public void SetSprite(Sprite sprite)
+    {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = sprite;
+    }
 }

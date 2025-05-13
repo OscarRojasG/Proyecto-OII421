@@ -4,14 +4,16 @@ using UnityEngine;
 public class QuestionManager
 {
     private Dictionary<AssertionForm, int> weights = new Dictionary<AssertionForm, int>();
-    private Queue<Question> questions = new Queue<Question>();
+    private List<Question> questionsQueue = new List<Question>();
+    private List<Question> questions = new List<Question>();
 
     public QuestionManager(List<Question> questions)
     {
         Util.Shuffle(questions);
         foreach (Question question in questions)
         {
-            this.questions.Enqueue(question);
+            questionsQueue.Add(question);
+            this.questions.Add(question);
 
             // Inicialmente asignar peso 0 a las formas
             foreach (Assertion assertion in question.assertions)
@@ -26,7 +28,10 @@ public class QuestionManager
 
     public GameQuestion GetQuestion()
     {
-        Question question = questions.Dequeue();
+        Question question = questionsQueue[0];
+        questionsQueue.RemoveAt(0);
+        questionsQueue.Add(question);
+
         List<GameAssertion> gameAssertions = new List<GameAssertion>();
 
         foreach (Assertion assertion in question.assertions)
@@ -69,9 +74,12 @@ public class QuestionManager
         return gameQuestion;
     }
 
-    public void MarkQuestionAsUnsolved(GameQuestion gameQuestion)
+    public void MarkQuestionAsSolved(GameQuestion gameQuestion)
     {
-        questions.Enqueue(gameQuestion.question);
+        questionsQueue.Remove(gameQuestion.question);
+        if (questionsQueue.Count == 0)
+        {
+            questionsQueue = new List<Question>(questions);
+        }
     }
-
 }

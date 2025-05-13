@@ -7,13 +7,12 @@ public class LevelController : MonoBehaviour
 {
     public PlayerController player;
     public LivesController livesController;
-    public CollectableBarController collectableBar;
     public TextMeshProUGUI distanceText;
 
     public ObstacleController barrel;
     public ObstacleController virus;
 
-    public CollectableController collectable;
+    public CollectableManager collectableManager;
 
     private GameController gameController;
     private QuestionManager questionManager;
@@ -40,10 +39,11 @@ public class LevelController : MonoBehaviour
         
         List<Question> questions = gameController.GetQuestions();
         questionManager = new QuestionManager(questions);
+        collectableManager.Init(questions);
 
         StartPhysics();
 
-        player.SetCollideObstacleAction(() =>
+        player.SetCollideObstacleAction((ObstacleController obstacleController) =>
         {
             livesController.RemoveLife();
             if (livesController.GetLivesLeft() == 0)
@@ -52,9 +52,9 @@ public class LevelController : MonoBehaviour
             }
         });
 
-        player.SetCollideCollectableAction(() =>
+        player.SetCollideCollectableAction((CollectableController collectableController) =>
         {
-            GameQuestion gameQuestion = questionManager.GetQuestion();
+            GameQuestion gameQuestion = collectableController.GetGameQuestion();
 
             QuestionPanelController questionPanelController = Instantiate(questionPanel, panelCanvas.transform);
             float startTime = Time.unscaledTime;
@@ -83,11 +83,8 @@ public class LevelController : MonoBehaviour
 
                 if (allCorrect)
                 {
-                    collectableBar.AddCollectable();
-                }
-                else
-                {
-                    questionManager.MarkQuestionAsUnsolved(gameQuestion);
+                    collectableManager.AddCollectable(gameQuestion);
+                    questionManager.MarkQuestionAsSolved(gameQuestion);
                 }
             });
 
@@ -139,9 +136,10 @@ public class LevelController : MonoBehaviour
             float rand = Random.Range(0f, 1f);
 
             // Generar coleccionable
-            if (rand <= prob || true)
+            if (rand <= prob)
             {
-                Instantiate(collectable);
+                GameQuestion gameQuestion = questionManager.GetQuestion();
+                collectableManager.GenerateCollectable(gameQuestion);
                 obstaclesBeforeCollectableCount = 0;
             }
             else // Generar obstáculo

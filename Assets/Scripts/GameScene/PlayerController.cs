@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,8 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
 
-    private UnityAction collideObstacleAction;
-    private UnityAction collideCollectableAction;
+    private UnityAction<ObstacleController> collideObstacleAction;
+    private UnityAction<CollectableController> collideCollectableAction;
 
     void Start()
     {
@@ -37,20 +38,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.CompareTag("Obstacle"))
         {
-            collideObstacleAction();
+            collideObstacleAction(collider.GetComponent<ObstacleController>());
         }
         else if (collider.CompareTag("Collectable"))
         {
-            collideCollectableAction();
+            collideCollectableAction(collider.GetComponent<CollectableController>());
         }
     }
 
-    public void SetCollideObstacleAction(UnityAction action)
+    public void SetCollideObstacleAction(UnityAction<ObstacleController> action)
     {
         collideObstacleAction = action;
     }
 
-    public void SetCollideCollectableAction(UnityAction action)
+    public void SetCollideCollectableAction(UnityAction<CollectableController> action)
     {
         collideCollectableAction = action;
     }
