@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 
 
-/*
+// /*
 [Serializable]
 public class ProgressData
 {
     public string playerID;
-    public AnsweredQuestion[] answeredQuestions;
+    public GameQuestion[] answeredQuestions;
 }
-*/
+// */
 
 
 [Serializable]

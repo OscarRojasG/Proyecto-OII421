@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
     private QuestionData questionData;
-    // private ProgressData progressData;
+    private ProgressData progressData;
 
     private string currentLevel;
 
@@ -60,16 +60,16 @@ public class GameController : MonoBehaviour
         return new List<Question>(questionData.data[currentLevel]);
     }
     
-    /*
-    public ProgressData CreateJsonUserProgress()
-    {
-        string path = Path.Combine(Application.persistentDataPath, "Usuario.json");
-        ProgressData progressData = new ProgressData();
-        progressData.answeredQuestions = new AnsweredQuestion[0];
-        string progressJson = JsonUtility.ToJson(progressData, true);
-        File.WriteAllText(path, progressJson);
-        return progressData;
-    }
+    // /*
+    // public ProgressData CreateJsonUserProgress()
+    // {
+    //     string path = Path.Combine(Application.persistentDataPath, "Usuario.json");
+    //     ProgressData progressData = new ProgressData();
+    //     progressData.answeredQuestions = new AnsweredQuestion[0];
+    //     string progressJson = JsonUtility.ToJson(progressData, true);
+    //     File.WriteAllText(path, progressJson);
+    //     return progressData;
+    // }
 
     public ProgressData ReadJson()
     {
@@ -90,6 +90,6 @@ public class GameController : MonoBehaviour
         File.WriteAllText(path, progressJson);
         print(progressJson);
     }
-    */
+    // */
 
 }
