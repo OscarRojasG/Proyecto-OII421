@@ -24,7 +24,7 @@ public class CollectableManager : MonoBehaviour
 
     private Dictionary<Question, CollectableSlot> questionSlots = new Dictionary<Question, CollectableSlot>(); 
 
-    public void Init(List<Question> questions)
+    public void Init(List<QuestionT> questions)
     {
         for (int i = 0; i < MAX_COLLECTABLES; i++)
         {

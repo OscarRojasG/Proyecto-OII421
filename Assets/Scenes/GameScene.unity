@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 154262147}
   - component: {fileID: 154262146}
   - component: {fileID: 154262148}
+  - component: {fileID: 154262149}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -198,6 +199,7 @@ MonoBehaviour:
   player: {fileID: 460418687}
   livesController: {fileID: 662670603}
   distanceText: {fileID: 1900971333}
+  playerData: {fileID: 154262149}
   barrel: {fileID: 5539002663844992863, guid: e70480f16c9f0634ca966643a12902d2, type: 3}
   virus: {fileID: 5539002663844992863, guid: afb70a0311e3df54189d684796dc0802, type: 3}
   collectableManager: {fileID: 154262148}
@@ -244,6 +246,18 @@ MonoBehaviour:
   - {fileID: 2111727716445480112, guid: e5fd4e21d8b3cf94a849a62c91947515, type: 3}
   - {fileID: 2111727716445480112, guid: e5fd4e21d8b3cf94a849a62c91947515, type: 3}
   - {fileID: 2111727716445480112, guid: e5fd4e21d8b3cf94a849a62c91947515, type: 3}
+--- !u!114 &154262149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154262145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4f684f33966394ead5fdc0c6749381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &421853121
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class LevelController : MonoBehaviour
     public PlayerController player;
     public LivesController livesController;
     public TextMeshProUGUI distanceText;
+    public PlayerData playerData;
 
     public ObstacleController barrel;
     public ObstacleController virus;
@@ -37,7 +39,7 @@ public class LevelController : MonoBehaviour
     {
         gameController = GameController.Instance;
         
-        List<Question> questions = gameController.GetQuestions();
+        List<QuestionT> questions = gameController.GetQuestions();
         questionManager = new QuestionManager(questions);
         collectableManager.Init(questions);
 
@@ -60,6 +62,10 @@ public class LevelController : MonoBehaviour
             float startTime = Time.unscaledTime;
             
             questionPanelController.SetQuestion(gameQuestion);
+            // Cuando se responde una pregunta (Boton continuar) -> Guardar los datos
+
+            OutQuestion oq = OutQuestionT.FromGameQuestion(gameQuestion);
+
             questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
             {
                 FeedbackPanelController feedbackPanelController = Instantiate(feedbackPanel, panelCanvas.transform);
@@ -73,6 +79,7 @@ public class LevelController : MonoBehaviour
                 {
                     AssertionForm assertionForm = assertionControllers[i].GetAssertion();
                     bool playerAnswer = assertionControllers[i].GetPlayerAnswer();
+                    oq.assertions[i].correct = playerAnswer == assertionForm.answer;
                     string feedbackText = gameQuestion.question.assertions[i].feedbackText;
                     string feedbackImage = gameQuestion.question.assertions[i].feedbackImage;
 
@@ -80,6 +87,11 @@ public class LevelController : MonoBehaviour
 
                     feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
                 }
+                oq.answerTime = Time.unscaledTime - startTime;
+                playerData.outQuestions.Add(oq);
+                string json = JsonConvert.SerializeObject(oq);
+                print(json);
+
 
                 if (allCorrect)
                 {
@@ -142,7 +154,7 @@ public class LevelController : MonoBehaviour
                 collectableManager.GenerateCollectable(gameQuestion);
                 obstaclesBeforeCollectableCount = 0;
             }
-            else // Generar obstáculo
+            else // Generar obstï¿½culo
             {
                 GenerateObstacle(); 
                 obstaclesBeforeCollectableCount++;

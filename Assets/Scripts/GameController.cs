@@ -55,9 +55,9 @@ public class GameController : MonoBehaviour
         return JsonConvert.DeserializeObject<QuestionData>(asset.text);
     }
 
-    public List<Question> GetQuestions()
+    public List<QuestionT> GetQuestions()
     {
-        return new List<Question>(questionData.data[currentLevel]);
+        return QuestionT.FromQuestionList(questionData.data[currentLevel], int.Parse(currentLevel));
     }
     
     // /*
