@@ -23,6 +23,7 @@ public class SceneController : MonoBehaviour
 
     public void ChangeScene(string name)
     {
+        // SceneManager.UnloadSceneAsync(name);
         SceneManager.LoadScene(name);
         sceneHistory.Add(name);
     }

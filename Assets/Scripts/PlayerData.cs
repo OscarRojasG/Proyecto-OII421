@@ -9,6 +9,85 @@ public class PlayerData : MonoBehaviour
 
     public List<OutQuestion> outQuestions;
 
+    public void Reload()
+    {
+        // if file exists
+        if (!File.Exists(saveFilePath))
+        {
+            data = new SaveData();
+            return;
+        }
+
+        string json = File.ReadAllText(saveFilePath);
+        data = JsonUtility.FromJson<SaveData>(json);
+        if (data.answeredQuestions == null)
+        {
+            data.answeredQuestions = new OutQuestion[0];
+        }
+        outQuestions = new List<OutQuestion>(data.answeredQuestions);
+    }
+
+    public void OnLevelFinish(int collisionCount, int errorCount, int distance, int completed)
+    {
+        if (data == null)
+            return;
+
+        if (data.jumpCount >= 10)
+        {
+            data.hasBunny = true;
+        }
+
+        if (data.traveledDistance >= 500)
+        {
+            data.hasRunner = true;
+        }
+
+        if (data.assertionErrors >= 10)
+        {
+            data.hasRat = true;
+        }
+
+        if (collisionCount == 0 && completed == 1)
+        {
+            data.hasUndamaged = true;
+        }
+
+        if (errorCount == 0 && completed == 1)
+        {
+            data.hasScientist = true;
+        }
+
+        if (data.highScore < distance)
+        {
+            data.highScore = distance;
+        }
+
+        if (!data.hasRunner)
+        {
+            data.traveledDistance += distance;
+            if (data.traveledDistance >= 500)
+            {
+                data.hasRunner = true;
+                data.traveledDistance = 500;
+            }
+        }
+
+        WriteFile();
+    }
+
+    public void AssignScientist()
+    {
+        if (data != null)
+        {
+            data.hasScientist = true;
+            // WriteFile();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: No data to assign.");
+        }
+    }
+
     public bool DataExists()
     {
         return File.Exists(saveFilePath);
@@ -30,6 +109,7 @@ public class PlayerData : MonoBehaviour
         return false;
     }
 
+    // Must be called at Game start
     void Awake()
     {
         saveFilePath =
@@ -84,6 +164,7 @@ public class PlayerData : MonoBehaviour
 
     }
 
+    // Must be called at level end or loss
     public void WriteFile()
     {
         if (data != null)
@@ -94,7 +175,46 @@ public class PlayerData : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("PlayerData: No data to write.");
+            Debug.LogWarning("PlayerData: No player data loaded.");
+        }
+    }
+
+    public int getJumps()
+    {
+        if (data != null)
+        {
+            return data.jumpCount;
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: No data to get jumps from.");
+            return -1;
+        }
+    }
+
+    public int getDistance()
+    {
+        if (data != null)
+        {
+            return data.traveledDistance;
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: No data to get distance from.");
+            return -1;
+        }
+    }
+
+    public void increaseJump()
+    {
+        if (data != null)
+        {
+            data.jumpCount++;
+            // WriteFile();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: No data to increase jumps.");
         }
     }
 
@@ -104,6 +224,25 @@ public class PlayerData : MonoBehaviour
     {
         public string playerName;
         public int highScore;
+
+        // runner
+        public bool hasRunner;
+        public int traveledDistance;
+
+        // rat
+        public bool hasRat;
+        public int assertionErrors;
+
+        // bunny
+        public bool hasBunny;
+        public int jumpCount;
+
+        // undamaged
+        public bool hasUndamaged;
+
+        // scientist (Doesn't have a specific stat)
+        public bool hasScientist;
+
         public OutQuestion[] answeredQuestions;
     }
 }

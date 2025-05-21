@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class PauseScreenController : MonoBehaviour
 {
     public Button continueButton;
     public Button exitButton;
+    public GameObject pauseScreen;
 
     private UnityAction continueAction;
 
@@ -20,6 +22,7 @@ public class PauseScreenController : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
+            Time.timeScale = 1f; // Reanudar el tiempo
             SceneController.Instance.ChangeScene("MainScene");
             SceneController.Instance.ClearHistory();
         });
@@ -32,11 +35,18 @@ public class PauseScreenController : MonoBehaviour
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        // Time.timeScale = 0f;
+        StartCoroutine(ShowPause());
     }
 
+    IEnumerator ShowPause() {
+        yield return new WaitForEndOfFrame();
+        pauseScreen.SetActive(true);
+    }
     public void Hide()
     {
-        gameObject.SetActive(false);
+        // Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
+        Canvas.ForceUpdateCanvases();
     }
 }

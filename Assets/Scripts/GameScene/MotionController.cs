@@ -11,6 +11,7 @@ public class MotionController : MonoBehaviour
 
     void Start()
     {
+            // Debug.Log($"{gameObject.name} MotionController initialized at position {transform.localPosition}");
         Tilemap tilemap = GetComponentInChildren<Tilemap>();
         tilemap.CompressBounds(); // Eliminar tiles vacíos
 
@@ -20,6 +21,7 @@ public class MotionController : MonoBehaviour
 
     void Update()
     {
+        // Debug.Log($"{gameObject.name} MotionController updating position {speed} {Time.deltaTime} {Vector3.right}");
         transform.localPosition += speed * Time.deltaTime * Vector3.right;
 
         if (transform.localPosition.x <= 0 && cloned == false)

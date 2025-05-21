@@ -26,6 +26,10 @@ public class LevelController : MonoBehaviour
     public Button pauseButton;
     public PauseScreenController pauseScreen;
 
+    public GameObject continueCanvas;
+    public Button continueButton;
+    public Button exitButton;
+
     private float elapsedTime = 0f;
     private float timeNextObstacle = 2f;
     private float minTimeBetweenObstacles = 1.4f;
@@ -35,10 +39,15 @@ public class LevelController : MonoBehaviour
     private float minObstaclesBeforeCollectable = 2;
     private float maxObstaclesBeforeCollectable = 5;
 
+    private int errorCount = 0;
+    private int collisionCount = 0;
+
     void Start()
     {
         gameController = GameController.Instance;
-        
+        playerData = gameController.GetComponent<PlayerData>();
+        continueCanvas.gameObject.SetActive(false);
+
         List<QuestionT> questions = gameController.GetQuestions();
         questionManager = new QuestionManager(questions);
         collectableManager.Init(questions);
@@ -47,9 +56,12 @@ public class LevelController : MonoBehaviour
 
         player.SetCollideObstacleAction((ObstacleController obstacleController) =>
         {
+            collisionCount++;
+            player.Blink(0.5f);
             livesController.RemoveLife();
             if (livesController.GetLivesLeft() == 0)
             {
+                playerData.OnLevelFinish(collisionCount, errorCount, (int)elapsedTime*10, 0);
                 SceneController.Instance.ChangeScene("GameOverScene");
             }
         });
@@ -60,7 +72,7 @@ public class LevelController : MonoBehaviour
 
             QuestionPanelController questionPanelController = Instantiate(questionPanel, panelCanvas.transform);
             float startTime = Time.unscaledTime;
-            
+
             questionPanelController.SetQuestion(gameQuestion);
             // Cuando se responde una pregunta (Boton continuar) -> Guardar los datos
 
@@ -69,10 +81,6 @@ public class LevelController : MonoBehaviour
             questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
             {
                 FeedbackPanelController feedbackPanelController = Instantiate(feedbackPanel, panelCanvas.transform);
-                feedbackPanelController.SetContinueAction(() =>
-                {
-                    StartPhysics();
-                });
 
                 bool allCorrect = true;
                 for (int i = 0; i < assertionControllers.Length; i++)
@@ -83,14 +91,19 @@ public class LevelController : MonoBehaviour
                     string feedbackText = gameQuestion.question.assertions[i].feedbackText;
                     string feedbackImage = gameQuestion.question.assertions[i].feedbackImage;
 
-                    if (playerAnswer != assertionForm.answer) allCorrect = false;
+                    if (playerAnswer != assertionForm.answer) {
+                        allCorrect = false;
+                        if (playerData != null && playerData.data != null && playerData.data.assertionErrors < 10)
+                        {
+                            playerData.data.assertionErrors++;
+                            errorCount++;
+                        }
+                    }
 
                     feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
                 }
                 oq.answerTime = Time.unscaledTime - startTime;
                 playerData.outQuestions.Add(oq);
-                string json = JsonConvert.SerializeObject(oq);
-                print(json);
 
 
                 if (allCorrect)
@@ -98,6 +111,18 @@ public class LevelController : MonoBehaviour
                     collectableManager.AddCollectable(gameQuestion);
                     questionManager.MarkQuestionAsSolved(gameQuestion);
                 }
+                if (allCorrect && collectableManager.AllCollectablesObtained())
+                {
+                    PausePhysics();
+                    continueCanvas.gameObject.SetActive(true);
+                }
+
+                feedbackPanelController.SetContinueAction(() =>
+                {
+
+                    if (!collectableManager.AllCollectablesObtained())
+                        StartPhysics();
+                });
             });
 
             PausePhysics();
@@ -105,14 +130,27 @@ public class LevelController : MonoBehaviour
 
         pauseButton.onClick.AddListener(() =>
         {
-            PausePhysics();
             pauseScreen.Show();
+            PausePhysics();
         });
 
         pauseScreen.SetContinueAction(() =>
         {
             StartPhysics();
             pauseScreen.Hide();
+        });
+
+        continueButton.onClick.AddListener(() =>
+        {
+            StartPhysics();
+            continueCanvas.gameObject.SetActive(false);
+        });
+
+        exitButton.onClick.AddListener(() =>
+        {
+            playerData.OnLevelFinish(collisionCount, errorCount, (int)elapsedTime*10, 1);
+            Time.timeScale = 1;
+            SceneController.Instance.ChangeScene("MainScene");
         });
     }
 
