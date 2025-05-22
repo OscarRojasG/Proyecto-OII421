@@ -22,6 +22,8 @@ public class PauseScreenController : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
+            // No actualizamos datos, ya que no se completó el nivel o se perdió.
+
             Time.timeScale = 1f; // Reanudar el tiempo
             SceneController.Instance.ChangeScene("MainScene");
             SceneController.Instance.ClearHistory();

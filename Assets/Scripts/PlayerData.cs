@@ -1,36 +1,140 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PlayerData : MonoBehaviour
 {
-    private string saveFilePath = "null";
+    private string saveFilePath = "save.json";
     public SaveData data;
 
-    public List<OutQuestion> outQuestions;
-
-    public void Reload()
+    public void sendData()
     {
+        if (data != null)
+        {
+            string json = JsonConvert.SerializeObject(data);
+            Debug.Log("Sending data: " + json);
+            // Send the JSON data to your server or API
+            // Example: using UnityWebRequest
+            StartCoroutine(SendDataToServer(json,
+                onSuccess: (response) =>
+                {
+                    Debug.Log("Success! Server responded: " + response);
+                },
+                onError: (error) =>
+                {
+                    throw new Exception("Something went wrong: " + error);
+                }
+            ));
+        }
+        else
+        {
+            throw new Exception("PlayerData: No data to send.");
+        }
+        WriteFile(); 
+    }
+
+    public IEnumerator SendDataCoroutine()
+{
+    if (data != null)
+    {
+        string json = JsonConvert.SerializeObject(data);
+        Debug.Log("Sending data: " + json);
+
+        bool isDone = false;
+        string result = "";
+        string error = "";
+
+        yield return SendDataToServer(json,
+            onSuccess: (response) =>
+            {
+                result = response;
+                isDone = true;
+            },
+            onError: (err) =>
+            {
+                error = err;
+                isDone = true;
+            });
+
+        yield return new WaitUntil(() => isDone);
+
+        if (!string.IsNullOrEmpty(error))
+        {
+            Debug.LogError("Error in sendData: " + error);
+        }
+        else
+        {
+            Debug.Log("Success: " + result);
+        }
+    }
+    else
+    {
+        Debug.LogWarning("PlayerData: No data to send.");
+        yield break;
+    }
+}
+
+    public IEnumerator SendDataToServer(string json, System.Action<string> onSuccess, System.Action<string> onError)
+    {
+        string url = "https://bleapi.krr.cl/submit";
+        string token = "my-secret-token"; // Replace with your actual token
+
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        {
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Authorization", token);
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error sending data: " + request.error);
+                onError?.Invoke(request.error);
+            }
+            else
+            {
+                Debug.Log("Data sent successfully: " + request.downloadHandler.text);
+                onSuccess?.Invoke(request.downloadHandler.text);
+            }
+        }
+
+    }
+
+    public void Awake()
+    {
+        saveFilePath = Path.Combine(Application.persistentDataPath, saveFilePath);
+    }
+
+    public void Start()
+    {
+        Debug.Log("PlayerData: Start");
+        saveFilePath = Path.Combine(Application.persistentDataPath, saveFilePath);
         // if file exists
-        if (!File.Exists(saveFilePath))
+        if (!DataExists())
         {
             data = new SaveData();
             return;
         }
-
-        string json = File.ReadAllText(saveFilePath);
-        data = JsonUtility.FromJson<SaveData>(json);
-        if (data.answeredQuestions == null)
+        else
         {
-            data.answeredQuestions = new OutQuestion[0];
+            string json = File.ReadAllText(saveFilePath);
+            data = JsonConvert.DeserializeObject<SaveData>(json);
         }
-        outQuestions = new List<OutQuestion>(data.answeredQuestions);
+
     }
 
     public void OnLevelFinish(int collisionCount, int errorCount, int distance, int completed)
     {
         if (data == null)
-            return;
+            throw new Exception("PlayerData: No data loaded.");
 
         if (data.jumpCount >= 10)
         {
@@ -73,20 +177,21 @@ public class PlayerData : MonoBehaviour
         }
 
         WriteFile();
+        // SendDataToServer(JsonConvert.SerializeObject(data), null, null);
     }
 
-    public void AssignScientist()
-    {
-        if (data != null)
-        {
-            data.hasScientist = true;
-            // WriteFile();
-        }
-        else
-        {
-            Debug.LogWarning("PlayerData: No data to assign.");
-        }
-    }
+    // public void AssignScientist()
+    // {
+    //     if (data != null)
+    //     {
+    //         data.hasScientist = true;
+    //         // WriteFile();
+    //     }
+    //     else
+    //     {
+    //         "PlayerData: No data to assign.");
+    //     }
+    // }
 
     public bool DataExists()
     {
@@ -97,65 +202,19 @@ public class PlayerData : MonoBehaviour
     {
         if (!DataExists())
         {
-            data = new SaveData()
+            data.answeredQuestions = new Dictionary<string, List<OutQuestion>>
             {
-                playerName = mail,
-                highScore = 0
+                    { "1", new List<OutQuestion>() },
+                    { "2", new List<OutQuestion>() },
+                    { "3", new List<OutQuestion>() }
             };
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(saveFilePath, json);
-            return true;
+
+            data.playerName = mail;
+            WriteFile();
         }
+
+        // Reload();
         return false;
-    }
-
-    // Must be called at Game start
-    void Awake()
-    {
-        saveFilePath =
-        Path.Combine(Application.persistentDataPath, "save.json");
-
-        // Set up file path
-        // saveFilePath = Path.Combine(Application.persistentDataPath, "save.json");
-
-        if (!DataExists())
-        {
-            Debug.Log("First run detected. Creating default save file...");
-
-            // // Example default data
-            // SaveData defaultData = new SaveData()
-            // {
-            //     playerName = "Player",
-            //     highScore = 0
-            // };
-
-            // // Serialize and write to file
-            // string json = JsonUtility.ToJson(defaultData, true);
-            // File.WriteAllText(saveFilePath, json);
-
-            // Debug.Log("Default save created at: " + saveFilePath);
-        }
-        else
-        {
-
-            Debug.Log("Save file found. Loading existing data...");
-            string json = File.ReadAllText(saveFilePath);
-            data = JsonUtility.FromJson<SaveData>(json);
-            if (data.answeredQuestions == null)
-            {
-                data.answeredQuestions = new OutQuestion[0];
-            }
-            outQuestions = new List<OutQuestion>(data.answeredQuestions);
-            // Debug.Log("Save file found. Loading existing data...");
-            // // Optionally, you can load and deserialize here
-        }
-    }
-
-
-
-
-    void Start()
-    {
     }
 
     // Update is called once per frame
@@ -167,56 +226,35 @@ public class PlayerData : MonoBehaviour
     // Must be called at level end or loss
     public void WriteFile()
     {
-        if (data != null)
+
+        if (data == null)
         {
-            data.answeredQuestions = outQuestions.ToArray();
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(saveFilePath, json);
+            throw new Exception("PlayerData: No data to write.");
         }
-        else
-        {
-            Debug.LogWarning("PlayerData: No player data loaded.");
-        }
+
+        string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+        File.WriteAllText(saveFilePath, json);
     }
 
     public int getJumps()
     {
-        if (data != null)
-        {
-            return data.jumpCount;
-        }
-        else
-        {
-            Debug.LogWarning("PlayerData: No data to get jumps from.");
-            return -1;
-        }
+        if (data != null) return data.jumpCount;
+        else throw new Exception("PlayerData: No data to get jumps from.");
     }
 
     public int getDistance()
     {
-        if (data != null)
-        {
-            return data.traveledDistance;
-        }
-        else
-        {
-            Debug.LogWarning("PlayerData: No data to get distance from.");
-            return -1;
-        }
+        if (data != null) return data.traveledDistance;
+        else throw new Exception("PlayerData: No data to get distance from.");
     }
 
-    public void increaseJump()
-    {
-        if (data != null)
-        {
-            data.jumpCount++;
-            // WriteFile();
-        }
-        else
-        {
-            Debug.LogWarning("PlayerData: No data to increase jumps.");
-        }
-    }
+    // public void increaseJump()
+    // {
+    //     if (data != null)
+    //         data.jumpCount++;
+    //     else
+    //         throw new Exception("PlayerData: No data to increase jumps.");
+    // }
 
     // Example save data structure
     [System.Serializable]
@@ -243,6 +281,6 @@ public class PlayerData : MonoBehaviour
         // scientist (Doesn't have a specific stat)
         public bool hasScientist;
 
-        public OutQuestion[] answeredQuestions;
+        public Dictionary<string, List<OutQuestion>> answeredQuestions;
     }
 }

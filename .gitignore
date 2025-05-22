@@ -73,3 +73,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /New Folder/**
 /New Folder/
+wb
+wb.zip

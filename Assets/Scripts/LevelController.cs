@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using TMPro;
@@ -27,8 +28,12 @@ public class LevelController : MonoBehaviour
     public PauseScreenController pauseScreen;
 
     public GameObject continueCanvas;
+
+    // Quieres continuar?
     public Button continueButton;
     public Button exitButton;
+
+    public bool autoComplete = false;
 
     private float elapsedTime = 0f;
     private float timeNextObstacle = 2f;
@@ -103,7 +108,7 @@ public class LevelController : MonoBehaviour
                     feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
                 }
                 oq.answerTime = Time.unscaledTime - startTime;
-                playerData.outQuestions.Add(oq);
+                playerData.data.answeredQuestions[gameController.GetCurrentLevel()].Add(oq);
 
 
                 if (allCorrect)
@@ -111,7 +116,8 @@ public class LevelController : MonoBehaviour
                     collectableManager.AddCollectable(gameQuestion);
                     questionManager.MarkQuestionAsSolved(gameQuestion);
                 }
-                if (allCorrect && collectableManager.AllCollectablesObtained())
+                // if (allCorrect && collectableManager.AllCollectablesObtained())
+                if (autoComplete || collectableManager.AllCollectablesObtained())
                 {
                     PausePhysics();
                     continueCanvas.gameObject.SetActive(true);
@@ -122,6 +128,10 @@ public class LevelController : MonoBehaviour
 
                     if (!collectableManager.AllCollectablesObtained())
                         StartPhysics();
+                    if (autoComplete)
+                    {
+                        PausePhysics();
+                    }
                 });
             });
 
@@ -148,9 +158,19 @@ public class LevelController : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
-            playerData.OnLevelFinish(collisionCount, errorCount, (int)elapsedTime*10, 1);
-            Time.timeScale = 1;
+            Debug.Log("Exiting button click");
+            Debug.Log("Saving data...");
+            playerData.OnLevelFinish(collisionCount, errorCount, (int)elapsedTime * 10, 1);
+            Debug.Log("Exiting.");
+            // Time.timeScale = 1;
+
+            StartCoroutine(ExitGame());
+
+            Time.timeScale = 1f; // Reanudar el tiempo
             SceneController.Instance.ChangeScene("MainScene");
+            SceneController.Instance.ClearHistory();
+            // Time.timeScale = 1;
+
         });
     }
 
@@ -170,7 +190,7 @@ public class LevelController : MonoBehaviour
         progressData.answeredQuestions.CopyTo(newAnsweredQuestions, 0);
         newAnsweredQuestions[newAnsweredQuestions.Length - 1] = answeredQuestion;
         progressData.answeredQuestions = newAnsweredQuestions;
-
+ 
         gameController.SaveProgressData();
     }
     */
@@ -228,5 +248,31 @@ public class LevelController : MonoBehaviour
     {
         Time.timeScale = 1;
         player.enabled = true;
+    }
+
+    IEnumerator ExitGame()
+    {
+        Debug.Log("Exiting game...");
+        continueCanvas.gameObject.SetActive(false);
+
+        playerData = GameController.Instance.GetComponent<PlayerData>();
+
+        Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
+        GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
+
+
+        popup.transform.SetParent(canvas.transform, false);
+        RectTransform popupRect = popup.GetComponent<RectTransform>();
+        popupRect.anchoredPosition3D = Vector3.zero;
+
+        Destroy(popup, 3f);
+
+        // ⏳ Wait until data is actually sent
+        yield return StartCoroutine(playerData.SendDataCoroutine());
+
+        // ⌛ Optional short delay to ensure popup shows
+        yield return new WaitForSeconds(0.2f);
+
+
     }
 }
