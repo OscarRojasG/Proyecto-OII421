@@ -20,7 +20,7 @@ public class MainSceneController : MonoBehaviour
     void Start()
     {
         canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
-        sendDataButton = GameObject.Find("SendData").GetComponent<Button>();
+        sendDataButton = GameObject.Find("EnviarDatos").GetComponent<Button>();
         pd = GameController.Instance.GetComponent<PlayerData>();
 
         GameObject bg = GameObject.Find("CanvasBackground");
