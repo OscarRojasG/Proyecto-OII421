@@ -8,6 +8,8 @@ public class MainSceneController : MonoBehaviour
 {
     public Button playButton;
     public Button achievementsButton;
+    public Button tutorialButton;
+
     private PlayerData pd;
     public Canvas MainScreenCanvas, FirstRunCanvas;
     public TMP_InputField mailInputField;
@@ -74,6 +76,11 @@ public class MainSceneController : MonoBehaviour
             Debug.Log("Showing Main Menu");
             FirstRunCanvas.gameObject.SetActive(false);
             MainScreenCanvas.gameObject.SetActive(true);
+        });
+
+        tutorialButton.onClick.AddListener(() =>
+        {
+            SceneController.Instance.ChangeScene("TutorialScene");
         });
     }
 

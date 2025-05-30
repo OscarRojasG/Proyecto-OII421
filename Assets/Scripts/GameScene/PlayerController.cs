@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private PlayerData playerData;
 
-    private UnityAction<ObstacleController> collideObstacleAction;
-    private UnityAction<CollectableController> collideCollectableAction;
+    private UnityAction<ObstacleController> collideObstacleAction = (ObstacleController controller) => { };
+    private UnityAction<CollectableController> collideCollectableAction = (CollectableController controller) => { };
 
     void Start()
     {
