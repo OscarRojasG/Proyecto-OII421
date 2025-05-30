@@ -32,9 +32,8 @@ public class SceneController : MonoBehaviour
     {
         if (sceneHistory.Count >= 2)
         {
-            string previousSceneIndex = sceneHistory[sceneHistory.Count - 1];
             sceneHistory.RemoveAt(sceneHistory.Count - 1);
-            SceneManager.LoadScene(previousSceneIndex);
+            SceneManager.LoadScene(sceneHistory[sceneHistory.Count - 1]);
         }
         else if (sceneHistory.Count == 1)
         {
@@ -43,7 +42,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No hay una escena anterior en el historial.");
+            Debug.Log("No previous scene in history");
         }
     }
 
