@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -11,6 +10,23 @@ public class PlayerData : MonoBehaviour
 {
     private string saveFilePath = "save.json";
     public SaveData data;
+
+    public static PlayerData Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            saveFilePath = Path.Combine(Application.persistentDataPath, saveFilePath);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     public void sendData()
     {
@@ -108,11 +124,6 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    public void Awake()
-    {
-        saveFilePath = Path.Combine(Application.persistentDataPath, saveFilePath);
-    }
-
     public void Start()
     {
         Debug.Log("PlayerData: Start");
@@ -176,6 +187,10 @@ public class PlayerData : MonoBehaviour
             }
         }
 
+        if (completed == 1)
+        {
+            data.completedLevels[GameController.Instance.GetCurrentLevel()] = true;
+        }
         WriteFile();
         // SendDataToServer(JsonConvert.SerializeObject(data), null, null);
     }
@@ -204,10 +219,11 @@ public class PlayerData : MonoBehaviour
         {
             data.answeredQuestions = new Dictionary<string, List<OutQuestion>>
             {
-                    { "1", new List<OutQuestion>() },
-                    { "2", new List<OutQuestion>() },
-                    { "3", new List<OutQuestion>() }
+                { "1", new List<OutQuestion>() },
+                { "2", new List<OutQuestion>() },
+                { "3", new List<OutQuestion>() }
             };
+            data.completedLevels = new Dictionary<string, bool>();
 
             data.playerName = mail;
             WriteFile();
@@ -282,5 +298,6 @@ public class PlayerData : MonoBehaviour
         public bool hasScientist;
 
         public Dictionary<string, List<OutQuestion>> answeredQuestions;
+        public Dictionary<string, bool> completedLevels;
     }
 }

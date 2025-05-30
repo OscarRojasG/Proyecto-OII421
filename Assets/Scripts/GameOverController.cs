@@ -11,7 +11,7 @@ public class GameOverController : MonoBehaviour
     IEnumerator ExitGame()
     {
         Debug.Log("Exiting game...");
-        playerData = GameController.Instance.GetComponent<PlayerData>();
+        playerData = PlayerData.Instance;
 
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;

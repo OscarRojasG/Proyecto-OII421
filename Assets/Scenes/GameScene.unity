@@ -202,7 +202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 905.54114, y: -263.6}
+  m_AnchoredPosition: {x: 538.04456, y: -263.6}
   m_SizeDelta: {x: 253.76233, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120416415
@@ -264,7 +264,6 @@ GameObject:
   - component: {fileID: 154262147}
   - component: {fileID: 154262146}
   - component: {fileID: 154262148}
-  - component: {fileID: 154262149}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -287,7 +286,6 @@ MonoBehaviour:
   player: {fileID: 460418687}
   livesController: {fileID: 662670603}
   distanceText: {fileID: 1900971333}
-  playerData: {fileID: 154262149}
   barrel: {fileID: 5539002663844992863, guid: e70480f16c9f0634ca966643a12902d2, type: 3}
   virus: {fileID: 5539002663844992863, guid: afb70a0311e3df54189d684796dc0802, type: 3}
   collectableManager: {fileID: 154262148}
@@ -338,29 +336,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3740f5fa5948ce499525b7913038be4, type: 3}
   - {fileID: 21300000, guid: 057120e089c822c4c88d1e9be1ef4be4, type: 3}
   - {fileID: 21300000, guid: f7d63587535545240a055d73dc278ec6, type: 3}
---- !u!114 &154262149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154262145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4f684f33966394ead5fdc0c6749381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    playerName: 
-    highScore: 0
-    hasRunner: 0
-    traveledDistance: 0
-    hasRat: 0
-    assertionErrors: 0
-    hasBunny: 0
-    jumpCount: 0
-    hasUndamaged: 0
-    hasScientist: 0
 --- !u!1 &168384559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,8 +2847,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3b5a92facb932f74aabcdb4c10655d4c, type: 2}
-  m_sharedMaterial: {fileID: -2648481715789602079, guid: 3b5a92facb932f74aabcdb4c10655d4c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3422,8 +3397,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SALIR
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3b5a92facb932f74aabcdb4c10655d4c, type: 2}
-  m_sharedMaterial: {fileID: -2648481715789602079, guid: 3b5a92facb932f74aabcdb4c10655d4c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -10,7 +10,7 @@ public class LevelController : MonoBehaviour
     public PlayerController player;
     public LivesController livesController;
     public TextMeshProUGUI distanceText;
-    public PlayerData playerData;
+    private PlayerData playerData;
 
     public ObstacleController barrel;
     public ObstacleController virus;
@@ -50,7 +50,7 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         gameController = GameController.Instance;
-        playerData = gameController.GetComponent<PlayerData>();
+        playerData = PlayerData.Instance;
         continueCanvas.gameObject.SetActive(false);
 
         List<QuestionT> questions = gameController.GetQuestions();
@@ -255,7 +255,7 @@ public class LevelController : MonoBehaviour
         Debug.Log("Exiting game...");
         continueCanvas.gameObject.SetActive(false);
 
-        playerData = GameController.Instance.GetComponent<PlayerData>();
+        playerData = PlayerData.Instance;
 
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
