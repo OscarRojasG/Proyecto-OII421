@@ -45,7 +45,9 @@ public class LevelController : MonoBehaviour
     private float maxObstaclesBeforeCollectable = 5;
 
     private int errorCount = 0;
+    private int assertionCount = 0;
     private int collisionCount = 0;
+    private int collectedObjects = 0;
 
     void Start()
     {
@@ -66,7 +68,7 @@ public class LevelController : MonoBehaviour
             livesController.RemoveLife();
             if (livesController.GetLivesLeft() == 0)
             {
-                playerData.OnLevelFinish(collisionCount, errorCount, (int)elapsedTime*10, 0);
+                playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int) (elapsedTime * 10), 0, collectableManager.GetObtainedCount());
                 SceneController.Instance.ChangeScene("GameOverScene");
             }
         });
@@ -98,13 +100,17 @@ public class LevelController : MonoBehaviour
 
                     if (playerAnswer != assertionForm.answer) {
                         allCorrect = false;
-                        if (playerData != null && playerData.data != null && playerData.data.assertionErrors < 10)
+                        if (playerData != null && playerData.data != null)
                         {
-                            playerData.data.assertionErrors++;
-                            errorCount++;
+                            if (playerData.data.assertionErrors < 10)
+                            {
+                                playerData.data.assertionErrors++; // Logro
+                            }
+                            errorCount++; // Total errores
                         }
                     }
 
+                    assertionCount++;
                     feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
                 }
                 oq.answerTime = Time.unscaledTime - startTime;
@@ -160,7 +166,7 @@ public class LevelController : MonoBehaviour
         {
             Debug.Log("Exiting button click");
             Debug.Log("Saving data...");
-            playerData.OnLevelFinish(collisionCount, errorCount, (int)elapsedTime * 10, 1);
+            playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int) (elapsedTime * 10), 1, collectableManager.GetObtainedCount());
             Debug.Log("Exiting.");
             // Time.timeScale = 1;
 

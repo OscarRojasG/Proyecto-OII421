@@ -14,7 +14,7 @@ public class AchievementsSceneController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        pd = GameController.Instance.GetComponent<PlayerData>();
+        pd = PlayerData.Instance;
         Debug.Log("PlayerData loaded: " + pd.data.playerName);
         target1.text = "";
         target2.text = "";

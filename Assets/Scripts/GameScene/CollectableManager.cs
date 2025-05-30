@@ -61,10 +61,16 @@ public class CollectableManager : MonoBehaviour
 
     public bool AllCollectablesObtained()
     {
-        foreach (var(key, value) in questionSlots)
+        return GetObtainedCount() == questionSlots.Count;
+    }
+
+    public int GetObtainedCount()
+    {
+        int count = 0;
+        foreach (var (key, value) in questionSlots)
         {
-            if (value.filled == false) return false;
+            if (value.filled == true) count++;
         }
-        return true;
+        return count;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerData : MonoBehaviour
 {
     private string saveFilePath = "save.json";
     public SaveData data;
+    public Stats lastGameStats { private set; get; }
 
     public static PlayerData Instance { get; private set; }
 
@@ -142,7 +143,7 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    public void OnLevelFinish(int collisionCount, int errorCount, int distance, int completed)
+    public void OnLevelFinish(int collisionCount, int assertionCount, int errorCount, int distance, int completed, int collectedObjects)
     {
         if (data == null)
             throw new Exception("PlayerData: No data loaded.");
@@ -191,7 +192,16 @@ public class PlayerData : MonoBehaviour
         {
             data.completedLevels[GameController.Instance.GetCurrentLevel()] = true;
         }
+
         WriteFile();
+
+
+        lastGameStats = new Stats();
+        lastGameStats.distance = distance;
+        lastGameStats.collectedObjects = collectedObjects;
+        lastGameStats.correctCount = assertionCount - errorCount;
+        lastGameStats.errorCount = errorCount;
+
         // SendDataToServer(JsonConvert.SerializeObject(data), null, null);
     }
 
@@ -299,5 +309,32 @@ public class PlayerData : MonoBehaviour
 
         public Dictionary<string, List<OutQuestion>> answeredQuestions;
         public Dictionary<string, bool> completedLevels;
+    }
+
+    public class Stats
+    {
+        public int distance;
+        public int correctCount;
+        public int errorCount;
+        public int collectedObjects;
+
+        public int GetTotalAssertions()
+        {
+            return errorCount + correctCount;
+        }
+
+        public int GetCorrectPercentage()
+        {
+            if (GetTotalAssertions() != 0)
+                return (int)(((float)correctCount / GetTotalAssertions()) * 100);
+            return 0;
+        }
+
+        public int GetErrorPercentage()
+        {
+            if (GetTotalAssertions() != 0)
+                return (int)(((float)errorCount / GetTotalAssertions()) * 100);
+            return 0;
+        }
     }
 }

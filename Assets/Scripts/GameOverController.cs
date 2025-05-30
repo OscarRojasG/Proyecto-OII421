@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,14 @@ public class GameOverController : MonoBehaviour
     public Button exitButton;
     private PlayerData playerData;
 
+    public TextMeshProUGUI textAciertos;
+    public TextMeshProUGUI textFallos;
+    public TextMeshProUGUI textDistancia;
+    public TextMeshProUGUI textObjetos;
+
     IEnumerator ExitGame()
     {
         Debug.Log("Exiting game...");
-        playerData = PlayerData.Instance;
 
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
@@ -43,5 +48,13 @@ public class GameOverController : MonoBehaviour
         {
             StartCoroutine(ExitGame());
         });
+
+        playerData = PlayerData.Instance;
+
+        PlayerData.Stats stats = playerData.lastGameStats;
+        textAciertos.SetText(stats.correctCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetCorrectPercentage() + "%)");
+        textFallos.SetText(stats.errorCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetErrorPercentage() + "%)");
+        textDistancia.SetText(stats.distance.ToString() + " m.");
+        textObjetos.SetText(stats.collectedObjects.ToString() + "/3");
     }
 }
