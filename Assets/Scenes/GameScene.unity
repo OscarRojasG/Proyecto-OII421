@@ -549,7 +549,7 @@ MonoBehaviour:
   virus: {fileID: 5539002663844992863, guid: afb70a0311e3df54189d684796dc0802, type: 3}
   collectableManager: {fileID: 154262148}
   panelCanvas: {fileID: 1475639635}
-  questionPanel: {fileID: 1541057589336869983, guid: f4b58653fdb0b9b49af186098922235d, type: 3}
+  questionPanel: {fileID: 1886563775502727111, guid: f4b58653fdb0b9b49af186098922235d, type: 3}
   feedbackPanel: {fileID: 8431405942149684481, guid: 8c532eabef7768749a066cbaf80f2c47, type: 3}
   pauseButton: {fileID: 1995864960}
   pauseScreen: {fileID: 1010831645}
