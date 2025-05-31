@@ -9,12 +9,13 @@ public class GameOverController : MonoBehaviour
     public Button exitButton;
     private PlayerData playerData;
 
+    public Image skullIcon;
     public TextMeshProUGUI textAciertos;
     public TextMeshProUGUI textFallos;
     public TextMeshProUGUI textDistancia;
     public TextMeshProUGUI textObjetos;
 
-    IEnumerator ExitGame()
+    IEnumerator SendData()
     {
         Debug.Log("Exiting game...");
 
@@ -29,6 +30,22 @@ public class GameOverController : MonoBehaviour
 
         // ⏳ Wait until data is actually sent
         yield return StartCoroutine(playerData.SendDataCoroutine());
+    }
+
+    IEnumerator Retry()
+    {
+        yield return SendData();
+
+        // ⌛ Optional short delay to ensure popup shows
+        yield return new WaitForSeconds(0.2f);
+
+        SceneController.Instance.PreviousScene();
+    }
+
+    IEnumerator ExitGame()
+    {
+        Debug.Log("Exiting game...");
+        yield return SendData();
 
         // ⌛ Optional short delay to ensure popup shows
         yield return new WaitForSeconds(0.2f);
@@ -41,7 +58,7 @@ public class GameOverController : MonoBehaviour
     {
         retryButton.onClick.AddListener(() =>
         {
-            SceneController.Instance.PreviousScene();
+            StartCoroutine(Retry());
         });
 
         exitButton.onClick.AddListener(() =>
@@ -56,5 +73,10 @@ public class GameOverController : MonoBehaviour
         textFallos.SetText(stats.errorCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetErrorPercentage() + "%)");
         textDistancia.SetText(stats.distance.ToString() + " m.");
         textObjetos.SetText(stats.collectedObjects.ToString() + "/3");
+
+        if (stats.collectedObjects == 3)
+        {
+            skullIcon.enabled = false;
+        }
     }
 }

@@ -164,19 +164,8 @@ public class LevelController : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
-            Debug.Log("Exiting button click");
-            Debug.Log("Saving data...");
-            playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int) (elapsedTime * 10), 1, collectableManager.GetObtainedCount());
-            Debug.Log("Exiting.");
-            // Time.timeScale = 1;
-
-            StartCoroutine(ExitGame());
-
-            Time.timeScale = 1f; // Reanudar el tiempo
-            SceneController.Instance.ChangeScene("MainScene");
-            SceneController.Instance.ClearHistory();
-            // Time.timeScale = 1;
-
+            playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int)(elapsedTime * 10), 0, collectableManager.GetObtainedCount());
+            SceneController.Instance.ChangeScene("GameOverScene");
         });
     }
 

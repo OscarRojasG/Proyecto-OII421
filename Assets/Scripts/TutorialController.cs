@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class TutorialEvent
 {
@@ -271,9 +272,16 @@ public class TutorialController : MonoBehaviour
     public FeedbackPanelController feedbackPanel;
     public GameObject panelContainer;
 
+    public Button skipTutorial;
+
 
     void Start()
     {
+        skipTutorial.onClick.AddListener(() =>
+        {
+            SceneController.Instance.PreviousScene();
+        });
+
         events.Add(new WelcomeEvent());
         events.Add(new ObstacleEvent(player, barrel, virus));
         events.Add(new CollectableEvent(player, collectableManager, questionPanel, feedbackPanel, panelContainer));
