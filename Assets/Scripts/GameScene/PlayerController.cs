@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerData = GameController.Instance.GetComponent<PlayerData>();
+        playerData = PlayerData.Instance;
     }
 
 

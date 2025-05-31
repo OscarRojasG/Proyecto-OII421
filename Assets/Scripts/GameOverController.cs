@@ -17,8 +17,6 @@ public class GameOverController : MonoBehaviour
 
     IEnumerator SendData()
     {
-        Debug.Log("Exiting game...");
-
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
 
@@ -29,15 +27,12 @@ public class GameOverController : MonoBehaviour
         Destroy(popup, 3f);
 
         // ⏳ Wait until data is actually sent
-        yield return StartCoroutine(playerData.SendDataCoroutine());
+        yield return playerData.SendDataCoroutine();
     }
 
     IEnumerator Retry()
     {
         yield return SendData();
-
-        // ⌛ Optional short delay to ensure popup shows
-        yield return new WaitForSeconds(0.2f);
 
         SceneController.Instance.PreviousScene();
     }
@@ -46,9 +41,6 @@ public class GameOverController : MonoBehaviour
     {
         Debug.Log("Exiting game...");
         yield return SendData();
-
-        // ⌛ Optional short delay to ensure popup shows
-        yield return new WaitForSeconds(0.2f);
 
         SceneController.Instance.ChangeScene("MainScene");
         SceneController.Instance.ClearHistory();

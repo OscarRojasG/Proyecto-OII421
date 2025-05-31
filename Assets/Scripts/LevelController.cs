@@ -49,6 +49,8 @@ public class LevelController : MonoBehaviour
     private int collisionCount = 0;
     private int collectedObjects = 0;
 
+    private int levelCompleted = 0;
+
     void Start()
     {
         gameController = GameController.Instance;
@@ -68,7 +70,7 @@ public class LevelController : MonoBehaviour
             livesController.RemoveLife();
             if (livesController.GetLivesLeft() == 0)
             {
-                playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int) (elapsedTime * 10), 0, collectableManager.GetObtainedCount());
+                playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int) (elapsedTime * 10), levelCompleted, collectableManager.GetObtainedCount());
                 SceneController.Instance.ChangeScene("GameOverScene");
             }
         });
@@ -127,11 +129,11 @@ public class LevelController : MonoBehaviour
                 {
                     PausePhysics();
                     continueCanvas.gameObject.SetActive(true);
+                    levelCompleted = 1;
                 }
 
                 feedbackPanelController.SetContinueAction(() =>
                 {
-
                     if (!collectableManager.AllCollectablesObtained())
                         StartPhysics();
                     if (autoComplete)
@@ -164,7 +166,7 @@ public class LevelController : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
-            playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int)(elapsedTime * 10), 0, collectableManager.GetObtainedCount());
+            playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int)(elapsedTime * 10), levelCompleted, collectableManager.GetObtainedCount());
             SceneController.Instance.ChangeScene("GameOverScene");
         });
     }
@@ -243,31 +245,5 @@ public class LevelController : MonoBehaviour
     {
         Time.timeScale = 1;
         player.enabled = true;
-    }
-
-    IEnumerator ExitGame()
-    {
-        Debug.Log("Exiting game...");
-        continueCanvas.gameObject.SetActive(false);
-
-        playerData = PlayerData.Instance;
-
-        Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
-        GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
-
-
-        popup.transform.SetParent(canvas.transform, false);
-        RectTransform popupRect = popup.GetComponent<RectTransform>();
-        popupRect.anchoredPosition3D = Vector3.zero;
-
-        Destroy(popup, 3f);
-
-        // ⏳ Wait until data is actually sent
-        yield return StartCoroutine(playerData.SendDataCoroutine());
-
-        // ⌛ Optional short delay to ensure popup shows
-        yield return new WaitForSeconds(0.2f);
-
-
     }
 }
