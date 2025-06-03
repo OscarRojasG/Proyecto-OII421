@@ -8,7 +8,7 @@
                 "assertions": [
                     {
                         "subconcept": "Cantidad cromosomas",
-                        "feedbackText": "En la profase la cantidad de cromosomas se mantiene igual (2n)",
+                        "feedbackText": "En la profase la cantidad de cromosomas se mantiene igual, lo que se duplica es la cantidad de cromátidas. Es decir, si la célula tiene 46 cromosomas simples en interfase, en mitosis presentará 46 cromosomas con 2 cromátidas hermanas.",
                         "feedbackImage": null,
                         "forms": [
                             {
@@ -35,11 +35,11 @@
                                 "answer": 1
                             },
                             {
-                                "statement": "Durante la profase, los cromosomas están formados por una cromátida.",
+                                "statement": "Las cromátidas hermanas en un cromosoma aparecen en profase, para llevar a cabo el proceso de mitosis.",
                                 "answer": 0
                             },
                             {
-                                "statement": "Los cromosomas en profase se encuentran descompactados y aún no tienen forma definida.",
+                                "statement": "En profase, Las cromátidas hermanas se separan, cuando los cromosomas se alinean en el centro de la célula.",
                                 "answer": 0
                             }
                         ]
@@ -54,7 +54,7 @@
                                 "answer": 0
                             },
                             {
-                                "statement": "En la profase, la envoltura nuclear comienza a fragmentarse  impidiento que los cromosomas interactúen con el huso mitótico.",
+                                "statement": "En la profase, la envoltura nuclear comienza a fragmentarse  impidiendo que los cromosomas interactúen con el huso mitótico.",
                                 "answer": 0
                             },
                             {
@@ -85,8 +85,8 @@
                 ]
             },
             {
-                "question": "Según la imagen [] Es correcto afirmar que: ",
-                "image": null,
+                "question": "Según la imagen, es correcto afirmar que: ",
+                "image": "Nivel 2 - Pregunta metafase-anafase",
                 "concept": "Metafase y anafase ",
                 "assertions": [
                     {
@@ -99,7 +99,7 @@
                                 "answer": 0
                             },
                             {
-                                "statement": "En ambas fases los cromosomas están dispersos sin un orden definido.",
+                                "statement": "En metafase y anafase los cromosomas están dispersos sin un orden definido.",
                                 "answer": 0
                             },
                             {
@@ -133,7 +133,7 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "En ambas fases, el ADN se encuentra en forma de cromatina laxa.",
+                                "statement": "En metafase y anafase, el ADN se encuentra en forma de cromatina laxa.",
                                 "answer": 0
                             },
                             {
@@ -201,12 +201,12 @@
                                 "answer": 0
                             },
                             {
-                                "statement": "El anillo contráctil está compuesto principalmente por filamentos de actina y miosina.",
+                                "statement": "El anillo contráctil participa exclusivamente en la citocinesis de las células animales.",
                                 "answer": 1
                             },
                             {
-                                "statement": "La acción del anillo contráctil da origen a la separacion física entre las dos células hijas.",
-                                "answer": 1
+                                "statement": "El anillo contractil limita la separacion del citoplasma en células animales.",
+                                "answer": 0
                             }
                         ]
                     },
@@ -216,7 +216,7 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "El nucléolo puede comenzar a reaparecer dentro de los núcleos recién formados.",
+                                "statement": "En telofase, los orgánulos comienzan a reorganizarse en el citoplasma, ya que las futuras células hijas se preparan para volver al estado de interfase.",
                                 "answer": 1
                             },
                             {
@@ -224,7 +224,7 @@
                                 "answer": 1
                             },
                             {
-                                "statement": "En telofase, los cromosomas se mueven hacia los polos.",
+                                "statement": "En telofase, la célula permanece desorganizada, ya que la reorganización de los orgánulos solo ocurrirá en la siguiente fase.",
                                 "answer": 0
                             }
                         ]
@@ -243,8 +243,8 @@
                                 "answer": 1
                             },
                             {
-                                "statement": "La transición desde telofase a citocinesis marca el final del proceso mitótico.",
-                                "answer": 1
+                                "statement": "En telofase, el ADN se compacta permitiendo que la célula regrese a sus funciones.",
+                                "answer": 0
                             }
                         ]
                     }
@@ -336,8 +336,8 @@
                 ]
             },
             {
-                "question": "Observando la imagen [] ¿Qué podemos inferir sobre la organización del material genético y su relación con la expresión génica?\n",
-                "image": null,
+                "question": "Observando la imagen ¿Qué podemos inferir sobre la organización del material genético y su relación con la expresión génica?\n",
+                "image": "Nivel 1 - Pregunta genes",
                 "concept": "Genes ",
                 "assertions": [
                     {
@@ -384,11 +384,11 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "Una célula presenta más transcripción de sus genes mientras está en división, a diferencia de cuando está en Interfase. ",
-                                "answer": 0
+                                "statement": "La expresión génica es un mecanismo regulado, este  permite que solo ciertos genes se activen dependiendo del rol que posea la célula en cuestión.",
+                                "answer": 1
                             },
                             {
-                                "statement": "Todos los genes del genoma humano están activos al mismo tiempo en todas las células del cuerpo.",
+                                "statement": "Todos los genes del genoma humano se están expresando al mismo tiempo en todas las células del cuerpo.",
                                 "answer": 0
                             },
                             {
@@ -429,7 +429,7 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "El centrómero es una región especializada del cromosoma por donde permanecen unidas las cromátidas hermanas.",
+                                "statement": "El centrómero es una región del cromosoma que carece de expresión génica.",
                                 "answer": 1
                             },
                             {
@@ -467,11 +467,11 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "Todos los segmentos del cromosoma presentan el mismo nivel de compactación y actividad génica.",
+                                "statement": "La compactación del ADN cuando se encuentra en forma de cromosoma, no influye en la actividad de los genes, ya que todos los genes se expresan de igual forma en cualquier nivel de organización.",
                                 "answer": 0
                             },
                             {
-                                "statement": "Los cromosomas presentan dominios estructurales diferenciados según las características de las secuencias del ADN.",
+                                "statement": "Existen regiones del cromosoma altamente compactadas donde la actividad génica es baja o nula, mientras que otras regiones menos compactadas presentan una mayor accesibilidad al ADN y permiten la expresión génica.",
                                 "answer": 1
                             },
                             {
@@ -486,7 +486,7 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "El centrómero es la estructura del cromosoma que permite la correcta separación de las cromátidas hermanas.",
+                                "statement": "La posición del centrómero varía entre cromosomas, explicando así las diferencias en las longitudes relativas de los brazos p y q.",
                                 "answer": 1
                             },
                             {
@@ -533,7 +533,7 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "Este proceso se denomina como \"mitosis\" de cromosomas homólogos.",
+                                "statement": "El ordenamiento de los cromosomas en la placa ecuatorial no impacta la variabilidad genética.",
                                 "answer": 0
                             },
                             {
@@ -650,19 +650,19 @@
                     },
                     {
                         "subconcept": "Descompactación y reconstrucción ",
-                        "feedbackText": "El nivel de compactación del ADN sí cambia a lo largo del proceso, especialmente durante la transición entre fases. Existe cierta descompactación parcial y posterior reorganización estructural; esta reorganización es clave para permitir el avance ordenado hacia la meiosis II.",
+                        "feedbackText": "Durante la transición entre telofase I y profase II, puede ocurrir una descompactación parcial y transitoria, que permite reorganizar ciertos componentes celulares. Sin embargo, el ADN permanece en general compacto para asegurar una correcta progresión hacia la meiosis II. La reorganización estructural en esta etapa es clave para mantener la integridad del material genético.",
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "La compactación del material genético no cambia mediante el cambio de fases. ",
+                                "statement": "Durante telofase I, el ADN permanece completamente compactado, ya que la célula ya no necesita reorganizarse.",
                                 "answer": 0
                             },
                             {
-                                "statement": "El material genético vuelve a duplicarse entre telofase I y Profase II.",
+                                "statement": "En profase II, el material genético se mantiene descondensado desde la telofase I, lo que impide la formación de cromosomas visibles.",
                                 "answer": 0
                             },
                             {
-                                "statement": "Los pares de cromosomas homólogos se podrán juntar en profase II ",
+                                "statement": "La telofase I y la profase II presentan una descompactación completa del ADN para preparar el material genético para la transcripción y síntesis de proteínas.",
                                 "answer": 0
                             }
                         ]
