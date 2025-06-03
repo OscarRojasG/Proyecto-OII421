@@ -23,12 +23,22 @@ public class WelcomeEvent : TutorialEvent
     private float elapsedTime = 0f;
     private float duration = 6f;
 
-    public WelcomeEvent() : base(message) { }
+    private Image arrow;
+
+    public WelcomeEvent(Image arrow) : base(message)
+    {
+        this.arrow = arrow;
+        arrow.enabled = true;
+    }
 
     public override bool Run()
     {
         elapsedTime += Time.deltaTime;
-        if (elapsedTime > duration) return true;
+        if (elapsedTime > duration)
+        {
+            arrow.enabled = false;
+            return true;
+        }
 
         return false;
     }
@@ -263,6 +273,8 @@ public class TutorialController : MonoBehaviour
     public TextMeshProUGUI messageBox;
     private int currentEvent = 0;
 
+    public Image arrow;
+
     public PlayerController player;
     public ObstacleController barrel;
     public ObstacleController virus;
@@ -282,7 +294,7 @@ public class TutorialController : MonoBehaviour
             SceneController.Instance.PreviousScene();
         });
 
-        events.Add(new WelcomeEvent());
+        events.Add(new WelcomeEvent(arrow));
         events.Add(new ObstacleEvent(player, barrel, virus));
         events.Add(new CollectableEvent(player, collectableManager, questionPanel, feedbackPanel, panelContainer));
         events.Add(new FinishEvent());
