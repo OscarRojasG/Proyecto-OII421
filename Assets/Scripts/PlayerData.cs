@@ -28,33 +28,6 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-
-    public void sendData()
-    {
-        if (data != null)
-        {
-            string json = JsonConvert.SerializeObject(data);
-            Debug.Log("Sending data: " + json);
-            // Send the JSON data to your server or API
-            // Example: using UnityWebRequest
-            StartCoroutine(SendDataToServer(json,
-                onSuccess: (response) =>
-                {
-                    Debug.Log("Success! Server responded: " + response);
-                },
-                onError: (error) =>
-                {
-                    throw new Exception("Something went wrong: " + error);
-                }
-            ));
-        }
-        else
-        {
-            throw new Exception("PlayerData: No data to send.");
-        }
-        WriteFile(); 
-    }
-
     public IEnumerator SendDataCoroutine()
     {
         if (data != null)

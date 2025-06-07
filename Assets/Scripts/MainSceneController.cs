@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,15 +59,21 @@ public class MainSceneController : MonoBehaviour
 
         sendDataButton.onClick.AddListener(() =>
         {
-            Debug.Log("Sending Data!!!!!");
+            print("Sending Data!!!!!");
             GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
             RectTransform popupRect = popup.GetComponent<RectTransform>();
             popup.transform.SetParent(canvas.transform, false);
             popupRect.anchoredPosition3D = Vector3.zero;
-            pd.sendData();
-            Destroy(popup, 3f);
 
-            // pd.WriteFile();
+            IEnumerator Coroutine()
+            {
+                yield return StartCoroutine(pd.SendDataCoroutine());
+
+                yield return new WaitForSeconds(1f);
+                Destroy(popup);
+            }
+
+            StartCoroutine(Coroutine());
         });
 
         continueButton.onClick.AddListener(() => {

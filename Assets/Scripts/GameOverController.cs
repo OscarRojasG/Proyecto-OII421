@@ -24,10 +24,10 @@ public class GameOverController : MonoBehaviour
         RectTransform popupRect = popup.GetComponent<RectTransform>();
         popupRect.anchoredPosition3D = Vector3.zero;
 
-        Destroy(popup, 3f);
-
-        // ⏳ Wait until data is actually sent
         yield return playerData.SendDataCoroutine();
+
+        yield return new WaitForSeconds(1f);
+        Destroy(popup);
     }
 
     IEnumerator Retry()
@@ -71,4 +71,5 @@ public class GameOverController : MonoBehaviour
             skullIcon.enabled = false;
         }
     }
+
 }

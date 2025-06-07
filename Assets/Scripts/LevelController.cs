@@ -47,7 +47,6 @@ public class LevelController : MonoBehaviour
     private int errorCount = 0;
     private int assertionCount = 0;
     private int collisionCount = 0;
-    private int collectedObjects = 0;
 
     private int levelCompleted = 0;
 
@@ -167,6 +166,7 @@ public class LevelController : MonoBehaviour
         exitButton.onClick.AddListener(() =>
         {
             playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int)(elapsedTime * 10), levelCompleted, collectableManager.GetObtainedCount());
+            StartPhysics(); // Importante setear TimeScale = 1 antes de cambiar de escena
             SceneController.Instance.ChangeScene("GameOverScene");
         });
     }
