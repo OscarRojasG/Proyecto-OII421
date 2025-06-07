@@ -185,7 +185,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278251773
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CONTINUAR
+  m_text: 'SEGUIR JUGANDO
 
 '
   m_isRightToLeft: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
   collectableManager: {fileID: 154262148}
   panelCanvas: {fileID: 1475639635}
   questionPanel: {fileID: 1886563775502727111, guid: f4b58653fdb0b9b49af186098922235d, type: 3}
-  feedbackPanel: {fileID: 8431405942149684481, guid: 8c532eabef7768749a066cbaf80f2c47, type: 3}
+  feedbackPanel: {fileID: 7127626731587186496, guid: 8c532eabef7768749a066cbaf80f2c47, type: 3}
   pauseButton: {fileID: 1995864960}
   pauseScreen: {fileID: 1010831645}
   continueCanvas: {fileID: 245099810936243028}
@@ -969,7 +969,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 420
+  m_PreferredWidth: 500
   m_PreferredHeight: 90
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FINALIZAR
+  m_text: TERMINAR NIVEL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c637daa3567519a4e915ae621f8f4252, type: 2}
   m_sharedMaterial: {fileID: -6497760403217360953, guid: c637daa3567519a4e915ae621f8f4252, type: 2}
@@ -3093,7 +3093,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 420
+  m_PreferredWidth: 500
   m_PreferredHeight: 90
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -3487,7 +3487,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278251773
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
