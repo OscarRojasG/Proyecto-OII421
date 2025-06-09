@@ -1,5 +1,256 @@
 {
     "data": {
+        "1": [
+            {
+                "question": "Según la formación de un nucleosoma, es correcto afirmar que:",
+                "image": null,
+                "concept": "Compactacion del material genético",
+                "assertions": [
+                    {
+                        "subconcept": "Complementariedad de histonas ",
+                        "feedbackText": "La compactación del material genético se lleva a cabo por las histonas, para formar el octámero de histonas se deben considerar pares de las histonas H2A + H2B + H3 + H4. La suma de estas histonas y el material genético permiten la formación de un nucleosoma. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Las histonas H2A y H2B se unen directamente al ADN y forman un nucleosoma. ",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Cada nucleosoma se forma únicamente por copias de la histona H1, encargadas de formar el octámero de histonas. ",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Los pares de histonas H2A, H2B, H3 y H4 se combinan para formar el octámero que junto con DNA estructura el nucleosoma. ",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Formación a partir de la suma de nucleosomas",
+                        "feedbackText": "Los nucleosomas son la unidad mínima de compactación, la suma de estos permitirá generar la fibra de solenoide y posteriormente la cromatina. La unidad máxima de compactación corresponde al cromosoma.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La unión de varios nucleosomas da origen a la formación del cromosoma lineal en mitosis. ",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "La suma de nucleosomas permite formar la cromatina, facilitando el empaquetamiento del ADN.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "La adición de múltiples nucleosomas forma el nucléolo celular. ",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Cantidad de pares de base en un nucleosoma ",
+                        "feedbackText": "Un nucleosoma contiene cerca de 146 pares de bases de ADN enrolladas alrededor del octámero de histonas. Esto permite que se genere 1,6 vueltas en cada nucleosoma.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Un nucleosoma contiene cerca de 146 pares de bases de ADN enrolladas alrededor del octámero de histonas. ",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Cada nucleosoma agrupa app 200 pares de bases de ADN para mantener la organización del material genético. ",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Un nucleosoma contiene aproximadamente 136 pares de bases enrolladas alrededor de las histonas. ",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Función del nucleosoma ",
+                        "feedbackText": "Los nucleosomas corresponden al primer empaquetamiento del DNA, por ende se transforma en el nivel indispensable para los procesos de compactación del material genético.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El nucleosoma permite que el ADN se replique de forma más rápida al mantenerlo completamente descompactado.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Los nucleosomas permiten eliminar las mutaciones del ADN durante el proceso de replicación. ",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Los nucleosomas conforman el primer nivel de empaquetamiento del material genético.",
+                                "answer": 1
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "question": "Observando la imagen, ¿qué podemos inferir sobre la organización del material genético y su relación con la expresión génica?",
+                "image": "Nivel 1 - Pregunta genes",
+                "concept": "Genes ",
+                "assertions": [
+                    {
+                        "subconcept": "Presencia/ ausencia de genes ",
+                        "feedbackText": "Todas las células de un organismo poseen la misma informacion genética, es decir, los mismos genes organizados en los mismos cromosomas. Sin embargo, no todos los genes están activos al mismo tiempo, ya que su expresión depende del tipo celular, las señales del entorno y las necesidades del organismo.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Todas las células de un organismo poseen la misma información genética, aunque no todos los genes están activos en todo momento.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Las regiones más oscuras en la imagen indican que no hay genes presentes en esas zonas.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Cada cromosoma contiene genes completamente diferentes en cada célula del cuerpo humano.",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Compactación y organización ",
+                        "feedbackText": "Los niveles de compactación permiten entregar funciones celulares. Todas las células tienen el mismo material genético, pero no todas se encargan de lo mismo. La comprensión de esto se debe a la heterocromatina ( mayor nivel de compactación y región con más tinción ) la cual almacena información en desuso, mientras que la eucromatina (menor nivel de compactación y visualmente con menos tinción) corresponde al material genético en uso. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Mientras más compactado esté el ADN, mayor será su nivel de transcripción.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Las regiones con más tinción corresponden a heterocromatina, una forma más compacta del ADN que suele tener menor actividad genética.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "La eucromatina, al estar menos compactada, no contiene información genética.",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Expresion génica ",
+                        "feedbackText": "La expresión génica es un proceso regulado que varía según el tipo de célula. No todos los genes están activos en todo momento; más bien, las células activan solo los genes necesarios para cumplir con su función específica, lo que no significa que carece del resto de genes inactivos, solo no los necesita para hacer su determinada función celular.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La expresión génica es un mecanismo regulado, este permite que solo ciertos genes se activen dependiendo del rol que posea la célula en cuestión.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Todos los genes del genoma humano se están expresando al mismo tiempo en todas las células del cuerpo.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "La expresión de los genes depende de factores como el tipo celular, señales externas y el nivel de compactación del ADN.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Mutaciones ",
+                        "feedbackText": "Las mutaciones son cambios en la secuencia del ADN que no pueden identificarse simplemente observando el nivel de tinción de los cromosomas. La tinción indica el grado de compactación del ADN (heterocromatina o eucromatina), pero no revela directamente la presencia o ausencia de mutaciones.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Las regiones con más tinción indican la presencia de una mutación en el material genético. ",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Las regiones con menos tinción corresponden a las zonas \"libres de mutaciones\"",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "La imagen permite reconocer las mutaciones que presenta el cromosoma. ",
+                                "answer": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "question": "Respecto a la estructura del cromosoma, es correcto señalar: ",
+                "image": null,
+                "concept": "Estructura del cromosoma ",
+                "assertions": [
+                    {
+                        "subconcept": "Presencia de genes en el centrómero",
+                        "feedbackText": "El centrómero es una región estructural clave del cromosoma que permite repartir de manera equitativa las cromátidas durante la división celular. Aunque contiene ADN, este no suele estar asociado a genes codificantes, ya que el centrómero se compone de secuencias repetitivas y con un gran nivel de compactación.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El centrómero es una región del cromosoma que carece de expresión génica.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "El centrómero contiene ADN, pero carece de genes.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "El centrómero es la región del cromosoma con mayor concentración de genes esenciales.",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Acortamiento de telómeros",
+                        "feedbackText": "Los telómeros son secuencias repetitivas de ADN ubicadas en los extremos de los cromosomas, cuya función principal es proteger la información genética durante la división celular. Con cada ciclo de replicación, los telómeros se acortan de manera natural.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Los telómeros protegen los extremos de los cromosomas del deterioro tras cada ciclo celular.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los telómeros se alargan naturalmente con cada división celular en todas las células del cuerpo.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "El acortamiento de telómeros está relacionado con el envejecimiento celular.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Organizacion del material genético en forma de cromosoma ",
+                        "feedbackText": "Los cromosomas corresponde a la máxima compactación del DNA, estos poseen regiones con mas o menos compactación, conocidos tambien como dominios estructurales, los cuales responden a la función, secuencia y regulación del DNA, permitiendo un control fino de la expresión génica y una mayor eficiencia funcional dentro del núcleo. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La compactación del ADN cuando se encuentra en forma de cromosoma, no influye en la actividad de los genes, ya que todos los genes se expresan de igual forma en cualquier nivel de organización.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Existen regiones del cromosoma altamente compactadas donde la actividad génica es baja o nula, mientras que otras regiones menos compactadas presentan una mayor accesibilidad al ADN y permiten la expresión génica.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "La compactación del ADN en los cromosomas permite que grandes cantidades de información genética se almacenen en el núcleo.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Regiones del cromosoma ",
+                        "feedbackText": "Los cromosomas están formados por distintas regiones, el centrómero es la estructura esencial que permite la unión de las cromátidas hermanas y garantiza su correcta separación durante la división celular. Por otro lado, los brazos del cromosoma, denominados p (corto) y q (largo), pueden variar tanto en longitud como en la cantidad y tipo de genes que contienen, en consecuencia esto define su función genética. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La posición del centrómero varía entre cromosomas, explicando así las diferencias en las longitudes relativas de los brazos p y q.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los brazos del cromosoma pueden variar en sus longitudes y cantidad de genes que posean.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los brazos p y q pueden diferir en la cantidad y tipo de genes que contienen.",
+                                "answer": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
         "2": [
             {
                 "question": "Respecto a la profase de la mitosis, ¿Qué afirmaciones son ciertas?",
@@ -251,257 +502,6 @@
                 ]
             }
         ],
-        "1": [
-            {
-                "question": "Según la formación de un nucleosoma es correcto afirmar que : ",
-                "image": null,
-                "concept": "Compactacion del material genético",
-                "assertions": [
-                    {
-                        "subconcept": "Complementariedad de histonas ",
-                        "feedbackText": "La compactación del material genético se lleva a cabo por las histonas, para formar el octámero de histonas se deben considerar pares de las histonas H2A + H2B + H3 + H4. La suma de estas histonas y el material genético permiten la formación de un nucleosoma. ",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "Las histonas H2A y H2B se unen directamente al ADN y forman un nucleosoma. ",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Cada nucleosoma se forma únicamente por copias de la histona H1,encargadas de formar el octámero de histonas. ",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Los pares de histonas H2A, H2B, H3 y H4 se combinan para formar el octámero que junto con DNA estructura el nucleosoma. ",
-                                "answer": 1
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Formación a partir de la suma de nucleosomas",
-                        "feedbackText": "Los nucleosomas son la unidad mínima de compactación, la suma de estos permitirá generar la fibra de solenoide y posteriormente la cromatina. La unidad máxima de compactación corresponde al cromosoma.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "La unión de varios nucleosomas da origen a la formación del cromosoma lineal en mitosis. ",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "La suma de nucleosomas permite formar la cromatina, facilitando el empaquetamiento del ADN.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "La adición de múltiples nucleosomas forma el nucléolo celular. ",
-                                "answer": 0
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Cantidad de nucleotidos en un nucleosoma ",
-                        "feedbackText": "Un nucleosoma contiene cerca de 146 pares de bases de ADN enrolladas alrededor del octámero de histonas. Esto permite que se genere 1,6 vueltas en cada nucleosoma.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "Un nucleosoma contiene cerca de 146 pares de bases de ADN enrolladas alrededor del octámero de histonas. ",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "Cada nucleosoma agrupa 156 nucleótidos para mantener la estabilidad del ADN. ",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Un nucleosoma contiene aproximadamente 136 pares de bases enrolladas alrededor de las histonas. ",
-                                "answer": 0
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Función del nucleosoma ",
-                        "feedbackText": "Los nucleosomas corresponden al primer empaquetamiento del DNA, por ende se transforma en el nivel indispensable para los procesos de compactación del material genético.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "El nucleosoma permite que el ADN se replique de forma más rápida al mantenerlo completamente descompactado.",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Los nucleosomas permiten eliminar las mutaciones del ADN durante el proceso de replicación. ",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Los nucleosomas conforman el primer nivel de empaquetamiento del material genético.",
-                                "answer": 1
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "question": "Observando la imagen ¿Qué podemos inferir sobre la organización del material genético y su relación con la expresión génica?\n",
-                "image": "Nivel 1 - Pregunta genes",
-                "concept": "Genes ",
-                "assertions": [
-                    {
-                        "subconcept": "Presencia/ ausencia de genes ",
-                        "feedbackText": "Todas las células de un organismo poseen la misma informacion genética, es decir, los mismos genes organizados en los mismos cromosomas. Sin embargo, no todos los genes están activos al mismo tiempo, ya que su expresión depende del tipo celular, las señales del entorno y las necesidades del organismo.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "Todas las células de un organismo poseen la misma información genética, aunque no todos los genes están activos en todo momento.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "Las regiones más oscuras en la imagen indican que no hay genes presentes en esas zonas.",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Cada cromosoma contiene genes completamente diferentes en cada célula del cuerpo humano.",
-                                "answer": 0
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Compactación y organización ",
-                        "feedbackText": "Los niveles de compactación permiten entregar funciones celulares. Todas las células tienen el mismo material genético, pero no todas se encargan de lo mismo. La comprensión de esto se debe a la heterocromatina ( mayor nivel de compactación y región con más tinción ) la cual almacena información en desuso, mientras que la eucromatina (menor nivel de compactación y visualmente con menos tinción) corresponde al material genético en uso. ",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "Mientras más compactado esté el ADN, mayor será su nivel de transcripción.",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Las regiones con más tinción corresponden a heterocromatina, una forma más compacta del ADN que suele tener menor actividad genética.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "La eucromatina, al estar menos compactada, no contiene información genética.",
-                                "answer": 0
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Expresion génica ",
-                        "feedbackText": "La expresión génica es un proceso regulado que varía según el tipo de célula. No todos los genes están activos en todo momento; más bien, las células activan solo los genes necesarios para cumplir con su función específica, lo que no significa que carece del resto de genes inactivos, solo no los necesita para hacer su determinada función celular.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "La expresión génica es un mecanismo regulado, este  permite que solo ciertos genes se activen dependiendo del rol que posea la célula en cuestión.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "Todos los genes del genoma humano se están expresando al mismo tiempo en todas las células del cuerpo.",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "La expresión de los genes depende de factores como el tipo celular, señales externas y el nivel de compactación del ADN.",
-                                "answer": 1
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Mutaciones ",
-                        "feedbackText": "Las mutaciones son cambios en la secuencia del ADN que no pueden identificarse simplemente observando el nivel de tinción de los cromosomas. La tinción indica el grado de compactación del ADN (heterocromatina o eucromatina), pero no revela directamente la presencia o ausencia de mutaciones.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "Las regiones con más tinción indican la presencia de una mutación en el material genético. ",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Las regiones con menos tinción corresponden a las zonas \"libres de mutaciones\"",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "La imagen permite reconocer las mutaciones que presenta el cromosoma. ",
-                                "answer": 0
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "question": "Respecto a la estructura del cromosoma, es correcto señalar: ",
-                "image": null,
-                "concept": "Estructura del cromosoma ",
-                "assertions": [
-                    {
-                        "subconcept": "Presencia de genes en el centrómero",
-                        "feedbackText": "El centrómero es una región estructural clave del cromosoma que permite repartir de manera equitativa las cromátidas durante la división celular. Aunque contiene ADN, este no suele estar asociado a genes codificantes, ya que el centrómero se compone de secuencias repetitivas y con un gran nivel de compactación.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "El centrómero es una región del cromosoma que carece de expresión génica.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "El centrómero contiene ADN, pero carece de genes.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "El centrómero es la región del cromosoma con mayor concentración de genes esenciales.",
-                                "answer": 0
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Acortamiento de telómeros",
-                        "feedbackText": "Los telómeros son secuencias repetitivas de ADN ubicadas en los extremos de los cromosomas, cuya función principal es proteger la información genética durante la división celular. Con cada ciclo de replicación, los telómeros se acortan de manera natural.",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "Los telómeros protegen los extremos de los cromosomas del deterioro tras cada ciclo celular.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "Los telómeros se alargan naturalmente con cada división celular en todas las células del cuerpo.",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "El acortamiento de telómeros está relacionado con el envejecimiento celular.",
-                                "answer": 1
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Organizacion del material genético en forma de cromosoma ",
-                        "feedbackText": "Los cromosomas corresponde a la máxima compactación del DNA, estos poseen regiones con mas o menos compctación, conocidos tambien como dominios estructurales, los cuales responden a la función, secuencia y regulación del DNA, permitiendo un control fino de la expresión génica y una mayor eficiencia funcional dentro del núcleo. ",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "La compactación del ADN cuando se encuentra en forma de cromosoma, no influye en la actividad de los genes, ya que todos los genes se expresan de igual forma en cualquier nivel de organización.",
-                                "answer": 0
-                            },
-                            {
-                                "statement": "Existen regiones del cromosoma altamente compactadas donde la actividad génica es baja o nula, mientras que otras regiones menos compactadas presentan una mayor accesibilidad al ADN y permiten la expresión génica.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "La compactación del ADN en los cromosomas permite que grandes cantidades de información genética se almacenen en el núcleo.",
-                                "answer": 1
-                            }
-                        ]
-                    },
-                    {
-                        "subconcept": "Regiones del cromosoma ",
-                        "feedbackText": "Los cromosomas están formados por distintas regiones, el centrómero es la estructura esencial que permite la unión de las cromátidas hermanas y garantiza su correcta separación durante la división celular. Por otro lado, los brazos del cromosoma, denominados p (corto) y q (largo), pueden variar tanto en longitud como en la cantidad y tipo de genes que contienen, en consecuencia esto define su función genética. ",
-                        "feedbackImage": null,
-                        "forms": [
-                            {
-                                "statement": "La posición del centrómero varía entre cromosomas, explicando así las diferencias en las longitudes relativas de los brazos p y q.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "Los brazos del cromosoma pueden variar en sus longitudes y cantidad de genes que posean.",
-                                "answer": 1
-                            },
-                            {
-                                "statement": "Los brazos p y q pueden diferir en la cantidad y tipo de genes que contienen.",
-                                "answer": 1
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
         "3": [
             {
                 "question": "Según la organizacion de los cromosomas durante la metafase I, es correcto afirmar que:",
@@ -597,7 +597,7 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "Telofase I se caracteriza por la permanencia de la envoltura nuclear para la meiosis II.",
+                                "statement": "En el proceso de telofase I, se forman envolturas nucleares alrededor de los núcleos diploides. ",
                                 "answer": 0
                             },
                             {
@@ -605,26 +605,26 @@
                                 "answer": 1
                             },
                             {
-                                "statement": "Esta fase carece de la formación de núcleos en telofase I, solamente se encuentran presentes en telofase II. ",
+                                "statement": "En telofase I carece de la formación de núcleos, debido que solamente se encuentran presentes en telofase II. ",
                                 "answer": 0
                             }
                         ]
                     },
                     {
-                        "subconcept": "Huso mitótico",
+                        "subconcept": "Huso meiótico",
                         "feedbackText": "El huso mitótico es una estructura esencial para la correcta separación de los cromosomas. Al finalizar la telofase I de la meiosis, el huso mitótico se desensambla temporalmente, pero vuelve a reorganizarse en la profase II. Esta reorganización es fundamental para garantizar que las cromátidas hermanas se separen correctamente en anafase II.",
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "El huso mitotico desaparece en telofase I, por lo que no se encuentra presente en profase II.",
+                                "statement": "El huso meiótico desaparece en telofase I, por lo que no se encuentra presente en profase II.",
                                 "answer": 0
                             },
                             {
-                                "statement": "El proceso de telofase I no considera los centriolos para una formación de huso mitótico en profase II.",
+                                "statement": "El proceso de profase II no requiere una formación de huso meiótico.",
                                 "answer": 0
                             },
                             {
-                                "statement": "El huso mitótico se reorganiza entre la telofase I y la profase II, asegurando la correcta separación de las cromátidas hermanas en anafase II.",
+                                "statement": "El huso meiótico se reorganiza entre la telofase I y la profase II, asegurando la correcta separación de las cromátidas hermanas en anafase II.",
                                 "answer": 1
                             }
                         ]
@@ -654,23 +654,23 @@
                         "feedbackImage": null,
                         "forms": [
                             {
-                                "statement": "Durante telofase I, el ADN permanece completamente compactado, ya que la célula ya no necesita reorganizarse.",
+                                "statement": "Durante telofase I, el ADN permanece en su máxima compactación, ya que la célula no necesita reorganizarse.",
                                 "answer": 0
                             },
                             {
-                                "statement": "En profase II, el material genético se mantiene descondensado desde la telofase I, lo que impide la formación de cromosomas visibles.",
+                                "statement": "En profase II, el material genético se descompacta, lo que permite la formación de cromosomas visibles.",
                                 "answer": 0
                             },
                             {
-                                "statement": "La telofase I y la profase II presentan una descompactación completa del ADN para preparar el material genético para la transcripción y síntesis de proteínas.",
-                                "answer": 0
+                                "statement": "Durante la transición entre telofase I y profase II, el material genético se mantiene parcialmente compatado, esto permite una rápida reorganización y avance hacia la meiois II.",
+                                "answer": 1
                             }
                         ]
                     }
                 ]
             },
             {
-                "question": "En base a los procesos que ocurren durante la profase I, sería correcto señalar:\n\n\n\n",
+                "question": "En base a los procesos que ocurren durante la profase I, sería correcto señalar:",
                 "image": null,
                 "concept": "Profase I",
                 "assertions": [
@@ -722,7 +722,7 @@
                                 "answer": 0
                             },
                             {
-                                "statement": "La profase I  carece de la formación del huso mitótico, debido a que no tiene relevancia en esta fase.  ",
+                                "statement": "La profase I carece de la formación del huso mitótico, debido a que no tiene relevancia en esta fase.  ",
                                 "answer": 0
                             },
                             {
