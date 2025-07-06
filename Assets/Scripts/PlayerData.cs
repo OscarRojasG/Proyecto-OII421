@@ -341,9 +341,46 @@ public class PlayerData : MonoBehaviour
         else throw new Exception("PlayerData: No data to get distance from.");
     }
 
-    internal IEnumerator SendDataCoroutine(bool abortSend, GameObject currentPopup)
+    public IEnumerator SendDataCoroutine()
     {
-        throw new NotImplementedException();
+        if (data != null)
+        {
+            string json = JsonConvert.SerializeObject(data);
+            Debug.Log("Sending data: " + json);
+
+            bool isDone = false;
+            string result = "";
+            string error = "";
+
+            yield return SendDataToServer(json,
+                onSuccess: (response) =>
+                {
+                    result = response;
+                    isDone = true;
+                },
+                onError: (err) =>
+                {
+                    error = err;
+                    isDone = true;
+                });
+
+
+            yield return new WaitUntil(() => isDone);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                Debug.LogError("Error in sendData: " + error);
+            }
+            else
+            {
+                Debug.Log("Success: " + result);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: No data to send.");
+            yield break;
+        }
     }
 
     // public void increaseJump()
