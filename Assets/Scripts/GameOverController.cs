@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -15,19 +16,39 @@ public class GameOverController : MonoBehaviour
     public TextMeshProUGUI textDistancia;
     public TextMeshProUGUI textObjetos;
 
-    IEnumerator SendData()
+    private bool abortSend = false; // Flag to indicate if the send operation should be aborted
+    private GameObject _currentPopup = null; // Reference to the current popup
+public IEnumerator SendData()
     {
+        abortSend = false; // Reset the flag
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
-        GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
 
-        popup.transform.SetParent(canvas.transform, false);
-        RectTransform popupRect = popup.GetComponent<RectTransform>();
+        // Instantiate the popup
+        _currentPopup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
+
+        if (_currentPopup == null)
+        {
+            Debug.LogError("Failed to load Prefabs/CargandoDatosPopup.");
+            yield break; // Exit if popup couldn't be loaded
+        }
+
+        _currentPopup.transform.SetParent(canvas.transform, false);
+        RectTransform popupRect = _currentPopup.GetComponent<RectTransform>();
         popupRect.anchoredPosition3D = Vector3.zero;
 
-        yield return playerData.SendDataCoroutine();
+        yield return StartCoroutine(playerData.SendDataCoroutine(() => abortSend, _currentPopup)); // Assuming pd.SendDataCoroutine doesn't take _isSendAborted as a param, but checks a shared flag in pd script.
 
-        yield return new WaitForSeconds(1f);
-        Destroy(popup);
+        // Important: Only destroy the popup here if it hasn't already been destroyed by the cancel button.
+        if (_currentPopup != null)
+        {
+            Debug.Log("SendDataCoroutine finished, destroying popup.");
+            Destroy(_currentPopup);
+            _currentPopup = null;
+        }
+        else
+        {
+            Debug.Log("Popup already destroyed by cancel button.");
+        }
     }
 
     IEnumerator Retry()

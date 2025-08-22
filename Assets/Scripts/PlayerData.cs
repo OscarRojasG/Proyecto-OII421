@@ -6,6 +6,64 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
+using AOT;
+
+// Magia negra para habilitar la memoria persistente en WebGL
+//
+namespace WebGL
+{
+    public static class FileSystem
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [DllImport("__Internal")]
+        static extern void FileSystemSyncfsAddEvent(Action<int, string> action);
+        [DllImport("__Internal")]
+        static extern void FileSystemSyncfs(int id);
+#else
+
+        static Action<int, string> _callback;
+        static void FileSystemSyncfsAddEvent(Action<int, string> action) { _callback = action; }
+        static void FileSystemSyncfs(int id) { _callback?.Invoke(id, ""); }
+#endif
+
+
+        static Dictionary<int, Action<string>> callbacks = new Dictionary<int, Action<string>>();
+
+        /// <summary>
+        /// 静的コンストラクタ
+        /// 同期完了時に呼び出し内部コールバックを登録する
+        /// </summary>
+        static FileSystem()
+        {
+            FileSystemSyncfsAddEvent(Callback);
+        }
+
+        /// <summary>
+        /// 同期完了時の内部コールバック
+        /// </summary>
+        /// <param name="id"></param>
+        [MonoPInvokeCallback(typeof(Action<int, string>))]
+        static void Callback(int id, string error)
+        {
+            var cb = callbacks[id];
+            callbacks.Remove(id);
+            cb?.Invoke(string.IsNullOrEmpty(error) ? null : error);
+        }
+
+        /// <summary>
+        /// IndexedDBを同期させる
+        /// </summary>
+        /// <param name="cb">string : error</param>
+        public static void Syncfs(Action<string> cb)
+        {
+            var id = callbacks.Count + 1;
+            callbacks.Add(id, cb);
+            FileSystemSyncfs(id);
+        }
+    }
+}
+
+
 public class PlayerData : MonoBehaviour
 {
     private string saveFilePath = "save.json";
@@ -13,6 +71,25 @@ public class PlayerData : MonoBehaviour
     public Stats lastGameStats { private set; get; }
 
     public static PlayerData Instance { get; private set; }
+
+    public void Syncfs()
+    {
+        WebGL.FileSystem.Syncfs((err) =>
+        {
+            if (string.IsNullOrEmpty(err))
+            {
+                Debug.Log("OK!!");
+            } else
+            {
+                Debug.Log("NG!!");
+            }
+        });
+    }
+
+/*#if UNITY_WEBGL && !UNITY_EDITOR*/
+/*    [DllImport("_Internal")]*/
+/*    private static extern void SyncFSToIDB();*/
+/*#endif*/
 
     private void Awake()
     {
@@ -28,7 +105,7 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public IEnumerator SendDataCoroutine()
+    public IEnumerator SendDataCoroutine(Func<bool> abortSend, GameObject popup)
     {
         if (data != null)
         {
@@ -52,11 +129,24 @@ public class PlayerData : MonoBehaviour
                 });
 
 
+
             yield return new WaitUntil(() => isDone);
+
 
             if (!string.IsNullOrEmpty(error))
             {
                 Debug.LogError("Error in sendData: " + error);
+                if (popup != null)
+                {
+                    popup.SetActive(false);
+                    GameObject text = popup.transform.Find("Panel/Text (TMP)").gameObject;
+                    var textComponent = text.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+
+
+                    popup.GetComponentInChildren<UnityEngine.UI.Text>().text = "Error: " + error;
+                    yield return new WaitForSeconds(2f);
+                }
             }
             else
             {
@@ -234,6 +324,9 @@ public class PlayerData : MonoBehaviour
 
         string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
         File.WriteAllText(saveFilePath, json);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Syncfs();
+#endif
     }
 
     public int getJumps()
@@ -246,6 +339,48 @@ public class PlayerData : MonoBehaviour
     {
         if (data != null) return data.traveledDistance;
         else throw new Exception("PlayerData: No data to get distance from.");
+    }
+
+    public IEnumerator SendDataCoroutine()
+    {
+        if (data != null)
+        {
+            string json = JsonConvert.SerializeObject(data);
+            Debug.Log("Sending data: " + json);
+
+            bool isDone = false;
+            string result = "";
+            string error = "";
+
+            yield return SendDataToServer(json,
+                onSuccess: (response) =>
+                {
+                    result = response;
+                    isDone = true;
+                },
+                onError: (err) =>
+                {
+                    error = err;
+                    isDone = true;
+                });
+
+
+            yield return new WaitUntil(() => isDone);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                Debug.LogError("Error in sendData: " + error);
+            }
+            else
+            {
+                Debug.Log("Success: " + result);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("PlayerData: No data to send.");
+            yield break;
+        }
     }
 
     // public void increaseJump()

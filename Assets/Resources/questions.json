@@ -738,7 +738,7 @@
                         "forms": [
                             {
                                 "statement": "En esta fase aún no se terminan de compactar los cromosomas.  ",
-                                "answer": 0
+                                "answer": 1
                             },
                             {
                                 "statement": "Esta fase se caracteriza por presentar el máximo nivel de compactación del material genético.",

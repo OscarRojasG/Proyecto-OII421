@@ -5,23 +5,51 @@ using UnityEngine;
 using UnityEngine.UI;
 // using UnityEngine.UIElements;
 
+
+/* Enlazado a MainScene::MainSceneController 
+ * Se encarga de: asignar los botones
+ * JUGAR, TUTORIAL, LOGROS, ENVIAR DATOS
+ *
+ */
 public class MainSceneController : MonoBehaviour
 {
+    private PlayerData pd;
+
+    public FirstRunController firstRun;
+
+    public Canvas MainScreenCanvas;
+
     public Button playButton;
     public Button achievementsButton;
     public Button tutorialButton;
-
-    private PlayerData pd;
-    public Canvas MainScreenCanvas, FirstRunCanvas;
-    public TMP_InputField mailInputField;
-    public Button continueButton;
-    private string mail = "null";
-
     private Button sendDataButton;
+
+
+
+    public TMP_InputField mailInputField;
+
     private Canvas canvas;
+
+    void show()
+    {
+        canvas.gameObject.SetActive(true);
+    }
+
+    void hide()
+    {
+        canvas.gameObject.SetActive(false);
+    }
 
     void Start()
     {
+        firstRun = GameObject.Find("FirstRunCanvas").GetComponent<FirstRunController>();
+        firstRun.hide();
+        firstRun.onSubmit = () =>
+        {
+            Debug.Log("Showing Main Screen");
+            show();
+        };
+
         canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         sendDataButton = GameObject.Find("EnviarDatos").GetComponent<Button>();
         pd = PlayerData.Instance;
@@ -34,18 +62,17 @@ public class MainSceneController : MonoBehaviour
         // If no data to load
         if (!pd.DataExists()) {
             print("Hiding Main Screen");
-            MainScreenCanvas.gameObject.SetActive(false);
-            FirstRunCanvas.gameObject.SetActive(true);
-            // Trigger on every character change
-            mailInputField.onValueChanged.AddListener(OnTextSubmitted);
 
-            // Trigger when the user presses Enter or deselects the input
-            mailInputField.onEndEdit.AddListener(OnTextSubmitted);
+            // Esconder el canvas del menú principal
+            hide();
+            // Mostrar solicitud correo electrónico
+            firstRun.show();
+
 
         } else {
             print("Showing Main Screen");
-            FirstRunCanvas.gameObject.SetActive(false);
-            MainScreenCanvas.gameObject.SetActive(true);
+            firstRun.hide();
+            show();
         }
         playButton.onClick.AddListener(() =>
         {
@@ -67,7 +94,7 @@ public class MainSceneController : MonoBehaviour
 
             IEnumerator Coroutine()
             {
-                yield return StartCoroutine(pd.SendDataCoroutine());
+                yield return StartCoroutine(PlayerData.Instance.SendDataCoroutine());
 
                 yield return new WaitForSeconds(1f);
                 Destroy(popup);
@@ -76,14 +103,7 @@ public class MainSceneController : MonoBehaviour
             StartCoroutine(Coroutine());
         });
 
-        continueButton.onClick.AddListener(() => {
-            // Debug.Log("Creating File");
-            pd.GenerateUserData(mail);
 
-            Debug.Log("Showing Main Menu");
-            FirstRunCanvas.gameObject.SetActive(false);
-            MainScreenCanvas.gameObject.SetActive(true);
-        });
 
         tutorialButton.onClick.AddListener(() =>
         {
@@ -95,9 +115,7 @@ public class MainSceneController : MonoBehaviour
     {
         
     }
-    void OnTextSubmitted(string text) {
-        mail = text;
-    }
+
 
 
 
