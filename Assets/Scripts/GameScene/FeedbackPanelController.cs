@@ -4,13 +4,6 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class FeedbackAssertion
-{
-    public AssertionForm assertionForm;
-    public bool playerAnswer;
-    public string feedbackText;
-    public Sprite feedbackImageSprite;
-}
 
 public class FeedbackPanelController : MonoBehaviour
 {
@@ -89,7 +82,7 @@ public class FeedbackPanelController : MonoBehaviour
 
         if (feedbackImagePath != null)
         {
-            feedbackAssertion.feedbackImageSprite = Resources.Load<Sprite>("images/" + feedbackImagePath);
+            feedbackAssertion.feedbackImage = null;
         }
 
         feedbackAssertions.Add(feedbackAssertion);
@@ -125,13 +118,12 @@ public class FeedbackPanelController : MonoBehaviour
             imageButton.color = buttonColorWrong;
         }
 
-        if (feedbackAssertion.feedbackImageSprite == null)
+        if (feedbackAssertion.feedbackImage == null)
         {
             feedbackImage.gameObject.SetActive(false);
         }
         else
         {
-            feedbackImage.sprite = feedbackAssertion.feedbackImageSprite;
             feedbackImage.gameObject.SetActive(true);
         }
 

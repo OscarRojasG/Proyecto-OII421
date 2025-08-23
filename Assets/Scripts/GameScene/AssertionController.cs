@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class AssertionController : MonoBehaviour
@@ -12,33 +11,16 @@ public class AssertionController : MonoBehaviour
     private bool playerAnswer = false;
     private AssertionForm assertionForm;
 
-    private Sprite spriteTrue;
-    private Sprite spriteFalse;
-
-    void Start()
+    public void SetPlayerAnswer(bool playerAnswer)
     {
-        spriteTrue = Resources.Load<Sprite>("icons/test_tube_true");
-        spriteFalse = Resources.Load<Sprite>("icons/test_tube_false");
-
-
-        iconButton.onClick.AddListener(() =>
-        {
-            playerAnswer = !playerAnswer;
-            changeIcon();
-        });
-
-        changeIcon();
-    }
-
-    private void changeIcon()
-    {
+        this.playerAnswer = playerAnswer;
         if (playerAnswer)
         {
-            iconImage.sprite = spriteTrue;
+            iconImage.sprite = Resources.Load<Sprite>("icons/test_tube_true");
         }
         else
         {
-            iconImage.sprite = spriteFalse;
+            iconImage.sprite = Resources.Load<Sprite>("icons/test_tube_false");
         }
     }
 
@@ -46,6 +28,7 @@ public class AssertionController : MonoBehaviour
     {
         this.assertionForm = assertionForm;
         statement.SetText(assertionForm.statement);
+        SetPlayerAnswer(false);
     }
 
     public AssertionForm GetAssertion()

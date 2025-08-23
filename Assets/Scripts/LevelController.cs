@@ -21,8 +21,8 @@ public class LevelController : MonoBehaviour
     private QuestionManager questionManager;
 
     public Canvas panelCanvas;
-    public QuestionPanelController questionPanel;
-    public FeedbackPanelController feedbackPanel;
+    public QuestionPanelController questionPanelController;
+    public FeedbackMainController feedbackMainController;
 
     public Button pauseButton;
     public PauseScreenController pauseScreen;
@@ -77,27 +77,24 @@ public class LevelController : MonoBehaviour
         player.SetCollideCollectableAction((CollectableController collectableController) =>
         {
             GameQuestion gameQuestion = collectableController.GetGameQuestion();
-
-            QuestionPanelController questionPanelController = Instantiate(questionPanel, panelCanvas.transform);
             float startTime = Time.unscaledTime;
 
             questionPanelController.SetQuestion(gameQuestion);
+            questionPanelController.gameObject.SetActive(true);
             // Cuando se responde una pregunta (Boton continuar) -> Guardar los datos
 
             OutQuestion oq = OutQuestionT.FromGameQuestion(gameQuestion);
 
             questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
             {
-                FeedbackPanelController feedbackPanelController = Instantiate(feedbackPanel, panelCanvas.transform);
-
                 bool allCorrect = true;
+                FeedbackAssertion[] feedbackAssertions = new FeedbackAssertion[4];
+
                 for (int i = 0; i < assertionControllers.Length; i++)
                 {
                     AssertionForm assertionForm = assertionControllers[i].GetAssertion();
                     bool playerAnswer = assertionControllers[i].GetPlayerAnswer();
                     oq.assertions[i].correct = playerAnswer == assertionForm.answer;
-                    string feedbackText = gameQuestion.question.assertions[i].feedbackText;
-                    string feedbackImage = gameQuestion.question.assertions[i].feedbackImage;
 
                     if (playerAnswer != assertionForm.answer) {
                         allCorrect = false;
@@ -112,8 +109,20 @@ public class LevelController : MonoBehaviour
                     }
 
                     assertionCount++;
-                    feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
+                    feedbackAssertions[i] = new FeedbackAssertion
+                    {
+                        feedbackText = gameQuestion.assertions[i].assertion.feedbackText,
+                        feedbackImage = gameQuestion.assertions[i].assertion.feedbackImage,
+                        assertionForm = assertionControllers[i].GetAssertion(),
+                        playerAnswer = assertionControllers[i].GetPlayerAnswer()
+                    };
                 }
+
+                feedbackMainController.SetAssertions(feedbackAssertions);
+                feedbackMainController.SetQuestionText(gameQuestion.question.question);
+                feedbackMainController.SetQuestionImage(gameQuestion.question.image);
+                feedbackMainController.gameObject.SetActive(true);
+
                 oq.answerTime = Time.unscaledTime - startTime;
                 playerData.data.answeredQuestions[gameController.GetCurrentLevel()].Add(oq);
 
@@ -131,7 +140,7 @@ public class LevelController : MonoBehaviour
                     levelCompleted = 1;
                 }
 
-                feedbackPanelController.SetContinueAction(() =>
+                feedbackMainController.SetContinueAction(() =>
                 {
                     if (!collectableManager.AllCollectablesObtained())
                         StartPhysics();

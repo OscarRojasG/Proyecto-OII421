@@ -9,17 +9,16 @@ public class QuestionPanelController : MonoBehaviour
     public Image questionImage;
     public Button continueButton;
 
-    public AssertionController[] assertionControllers = new AssertionController[4];
+    public DynamicAssertionController[] assertionControllers = new DynamicAssertionController[4];
 
     private UnityAction<AssertionController[]> continueAction;
 
     void Start()
     {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
         continueButton.onClick.AddListener(() =>
         {
             continueAction(assertionControllers);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         });
     }
 
