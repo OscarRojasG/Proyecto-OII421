@@ -12,10 +12,8 @@ public class LevelController : MonoBehaviour
     public TextMeshProUGUI distanceText;
     private PlayerData playerData;
 
-    public ObstacleController barrel;
-    public ObstacleController virus;
-
     public CollectableManager collectableManager;
+    public ObstacleManager obstacleManager;
 
     private GameController gameController;
     private QuestionManager questionManager;
@@ -36,6 +34,7 @@ public class LevelController : MonoBehaviour
     public bool autoComplete = false;
 
     private float elapsedTime = 0f;
+    private float elapsedTimeMoving = 0f;
     private float timeNextObstacle = 2f;
     private float minTimeBetweenObstacles = 1.4f;
     private float maxTimeBetweenObstacles = 2.5f;
@@ -205,6 +204,14 @@ public class LevelController : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
+        if (Time.timeScale > 0)
+        {
+            elapsedTimeMoving += Time.unscaledDeltaTime;
+            if (elapsedTimeMoving > 30)
+            {
+                Time.timeScale = Mathf.Min(1 + (elapsedTimeMoving - 30) / 270, 2);
+            }
+        }
 
         if (elapsedTime > timeNextObstacle)
         {
@@ -218,31 +225,22 @@ public class LevelController : MonoBehaviour
                 collectableManager.GenerateCollectable(gameQuestion);
                 obstaclesBeforeCollectableCount = 0;
             }
-            else // Generar obst�culo
+            else // Generar obstáculo
             {
-                GenerateObstacle(); 
+                obstacleManager.GenerateObstacle(elapsedTimeMoving); 
                 obstaclesBeforeCollectableCount++;
             }
 
-            timeNextObstacle = elapsedTime + Random.Range(minTimeBetweenObstacles, maxTimeBetweenObstacles);
+            float adjustedMaxTimeBetweenObstacles = maxTimeBetweenObstacles;
+            if (elapsedTimeMoving > 30)
+            {
+                adjustedMaxTimeBetweenObstacles = minTimeBetweenObstacles + (maxTimeBetweenObstacles - minTimeBetweenObstacles) * Mathf.Max(1 - 0.8f * (elapsedTimeMoving - 30) / 270, 0.2f);
+            }
+            timeNextObstacle = elapsedTime + Random.Range(minTimeBetweenObstacles, adjustedMaxTimeBetweenObstacles) * Time.timeScale;
         }
 
         int distance = (int) (elapsedTime * 10);
         distanceText.SetText(distance + " m.");
-    }
-
-    private void GenerateObstacle()
-    {
-        float rand = Random.Range(0f, 1f);
-
-        if (rand <= 0.5)
-        {
-            Instantiate(barrel);
-        }
-        else
-        {
-            Instantiate(virus);
-        }
     }
 
     private void PausePhysics()

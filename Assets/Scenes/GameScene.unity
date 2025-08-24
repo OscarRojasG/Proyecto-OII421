@@ -923,6 +923,7 @@ GameObject:
   - component: {fileID: 154262147}
   - component: {fileID: 154262146}
   - component: {fileID: 154262148}
+  - component: {fileID: 154262149}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -945,9 +946,8 @@ MonoBehaviour:
   player: {fileID: 460418687}
   livesController: {fileID: 662670603}
   distanceText: {fileID: 1900971333}
-  barrel: {fileID: 5539002663844992863, guid: e70480f16c9f0634ca966643a12902d2, type: 3}
-  virus: {fileID: 5539002663844992863, guid: afb70a0311e3df54189d684796dc0802, type: 3}
   collectableManager: {fileID: 154262148}
+  obstacleManager: {fileID: 154262149}
   panelCanvas: {fileID: 1475639635}
   questionPanelController: {fileID: 1648238554}
   feedbackMainController: {fileID: 239136942}
@@ -995,6 +995,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3740f5fa5948ce499525b7913038be4, type: 3}
   - {fileID: 21300000, guid: 057120e089c822c4c88d1e9be1ef4be4, type: 3}
   - {fileID: 21300000, guid: f7d63587535545240a055d73dc278ec6, type: 3}
+--- !u!114 &154262149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154262145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a8cca7d7a866c4b86c84d5aa3d65ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrel: {fileID: 5539002663844992863, guid: e70480f16c9f0634ca966643a12902d2, type: 3}
+  virus_01: {fileID: 3934070769719516535, guid: ee73e4a08131ef3478b0bb6c03400ae6, type: 3}
+  virus_02: {fileID: 2619850763119149475, guid: 50b2bd66e16f94244bbfb3708acd38c4, type: 3}
+  virus_03: {fileID: 8283568996151166700, guid: 7e5a0eb0693a5a544919bc937edb5c21, type: 3}
+  double_barrel: {fileID: 4289089402969497724, guid: 794d169394dfe4a4d893db304333d7d4, type: 3}
+  maxSpeed: 800
 --- !u!1 &215503367
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,7 +5212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 767.99994, y: -121.605}
+  m_AnchoredPosition: {x: 767.99994, y: -121.60501}
   m_SizeDelta: {x: 1415.9999, y: 163.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010237754

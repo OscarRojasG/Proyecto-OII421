@@ -7,21 +7,34 @@ public class ObjectController : MonoBehaviour
 
     private Rigidbody2D rb;
     private float startPos;
+    private float width;
     private Vector3 rotationVelocity;
 
-    void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocityX = speedX; // Mantiene la velocidad constante
+        rb.linearVelocityX = -speedX; // Mantiene la velocidad constante
         rotationVelocity = new Vector3(0f, 0f, rotationSpeed); // grados por segundo
 
-
         startPos = transform.position.x;
+
+        // Obtén el componente Collider (suponiendo que hay solo uno)
+        BoxCollider2D col = GetComponent<BoxCollider2D>();
+
+        if (col != null)
+        {
+            // Usamos los bounds del collider para obtener el ancho
+            width = col.bounds.size.x;
+        }
+        else
+        {
+            Debug.LogWarning("El objeto no tiene un Collider.");
+        }
     }
 
-    private void Update()
+    public virtual void Update()
     {
-        if (transform.position.x <= -startPos)
+        if (transform.position.x <= -startPos - width)
         {
             Destroy(gameObject);
         }
