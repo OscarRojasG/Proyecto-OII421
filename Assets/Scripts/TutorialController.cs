@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public abstract class TutorialEvent
 {
     public string message { get; set; }
+    public string title { get; set; }
 
-    public TutorialEvent(string message)
+    public TutorialEvent(string title, string message)
     {
+        this.title = title;
         this.message = message;
     }
 
@@ -19,13 +21,14 @@ public abstract class TutorialEvent
 
 public class WelcomeEvent : TutorialEvent
 {
-    private static new readonly string message = "¡Bienvenido a Bio Lab Escape! Este eres tú, un científico atrapado en un laboratorio que debe recuperar los objetos de su equipamiento";
+    private static new readonly string title = "¡Bienvenido a Bio Lab Escape!";
+    private static new readonly string message = "Este eres tú, un científico atrapado en un laboratorio que debe recuperar los objetos de su equipamiento";
     private float elapsedTime = 0f;
     private float duration = 6f;
 
     private Image arrow;
 
-    public WelcomeEvent(Image arrow) : base(message)
+    public WelcomeEvent(Image arrow) : base(title, message)
     {
         this.arrow = arrow;
         arrow.enabled = true;
@@ -46,7 +49,8 @@ public class WelcomeEvent : TutorialEvent
 
 public class ObstacleEvent : TutorialEvent
 {
-    private static new readonly string message = "Tu misión es recuperar estos objetos, ¡pero cuidado! Deberás saltar los obstáculos que aparecen en tu camino";
+    private static new readonly string title = "Tu misión:";
+    private static new readonly string message = "Recuperar cada objeto... ¡pero cuidado! Aparecerán obstáculos que deberás esquivar";
     private PlayerController player;
     private ObstacleController barrel;
     private ObstacleController virus;
@@ -59,7 +63,7 @@ public class ObstacleEvent : TutorialEvent
     private int collisionCount = 0;
     private int obstacleCount = 0;
 
-    public ObstacleEvent(PlayerController player, ObstacleController barrel, ObstacleController virus) : base(message)
+    public ObstacleEvent(PlayerController player, ObstacleController barrel, ObstacleController virus) : base(title, message)
     {
         this.player = player;
         this.barrel = barrel;
@@ -110,10 +114,16 @@ public class ObstacleEvent : TutorialEvent
 
 public class CollectableEvent : TutorialEvent
 {
-    private static new readonly string message = "¡Bien hecho! Ahora recoge alguno de tus objetos, pero prepárate, porque deberás responder una pregunta para quedártelo";
-    private static readonly string messageQuestion = "Marca las afirmaciones correctas (¡pueden haber varias!). Solo si aciertas todas, podrás quedarte con el objeto";
-    private static readonly string messageFeedbackCorrect = "¡Felicitaciones, conseguiste el objeto! En caso de error en tus respuestas, aquí podrás revisar las explicaciones de cada una";
-    private static readonly string messageFeedbackWrong = "¡Casi! Fallaste esta vez, pero no te preocupes, aquí podrás ver tus errores y revisar las explicaciones de cada respuesta";
+    private static readonly string startTitle = "¡Bien hecho!";
+    private static readonly string startMessage = "Ahora recoge alguno de tus objetos, pero prepárate, porque deberás responder una pregunta para quedártelo";
+
+    private static readonly string questionPanelTitle = "¡Marca las afirmaciones correctas!";
+    private static readonly string questionPanelMessage = "(¡Ojo! Puede haber más de una opción correcta). Solo si aciertas todas, podrás recuperar el objeto";
+
+    private static readonly string feedbackSuccessTitle = "¡Felicitaciones, conseguiste el objeto!";
+    private static readonly string feedbackSuccessMessage = "En caso de error en tus respuestas, aquí podrás revisar las explicaciones de cada una";
+    private static readonly string feedbackFailureTitle = "¡Casi! Fallaste esta vez...";
+    private static readonly string feedbackFailureMessage = "Pero no te preocupes. Aquí podrás revisar tus errores y las explicaciones de cada respuesta";
 
     private CollectableManager collectableManager;
     private float elapsedTime = 0f;
@@ -126,8 +136,8 @@ public class CollectableEvent : TutorialEvent
     private bool finished = false;
 
     public CollectableEvent(PlayerController player, CollectableManager collectableManager,
-        QuestionPanelController questionPanel, FeedbackPanelController feedbackPanel,
-        GameObject panelContainer) : base(message)
+        QuestionPanelController questionPanel, FeedbackMainController feedbackPanel,
+        GameObject panelContainer) : base(startTitle, startMessage)
     {
         this.collectableManager = collectableManager;
 
@@ -188,49 +198,62 @@ public class CollectableEvent : TutorialEvent
         player.SetCollideCollectableAction((CollectableController collectableController) =>
         {
             GameQuestion gameQuestion = collectableController.GetGameQuestion();
-            QuestionPanelController questionPanelController = GameObject.Instantiate(questionPanel, panelContainer.transform);
-            questionPanelController.SetQuestion(gameQuestion);
+            questionPanel.SetQuestion(gameQuestion);
 
-            base.message = messageQuestion;
+            base.title = questionPanelTitle;
+            base.message = questionPanelMessage;
 
             // Pausar
             Time.timeScale = 0;
             player.enabled = false;
 
-            questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
+            questionPanel.SetContinueAction((AssertionController[] assertionControllers) =>
             {
-                FeedbackPanelController feedbackPanelController = GameObject.Instantiate(feedbackPanel, panelContainer.transform);
+                FeedbackAssertion[] feedbackAssertions = new FeedbackAssertion[4];
 
                 bool allCorrect = true;
                 for (int i = 0; i < assertionControllers.Length; i++)
                 {
                     AssertionForm assertionForm = assertionControllers[i].GetAssertion();
                     bool playerAnswer = assertionControllers[i].GetPlayerAnswer();
-                    string feedbackText = gameQuestion.question.assertions[i].feedbackText;
-                    string feedbackImage = gameQuestion.question.assertions[i].feedbackImage;
+
+                    feedbackAssertions[i] = new FeedbackAssertion
+                    {
+                        feedbackText = gameQuestion.assertions[i].assertion.feedbackText,
+                        feedbackImage = gameQuestion.assertions[i].assertion.feedbackImage,
+                        assertionForm = assertionControllers[i].GetAssertion(),
+                        playerAnswer = assertionControllers[i].GetPlayerAnswer()
+                    };
 
                     if (playerAnswer != assertionForm.answer) allCorrect = false;
-
-                    feedbackPanelController.AddAssertion(assertionForm, playerAnswer, feedbackText, feedbackImage);
                 }
+
+                feedbackPanel.SetAssertions(feedbackAssertions);
+                feedbackPanel.SetQuestionImage(question.image);
+                feedbackPanel.SetQuestionText(question.question);
 
                 if (allCorrect)
                 {
                     collectableManager.AddCollectable(gameQuestion);
-                    base.message = messageFeedbackCorrect;
+                    base.title = feedbackSuccessTitle;
+                    base.message = feedbackSuccessMessage;
                 }
                 else
                 {
-                    base.message = messageFeedbackWrong;
+                    base.title = feedbackFailureTitle;
+                    base.message = feedbackFailureMessage;
                 }
 
-                feedbackPanelController.SetContinueAction(() =>
+                feedbackPanel.SetContinueAction(() =>
                 {
                     Time.timeScale = 1;
                     player.enabled = true;
                     finished = true;
                 });
+                feedbackPanel.gameObject.SetActive(true);
             });
+
+            questionPanel.gameObject.SetActive(true);
         });
     }
 
@@ -251,11 +274,12 @@ public class CollectableEvent : TutorialEvent
 
 public class FinishEvent : TutorialEvent
 {
-    private static new readonly string message = "Para completar el nivel, reúne los 3 objetos mostrados en la barra. ¡Mucha suerte!";
+    private static new readonly string title = "¡Eso fue todo!";
+    private static new readonly string message = "Completarás el nivel cuando reúnas los 3 objetos mostrados en la barra. ¡Mucha suerte!";
     private float elapsedTime = 0f;
     private float duration = 5f;
 
-    public FinishEvent() : base(message) { }
+    public FinishEvent() : base(title, message) { }
 
     public override bool Run()
     {
@@ -270,6 +294,7 @@ public class FinishEvent : TutorialEvent
 public class TutorialController : MonoBehaviour
 {
     private List<TutorialEvent> events = new List<TutorialEvent>();
+    public TextMeshProUGUI titleBox;
     public TextMeshProUGUI messageBox;
     private int currentEvent = 0;
 
@@ -281,7 +306,7 @@ public class TutorialController : MonoBehaviour
 
     public CollectableManager collectableManager;
     public QuestionPanelController questionPanel;
-    public FeedbackPanelController feedbackPanel;
+    public FeedbackMainController feedbackPanel;
     public GameObject panelContainer;
 
     public Button skipTutorial;
@@ -306,6 +331,7 @@ public class TutorialController : MonoBehaviour
     void Update()
     {
         bool completed = events[currentEvent].Run();
+        titleBox.text = events[currentEvent].title;
         messageBox.text = events[currentEvent].message;
 
         if (completed)
