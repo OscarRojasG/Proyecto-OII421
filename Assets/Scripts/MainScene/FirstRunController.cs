@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,9 @@ public class FirstRunController : MonoBehaviour
     /* Guarda la entrada de usuario */
     private String email = "null";
 
+    /* Guarda la entrada de usuario */
+    private String nombre = "null";
+
     /* Raíz de la ui */
     public Canvas canvas;
 
@@ -26,6 +30,7 @@ public class FirstRunController : MonoBehaviour
 
     /* Campo de entrada mail */
     public TMP_InputField mail;
+    public TMP_InputField nombreInput;
 
     public OnSubmit onSubmit;
 
@@ -34,9 +39,12 @@ public class FirstRunController : MonoBehaviour
         canvas = GameObject.Find("FirstRunCanvas").GetComponent<Canvas>();
         submit = GameObject.Find("Submit").GetComponent<Button>();
         mail = GameObject.Find("MailInputText").GetComponent<TMP_InputField>();
+        nombreInput = GameObject.Find("NombreInputText").GetComponent<TMP_InputField>();
 
         submit.onClick.AddListener(_onSubmit);
-        mail.onValueChanged.AddListener(onChange);
+
+        mail.onValueChanged.AddListener(onEmailChange);
+        nombreInput.onValueChanged.AddListener(onNameChange);
     }
 
     public void hide()
@@ -49,19 +57,37 @@ public class FirstRunController : MonoBehaviour
         canvas.gameObject.SetActive(true);
     }
 
-    void onChange(string text)
+    void onEmailChange(string text)
     {
         email = text;
     }
 
+    void onNameChange(string text)
+    {
+        nombre = text;
+    }
+
+
     void _onSubmit()
     {
         Debug.Log("_onSubmit");
-        PlayerData.Instance.GenerateUserData(email);
+
+        PlayerData.Instance.GenerateUserData(nombre, email);
+        
+
         hide();
         onSubmit();
     }
 
 
+    // Método para validar el correo electrónico
+    private bool isValidEmail(string email)
+    {
+        // Verificar que tenga el dominio correcto y que sea un correo electrónico básico válido
+        string emailPattern = @"^[a-zA-Z0-9._%+-]+@mail\.pucv\.cl$";
+
+        // Usamos Regex para hacer la validación
+        return Regex.IsMatch(email, emailPattern);
+    }
 
 }

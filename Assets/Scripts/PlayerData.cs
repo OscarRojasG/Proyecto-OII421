@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 using AOT;
+using NUnit.Framework.Constraints;
 
 // Magia negra para habilitar la memoria persistente en WebGL
 //
@@ -71,6 +72,7 @@ public class PlayerData : MonoBehaviour
     public Stats lastGameStats { private set; get; }
 
     public static PlayerData Instance { get; private set; }
+    private ServerAPI serverAPI;
 
     public void Syncfs()
     {
@@ -191,6 +193,7 @@ public class PlayerData : MonoBehaviour
 
     public void Start()
     {
+        serverAPI = gameObject.AddComponent<ServerAPI>();
         Debug.Log("PlayerData: Start");
         saveFilePath = Path.Combine(Application.persistentDataPath, saveFilePath);
         // if file exists
@@ -206,6 +209,14 @@ public class PlayerData : MonoBehaviour
         }
 
     }
+
+    /* Se ejecuta al finalizar el nivel. Su objetivo es actualizar los datos
+     * del jugador (data) en base al efecto de los eventos del nivel en el 
+     * estado de jugador final. Se desbloquean logros, se guarda el progreso y
+     * se registran las estadísticas de la partida finalizada.
+
+     * Genera stats del Run para mostrarlos en la pantalla de GameOver.
+     */
 
     public void OnLevelFinish(int collisionCount, int assertionCount, int errorCount, int distance, int completed, int collectedObjects)
     {
@@ -287,7 +298,7 @@ public class PlayerData : MonoBehaviour
         return File.Exists(saveFilePath);
     }
 
-    public bool GenerateUserData(string mail)
+    public bool GenerateUserData(string name, string mail)
     {
         if (!DataExists())
         {
@@ -300,11 +311,25 @@ public class PlayerData : MonoBehaviour
             data.completedLevels = new Dictionary<string, bool>();
 
             data.playerName = mail;
+            data.playerNombre = name;
             WriteFile();
+
+            // Register on server
+
+            registerOnServer(name, mail);
+
+
+
         }
 
         // Reload();
         return false;
+    }
+
+
+    private void registerOnServer(string name, string mail)
+    {
+        serverAPI.RegisterOnServer(name, mail);
     }
 
     // Update is called once per frame
@@ -395,7 +420,15 @@ public class PlayerData : MonoBehaviour
     [System.Serializable]
     public class SaveData
     {
+        // Correo
         public string playerName;
+
+        // Nombre
+        public string playerNombre;
+
+        // Token
+        public string token;
+
         public int highScore;
 
         // runner
