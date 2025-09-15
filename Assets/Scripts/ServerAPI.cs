@@ -5,6 +5,20 @@ using System.Collections;
 using System;
 using Unity.VisualScripting;
 
+[System.Serializable]
+public class RegisterUserData
+{
+    public string name;
+    public string email;
+
+    public RegisterUserData(string name, string email)
+    {
+        this.name = name;
+        this.email = email;
+    }
+}
+
+
 public class ServerAPI : MonoBehaviour
 {
     public void Start()
@@ -18,42 +32,54 @@ public class ServerAPI : MonoBehaviour
         StartCoroutine(RegisterCoroutine(name, mail));
     }
 
-    private static  IEnumerator RegisterCoroutine(string name, string mail)
+    private static IEnumerator RegisterCoroutine(string name, string mail)
     {
         string url = $"{serverUrl}/api/users/";
-        var json = JsonUtility.ToJson(new { name = name, email = mail });
-        var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+        RegisterUserData user = new RegisterUserData(name, mail);
+        string json = JsonUtility.ToJson(user);
 
-        yield return request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success)
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
         {
-            Debug.LogError("Register Error: " + request.error);
-        }
-        else
-        {
-            Debug.Log("Register Success: " + request.downloadHandler.text);
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
 
-            // Parse the response body to get the token
-            var response = JsonUtility.FromJson<Response>(request.downloadHandler.text);
+            // Log the body and headers for debugging
+            Debug.Log("Request Body: " + json);
+            Debug.Log("Request Headers: " + request.GetRequestHeader("Authorization"));
 
-            if (response != null && !string.IsNullOrEmpty(response.token))
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.Log("Token received: " + response.token);
-                // Store token in PlayerData
-                PlayerData.Instance.data.token = response.token;
+                Debug.LogError("Register Error: " + request.error);
+                // onError?.Invoke(request.error);
             }
             else
             {
-                Debug.LogError("Token is missing or invalid in the response.");
+                Debug.Log("Register Success: " + request.downloadHandler.text);
+
+                // Parse the response body to get the token
+                var response = JsonUtility.FromJson<Response>(request.downloadHandler.text);
+
+                if (response != null && !string.IsNullOrEmpty(response.token))
+                {
+                    Debug.Log("Token received: " + response.token);
+                    // Store token in PlayerData
+                    PlayerData.Instance.data.token = response.token;
+                    PlayerData.Instance.WriteFile();
+
+                    // onSuccess?.Invoke(response.token);
+                }
+                else
+                {
+                    Debug.LogError("Token is missing or invalid in the response.");
+                    // onError?.Invoke("Token is missing or invalid in the response.");
+                }
             }
         }
     }
-
     // Define a response class to match the expected JSON structure
     [System.Serializable]
     public class Response
