@@ -55,6 +55,14 @@ public class LevelController : MonoBehaviour
         playerData = PlayerData.Instance;
         continueCanvas.gameObject.SetActive(false);
 
+        // Reset run data on new level start !
+        playerData.RunData = new RunData();
+        // Populate run data on start
+        playerData.RunData.playerId = playerData.Data.playerId;
+        playerData.RunData.levelId = GameController.Instance.GetCurrentLevel();
+
+        continueCanvas.gameObject.SetActive(false);
+
         List<QuestionT> questions = gameController.GetQuestions();
         questionManager = new QuestionManager(questions);
         collectableManager.Init(questions);
@@ -97,11 +105,11 @@ public class LevelController : MonoBehaviour
 
                     if (playerAnswer != assertionForm.answer) {
                         allCorrect = false;
-                        if (playerData != null && playerData.data != null)
+                        if (playerData != null && playerData.Data != null)
                         {
-                            if (playerData.data.assertionErrors < 10)
+                        if (playerData.Data.assertionErrors < 10)
                             {
-                                playerData.data.assertionErrors++; // Logro
+                                playerData.Data.assertionErrors++; // Logro
                             }
                             errorCount++; // Total errores
                         }
@@ -123,7 +131,8 @@ public class LevelController : MonoBehaviour
                 feedbackMainController.gameObject.SetActive(true);
 
                 oq.answerTime = Time.unscaledTime - startTime;
-                playerData.data.answeredQuestions[gameController.GetCurrentLevel()].Add(oq);
+                PlayerData.Instance.Data.answeredQuestions[gameController.GetCurrentLevel()].Add(oq);
+                PlayerData.Instance.RunData.questions.Add(oq);
 
 
                 if (allCorrect)

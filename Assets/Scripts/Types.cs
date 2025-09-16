@@ -101,6 +101,7 @@ public class OutQuestionT {
 }
 
 [Serializable]
+// Equivalente al QuestionRun
 public class OutQuestion
 {
     public int questionId;

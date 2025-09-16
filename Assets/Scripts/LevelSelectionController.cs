@@ -29,8 +29,8 @@ public class LevelSelectionController : MonoBehaviour
             Image icon = icons[i];
             icon.enabled = true;
 
-            print(PlayerData.Instance.data.playerName);
-            PlayerData.Instance.data.completedLevels.TryGetValue(level, out bool completed);
+            print(PlayerData.Instance.Data.playerName);
+            PlayerData.Instance.Data.completedLevels.TryGetValue(level, out bool completed);
 
             if (completed)
             {

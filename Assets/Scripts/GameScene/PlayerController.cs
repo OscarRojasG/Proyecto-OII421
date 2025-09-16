@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
         // Detectar si el jugador presiona "espacio" o la pantalla táctil
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && isGrounded && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (playerData != null && playerData.data != null && playerData.data.jumpCount < 10)
+            if (playerData != null && playerData.Data != null && playerData.Data.jumpCount < 10)
             {
-                playerData.data.jumpCount++;
+                playerData.Data.jumpCount++;
+                playerData.RunData.jumps++;
             }
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);

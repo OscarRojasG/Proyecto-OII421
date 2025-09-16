@@ -61,13 +61,14 @@ public class ServerAPI : MonoBehaviour
                 Debug.Log("Register Success: " + request.downloadHandler.text);
 
                 // Parse the response body to get the token
-                var response = JsonUtility.FromJson<Response>(request.downloadHandler.text);
+                var response = JsonUtility.FromJson<RegistrationResponse>(request.downloadHandler.text);
 
                 if (response != null && !string.IsNullOrEmpty(response.token))
                 {
                     Debug.Log("Token received: " + response.token);
                     // Store token in PlayerData
-                    PlayerData.Instance.data.token = response.token;
+                    PlayerData.Instance.Data.token = response.token;
+                    PlayerData.Instance.Data.playerId = response.user.id;
                     PlayerData.Instance.WriteFile();
 
                     // onSuccess?.Invoke(response.token);
@@ -82,9 +83,16 @@ public class ServerAPI : MonoBehaviour
     }
     // Define a response class to match the expected JSON structure
     [System.Serializable]
-    public class Response
+    public class RegistrationResponse
     {
         public string token;
+        public User user;
+    }
+
+    [System.Serializable]
+    public class User
+    {
+        public int id;
     }
 
 

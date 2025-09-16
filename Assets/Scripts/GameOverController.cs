@@ -81,11 +81,18 @@ public IEnumerator SendData()
 
         playerData = PlayerData.Instance;
 
-        PlayerData.Stats stats = playerData.lastGameStats;
+        Stats stats = playerData.lastGameStats;
         textAciertos.SetText(stats.correctCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetCorrectPercentage() + "%)");
         textFallos.SetText(stats.errorCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetErrorPercentage() + "%)");
         textDistancia.SetText(stats.distance.ToString() + " m.");
         textObjetos.SetText(stats.collectedObjects.ToString() + "/3");
+
+        // Fill run end data
+
+        playerData.RunData.distance = stats.distance;
+        playerData.RunData.errors = stats.errorCount;
+        playerData.RunData.correct = stats.correctCount;
+
 
         if (stats.collectedObjects == 3)
         {

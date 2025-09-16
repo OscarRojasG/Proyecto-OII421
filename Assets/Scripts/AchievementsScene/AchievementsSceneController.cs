@@ -15,14 +15,14 @@ public class AchievementsSceneController : MonoBehaviour
     void Start()
     {
         pd = PlayerData.Instance;
-        Debug.Log("PlayerData loaded: " + pd.data.playerName);
+        Debug.Log("PlayerData loaded: " + pd.Data.playerName);
         target1.text = "";
         target2.text = "";
         target3.text = "";
         target4.text = "";
         target5.text = "";
 
-        if (pd.data.hasScientist)
+        if (pd.Data.hasScientist)
         {
             target1.text += "Completado";
         }
@@ -31,7 +31,7 @@ public class AchievementsSceneController : MonoBehaviour
             target1.text += "No completado";
         }
 
-        if (pd.data.hasUndamaged)
+        if (pd.Data.hasUndamaged)
         {
             target2.text += "Completado";
         }
@@ -40,7 +40,7 @@ public class AchievementsSceneController : MonoBehaviour
             target2.text += "No completado";
         }
 
-        if (pd.data.hasBunny)
+        if (pd.Data.hasBunny)
         {
             target3.text += "Completado";
         }
@@ -52,7 +52,7 @@ public class AchievementsSceneController : MonoBehaviour
         target3.text += " - Saltos: " + pd.getJumps() + "/10";
 
 
-        if (pd.data.hasRunner)
+        if (pd.Data.hasRunner)
         {
             target4.text += "Completado";
         }
@@ -63,7 +63,7 @@ public class AchievementsSceneController : MonoBehaviour
 
         target4.text += " - Distancia: " + pd.getDistance() + "/500 m.";
 
-        if (pd.data.hasRat)
+        if (pd.Data.hasRat)
         {
             target5.text += "Completado";
         }
@@ -71,7 +71,7 @@ public class AchievementsSceneController : MonoBehaviour
         {
             target5.text += "No completado";
         }
-        target5.text += " - Errores: " + pd.data.assertionErrors + "/10";
+        target5.text += " - Errores: " + pd.Data.assertionErrors + "/10";
         // Create a TextMeshProUGUI component in the scene and assign it to ach1Text
         backButton.onClick.AddListener(() =>
         {
