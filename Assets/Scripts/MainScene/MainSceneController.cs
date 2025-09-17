@@ -78,10 +78,7 @@ public class MainSceneController : MonoBehaviour
         }
         playButton.onClick.AddListener(() =>
         {
-            PopupManager.Show("Start Level Selection?", () =>
-            {
-                SceneController.Instance.ChangeScene("LevelSelection");
-            }, () => { Debug.Log("cancel"); });
+            SceneController.Instance.ChangeScene("LevelSelection");
         });
 
         achievementsButton.onClick.AddListener(() =>
