@@ -52,6 +52,7 @@ public class MainSceneController : MonoBehaviour
 
         canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         sendDataButton = GameObject.Find("EnviarDatos").GetComponent<Button>();
+
         pd = PlayerData.Instance;
 
         GameObject bg = GameObject.Find("CanvasBackground");
@@ -60,11 +61,12 @@ public class MainSceneController : MonoBehaviour
         bg.name = "CanvasBackground"; 
         bg.GetComponentInChildren<MotionController>().speed = -100f;
         // If no data to load
-        if (!pd.DataExists()) {
+        if (!SaveSystem.DataExists()) {
             print("Hiding Main Screen");
 
             // Esconder el canvas del menú principal
-            hide();
+            // hide();
+
             // Mostrar solicitud correo electrónico
             firstRun.show();
 
@@ -76,34 +78,16 @@ public class MainSceneController : MonoBehaviour
         }
         playButton.onClick.AddListener(() =>
         {
-            SceneController.Instance.ChangeScene("LevelSelection");
+            PopupManager.Show("Start Level Selection?", () =>
+            {
+                SceneController.Instance.ChangeScene("LevelSelection");
+            }, () => { Debug.Log("cancel"); });
         });
 
         achievementsButton.onClick.AddListener(() =>
         {
             SceneController.Instance.ChangeScene("AchievementsScene");
         });
-
-        sendDataButton.onClick.AddListener(() =>
-        {
-            print("Sending Data!!!!!");
-            GameObject popup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
-            RectTransform popupRect = popup.GetComponent<RectTransform>();
-            popup.transform.SetParent(canvas.transform, false);
-            popupRect.anchoredPosition3D = Vector3.zero;
-
-            IEnumerator Coroutine()
-            {
-                yield return StartCoroutine(PlayerData.Instance.SendDataCoroutine());
-
-                yield return new WaitForSeconds(1f);
-                Destroy(popup);
-            }
-
-            StartCoroutine(Coroutine());
-        });
-
-
 
         tutorialButton.onClick.AddListener(() =>
         {

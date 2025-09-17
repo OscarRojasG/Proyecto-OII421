@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,96 +7,90 @@ public class GameOverController : MonoBehaviour
 {
     public Button retryButton;
     public Button exitButton;
-    private PlayerData playerData;
-
     public Image skullIcon;
     public TextMeshProUGUI textAciertos;
     public TextMeshProUGUI textFallos;
     public TextMeshProUGUI textDistancia;
     public TextMeshProUGUI textObjetos;
 
-    private bool abortSend = false; // Flag to indicate if the send operation should be aborted
-    private GameObject _currentPopup = null; // Reference to the current popup
-public IEnumerator SendData()
+    private PlayerData playerData;
+    private ServerAPI serverAPI;
+
+    private IEnumerator SendData()
     {
-        abortSend = false; // Reset the flag
-        Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
+        bool done = false;
+        string error = null;
 
-        // Instantiate the popup
-        _currentPopup = Instantiate(Resources.Load("Prefabs/CargandoDatosPopup")) as GameObject;
+        serverAPI.UploadRun(
+            playerData.Data.playerId,
+            playerData.RunData,
+            onSuccess: _ =>
+            {
+                PopupManager.Show(
+                    "Nivel cargado con éxito al servidor", () =>
+                    {
+                        done = true;
+                    });
+            },
+            onError: err =>
+            {
+                error = err;
+                done = true;
 
-        if (_currentPopup == null)
+                // Store RunData in persistent queue
+                UploadQueue.Enqueue(playerData.RunData);
+            }
+        );
+
+        // Wait until serverAPI finishes
+        while (!done) yield return null;
+
+        // If there was an error, show popup and wait until accepted
+        if (error != null)
         {
-            Debug.LogError("Failed to load Prefabs/CargandoDatosPopup.");
-            yield break; // Exit if popup couldn't be loaded
-        }
+            bool accepted = false;
 
-        _currentPopup.transform.SetParent(canvas.transform, false);
-        RectTransform popupRect = _currentPopup.GetComponent<RectTransform>();
-        popupRect.anchoredPosition3D = Vector3.zero;
+            PopupManager.Show(
+                "Could not reach server. Your progress will be uploaded later.",
+                onOk: () => accepted = true
+            );
 
-        yield return StartCoroutine(playerData.SendDataCoroutine(() => abortSend, _currentPopup)); // Assuming pd.SendDataCoroutine doesn't take _isSendAborted as a param, but checks a shared flag in pd script.
-
-        // Important: Only destroy the popup here if it hasn't already been destroyed by the cancel button.
-        if (_currentPopup != null)
-        {
-            Debug.Log("SendDataCoroutine finished, destroying popup.");
-            Destroy(_currentPopup);
-            _currentPopup = null;
-        }
-        else
-        {
-            Debug.Log("Popup already destroyed by cancel button.");
+            while (!accepted) yield return null; // wait until OK is clicked
         }
     }
 
-    IEnumerator Retry()
+    private IEnumerator Retry()
     {
         yield return SendData();
-
         SceneController.Instance.PreviousScene();
     }
 
-    IEnumerator ExitGame()
+    private IEnumerator ExitGame()
     {
-        Debug.Log("Exiting game...");
         yield return SendData();
-
         SceneController.Instance.ChangeScene("MainScene");
         SceneController.Instance.ClearHistory();
     }
 
-    void Start()
+    private void Start()
     {
-        retryButton.onClick.AddListener(() =>
-        {
-            StartCoroutine(Retry());
-        });
-
-        exitButton.onClick.AddListener(() =>
-        {
-            StartCoroutine(ExitGame());
-        });
+        serverAPI = gameObject.AddComponent<ServerAPI>();
+        retryButton.onClick.AddListener(() => StartCoroutine(Retry()));
+        exitButton.onClick.AddListener(() => StartCoroutine(ExitGame()));
 
         playerData = PlayerData.Instance;
-
         Stats stats = playerData.lastGameStats;
-        textAciertos.SetText(stats.correctCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetCorrectPercentage() + "%)");
-        textFallos.SetText(stats.errorCount + "/" + stats.GetTotalAssertions() + " (" + stats.GetErrorPercentage() + "%)");
-        textDistancia.SetText(stats.distance.ToString() + " m.");
-        textObjetos.SetText(stats.collectedObjects.ToString() + "/3");
 
-        // Fill run end data
+        textAciertos.SetText($"{stats.correctCount}/{stats.GetTotalAssertions()} ({stats.GetCorrectPercentage()}%)");
+        textFallos.SetText($"{stats.errorCount}/{stats.GetTotalAssertions()} ({stats.GetErrorPercentage()}%)");
+        textDistancia.SetText(stats.distance + " m.");
+        textObjetos.SetText(stats.collectedObjects + "/3");
 
         playerData.RunData.distance = stats.distance;
         playerData.RunData.errors = stats.errorCount;
         playerData.RunData.correct = stats.correctCount;
 
-
         if (stats.collectedObjects == 3)
-        {
             skullIcon.enabled = false;
-        }
     }
-
 }

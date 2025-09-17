@@ -290,9 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4f684f33966394ead5fdc0c6749381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    playerName: 
+  Data:
     playerNombre: 
+    playerName: 
+    playerId: 0
     token: 
     highScore: 0
     hasRunner: 0
@@ -303,6 +304,15 @@ MonoBehaviour:
     jumpCount: 0
     hasUndamaged: 0
     hasScientist: 0
+  RunData:
+    playerId: 0
+    levelId: 
+    distance: 0
+    jumps: 0
+    errors: 0
+    correct: 0
+    completed: 0
+    questions: []
 --- !u!4 &183629800
 Transform:
   m_ObjectHideFlags: 0

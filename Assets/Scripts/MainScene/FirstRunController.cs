@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +35,7 @@ public class FirstRunController : MonoBehaviour
     public TMP_InputField nombreInput;
 
     public OnSubmit onSubmit;
+    private ServerAPI serverAPI;
 
     void Start()
     {
@@ -40,6 +43,7 @@ public class FirstRunController : MonoBehaviour
         submit = GameObject.Find("Submit").GetComponent<Button>();
         mail = GameObject.Find("MailInputText").GetComponent<TMP_InputField>();
         nombreInput = GameObject.Find("NombreInputText").GetComponent<TMP_InputField>();
+        serverAPI = gameObject.AddComponent<ServerAPI>();
 
         submit.onClick.AddListener(_onSubmit);
 
@@ -55,6 +59,7 @@ public class FirstRunController : MonoBehaviour
     public void show()
     {
         canvas.gameObject.SetActive(true);
+        // We are requested to do something, so we must init the playerdata.
     }
 
     void onEmailChange(string text)
@@ -67,16 +72,41 @@ public class FirstRunController : MonoBehaviour
         nombre = text;
     }
 
+    public void _onSubmit()
+    {
+        StartCoroutine(_onSubmitRoutine());
+    }
 
-    void _onSubmit()
+    private IEnumerator _onSubmitRoutine()
     {
         Debug.Log("_onSubmit");
+        PopupManager.LoadingShow("Contactando al servidor. Por favor espere.");
 
-        PlayerData.Instance.GenerateUserData(nombre, email);
-        
+        bool done = false;
 
-        hide();
-        onSubmit();
+        SaveData data  = SaveSystem.GenerateUserData(nombre, email);
+        PlayerData.Instance.Load(data);
+
+        serverAPI.RegisterOnServer(nombre, email, () =>
+        {
+            done = true;
+        });
+
+        yield return new WaitUntil(() => done);
+
+
+        PlayerData.Instance.Load(data);
+        SaveSystem.Save(data);
+
+        PopupManager.LoadingHide();
+
+        PopupManager.Show("Usuario registrado exitosamente", () =>
+        {
+            // The blue view
+            hide();
+            onSubmit();
+        });
+
     }
 
 
