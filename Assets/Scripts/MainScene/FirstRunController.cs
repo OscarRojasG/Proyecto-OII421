@@ -76,6 +76,7 @@ public class FirstRunController : MonoBehaviour
     {
         StartCoroutine(_onSubmitRoutine());
     }
+
     private IEnumerator _onSubmitRoutine()
     {
         Debug.Log("_onSubmit");
@@ -89,29 +90,38 @@ public class FirstRunController : MonoBehaviour
         PopupManager.LoadingShow("Contactando al servidor. Por favor espere.");
 
         bool done = false;
+        bool errorOccurred = false;
 
-        SaveData data  = SaveSystem.GenerateUserData(nombre, email);
+
+        SaveData data = SaveSystem.GenerateUserData(nombre, email);
         PlayerData.Instance.Load(data);
 
-        serverAPI.RegisterOnServer(nombre, email, () =>
-        {
-            done = true;
-        });
+        serverAPI.RegisterOnServer(
+            nombre,
+            email,
+            () => { done = true; },  // onSuccess
+            (errorMsg) =>
+            {            // onError
+                errorOccurred = true;
+                PopupManager.LoadingHide();
+                PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", null);
+            }
+        );
 
-        yield return new WaitUntil(() => done);
+        yield return new WaitUntil(() => done || errorOccurred);
 
-        PlayerData.Instance.Load(data);
-        SaveSystem.Save(data);
+        if (errorOccurred) yield break;
 
         PopupManager.LoadingHide();
 
         PopupManager.Show("Usuario registrado exitosamente", () =>
         {
+
+            SaveSystem.Save(PlayerData.Instance.Data);
             hide();
-            onSubmit();
+            onSubmit?.Invoke();
         });
     }
-
 
     // Método para validar el correo electrónico
     private bool isValidEmail(string email)

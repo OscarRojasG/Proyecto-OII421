@@ -66,9 +66,8 @@ public static class SaveSystem
             data.playerName = mail;
             data.playerNombre = name;
         }
-        Save(data);
         return data;
-    }
+    } 
 }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
