@@ -20,12 +20,14 @@ public class GameOverController : MonoBehaviour
     {
         bool done = false;
         string error = null;
-
+        PopupManager.LoadingShow();
         serverAPI.UploadRun(
             playerData.Data.playerId,
             playerData.RunData,
             onSuccess: _ =>
             {
+
+                PopupManager.LoadingHide();
                 PopupManager.Show(
                     "Nivel cargado con éxito al servidor", () =>
                     {
@@ -37,7 +39,7 @@ public class GameOverController : MonoBehaviour
                 error = err;
                 done = true;
 
-                // Store RunData in persistent queue
+                // Store RunData in persistent queue TODO
                 UploadQueue.Enqueue(playerData.RunData);
             }
         );

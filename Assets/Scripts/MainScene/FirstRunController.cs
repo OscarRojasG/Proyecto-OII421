@@ -76,10 +76,16 @@ public class FirstRunController : MonoBehaviour
     {
         StartCoroutine(_onSubmitRoutine());
     }
-
     private IEnumerator _onSubmitRoutine()
     {
         Debug.Log("_onSubmit");
+
+        if (!isValidEmail(email))
+        {
+            PopupManager.Show("Correo electrónico inválido. Debe ser @mail.pucv.cl.", null);
+            yield break;
+        }
+
         PopupManager.LoadingShow("Contactando al servidor. Por favor espere.");
 
         bool done = false;
@@ -94,7 +100,6 @@ public class FirstRunController : MonoBehaviour
 
         yield return new WaitUntil(() => done);
 
-
         PlayerData.Instance.Load(data);
         SaveSystem.Save(data);
 
@@ -102,11 +107,9 @@ public class FirstRunController : MonoBehaviour
 
         PopupManager.Show("Usuario registrado exitosamente", () =>
         {
-            // The blue view
             hide();
             onSubmit();
         });
-
     }
 
 
