@@ -249,6 +249,172 @@
                         ]
                     }
                 ]
+            },
+{
+                "question": "preg. 4 ",
+                "image": null,
+                "concept": "Estructura del cromosoma ",
+                "assertions": [
+                    {
+                        "subconcept": "Presencia de genes en el centrómero",
+                        "feedbackText": "El centrómero es una región estructural clave del cromosoma que permite repartir de manera equitativa las cromátidas durante la división celular. Aunque contiene ADN, este no suele estar asociado a genes codificantes, ya que el centrómero se compone de secuencias repetitivas y con un gran nivel de compactación.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El centrómero es una región del cromosoma que carece de expresión génica.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "El centrómero contiene ADN, pero carece de genes.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "El centrómero es la región del cromosoma con mayor concentración de genes esenciales.",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Acortamiento de telómeros",
+                        "feedbackText": "Los telómeros son secuencias repetitivas de ADN ubicadas en los extremos de los cromosomas, cuya función principal es proteger la información genética durante la división celular. Con cada ciclo de replicación, los telómeros se acortan de manera natural.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Los telómeros protegen los extremos de los cromosomas del deterioro tras cada ciclo celular.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los telómeros se alargan naturalmente con cada división celular en todas las células del cuerpo.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "El acortamiento de telómeros está relacionado con el envejecimiento celular.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Organizacion del material genético en forma de cromosoma ",
+                        "feedbackText": "Los cromosomas corresponde a la máxima compactación del DNA, estos poseen regiones con mas o menos compactación, conocidos tambien como dominios estructurales, los cuales responden a la función, secuencia y regulación del DNA, permitiendo un control fino de la expresión génica y una mayor eficiencia funcional dentro del núcleo. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La compactación del ADN cuando se encuentra en forma de cromosoma, no influye en la actividad de los genes, ya que todos los genes se expresan de igual forma en cualquier nivel de organización.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Existen regiones del cromosoma altamente compactadas donde la actividad génica es baja o nula, mientras que otras regiones menos compactadas presentan una mayor accesibilidad al ADN y permiten la expresión génica.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "La compactación del ADN en los cromosomas permite que grandes cantidades de información genética se almacenen en el núcleo.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Regiones del cromosoma ",
+                        "feedbackText": "Los cromosomas están formados por distintas regiones, el centrómero es la estructura esencial que permite la unión de las cromátidas hermanas y garantiza su correcta separación durante la división celular. Por otro lado, los brazos del cromosoma, denominados p (corto) y q (largo), pueden variar tanto en longitud como en la cantidad y tipo de genes que contienen, en consecuencia esto define su función genética. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La posición del centrómero varía entre cromosomas, explicando así las diferencias en las longitudes relativas de los brazos p y q.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los brazos del cromosoma pueden variar en sus longitudes y cantidad de genes que posean.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los brazos p y q pueden diferir en la cantidad y tipo de genes que contienen.",
+                                "answer": 1
+                            }
+                        ]
+                    }
+                ]
+            },
+{
+                "question": "preg. 5 ",
+                "image": null,
+                "concept": "Estructura del cromosoma ",
+                "assertions": [
+                    {
+                        "subconcept": "Presencia de genes en el centrómero",
+                        "feedbackText": "El centrómero es una región estructural clave del cromosoma que permite repartir de manera equitativa las cromátidas durante la división celular. Aunque contiene ADN, este no suele estar asociado a genes codificantes, ya que el centrómero se compone de secuencias repetitivas y con un gran nivel de compactación.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "El centrómero es una región del cromosoma que carece de expresión génica.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "El centrómero contiene ADN, pero carece de genes.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "El centrómero es la región del cromosoma con mayor concentración de genes esenciales.",
+                                "answer": 0
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Acortamiento de telómeros",
+                        "feedbackText": "Los telómeros son secuencias repetitivas de ADN ubicadas en los extremos de los cromosomas, cuya función principal es proteger la información genética durante la división celular. Con cada ciclo de replicación, los telómeros se acortan de manera natural.",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "Los telómeros protegen los extremos de los cromosomas del deterioro tras cada ciclo celular.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los telómeros se alargan naturalmente con cada división celular en todas las células del cuerpo.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "El acortamiento de telómeros está relacionado con el envejecimiento celular.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Organizacion del material genético en forma de cromosoma ",
+                        "feedbackText": "Los cromosomas corresponde a la máxima compactación del DNA, estos poseen regiones con mas o menos compactación, conocidos tambien como dominios estructurales, los cuales responden a la función, secuencia y regulación del DNA, permitiendo un control fino de la expresión génica y una mayor eficiencia funcional dentro del núcleo. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La compactación del ADN cuando se encuentra en forma de cromosoma, no influye en la actividad de los genes, ya que todos los genes se expresan de igual forma en cualquier nivel de organización.",
+                                "answer": 0
+                            },
+                            {
+                                "statement": "Existen regiones del cromosoma altamente compactadas donde la actividad génica es baja o nula, mientras que otras regiones menos compactadas presentan una mayor accesibilidad al ADN y permiten la expresión génica.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "La compactación del ADN en los cromosomas permite que grandes cantidades de información genética se almacenen en el núcleo.",
+                                "answer": 1
+                            }
+                        ]
+                    },
+                    {
+                        "subconcept": "Regiones del cromosoma ",
+                        "feedbackText": "Los cromosomas están formados por distintas regiones, el centrómero es la estructura esencial que permite la unión de las cromátidas hermanas y garantiza su correcta separación durante la división celular. Por otro lado, los brazos del cromosoma, denominados p (corto) y q (largo), pueden variar tanto en longitud como en la cantidad y tipo de genes que contienen, en consecuencia esto define su función genética. ",
+                        "feedbackImage": null,
+                        "forms": [
+                            {
+                                "statement": "La posición del centrómero varía entre cromosomas, explicando así las diferencias en las longitudes relativas de los brazos p y q.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los brazos del cromosoma pueden variar en sus longitudes y cantidad de genes que posean.",
+                                "answer": 1
+                            },
+                            {
+                                "statement": "Los brazos p y q pueden diferir en la cantidad y tipo de genes que contienen.",
+                                "answer": 1
+                            }
+                        ]
+                    }
+                ]
             }
         ],
         "2": [

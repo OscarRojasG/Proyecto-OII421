@@ -15,7 +15,7 @@ public class ObstacleManager : MonoBehaviour
         float rand = Random.Range(0f, 1f);
         ObstacleController obstacle;
 
-        if (elapsedTime < 20)
+        if (elapsedTime < 30)
         {
             if (rand < 0.5)
             {
@@ -26,9 +26,9 @@ public class ObstacleManager : MonoBehaviour
                 obstacle = virus_01;
             }
         }
-        else if (elapsedTime < 40)
+        else if (elapsedTime < 60)
         {
-            double prob_virus_02 = 0.15 + 0.1833 * (elapsedTime - 20) / 40;
+            double prob_virus_02 = 0.15 + 0.1833 * (elapsedTime - 30) / 60;
             double prob_virus_01 = (1 - prob_virus_02) * 0.5;
 
             if (rand < prob_virus_02)
@@ -46,8 +46,8 @@ public class ObstacleManager : MonoBehaviour
         }
         else
         {
-            double prob_double_barrel = Mathf.Min((float)(0.05 + 0.25 * (elapsedTime - 40) / 260), 0.3f);
-            double prob_virus_03 = Mathf.Min((float)(0.05 + 0.3 * (elapsedTime - 40) / 260), 0.35f);
+            double prob_double_barrel = Mathf.Min((float)(0.05 + 0.25 * (elapsedTime - 60) / 260), 0.3f);
+            double prob_virus_03 = Mathf.Min((float)(0.05 + 0.3 * (elapsedTime - 60) / 260), 0.35f);
             double prob_virus_02 = (1 - prob_double_barrel - prob_virus_03) * 0.5;
             double prob_virus_01 = (1 - prob_double_barrel - prob_virus_03 - prob_virus_02) * 0.5;
 
