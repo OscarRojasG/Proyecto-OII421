@@ -12,25 +12,29 @@ public class CollectableSlot
 
 public class CollectableManager : MonoBehaviour
 {
-    private static readonly int MAX_COLLECTABLES = 3;
-
     public CollectableController collectablePrefab;
     public GameObject collectableBar;
     public Image collectableIconPrefab;
 
-    public Sprite[] spritesFilled = new Sprite[MAX_COLLECTABLES];
-    public Sprite[] spritesEmpty = new Sprite[MAX_COLLECTABLES];
-    private CollectableSlot[] slots = new CollectableSlot[MAX_COLLECTABLES];
+    private CollectableSlot[] slots;
 
-    private Dictionary<Question, CollectableSlot> questionSlots = new Dictionary<Question, CollectableSlot>(); 
+    private Dictionary<Question, CollectableSlot> questionSlots = new Dictionary<Question, CollectableSlot>();
+
+    private string[] collectableNames = { "bata", "gafas", "microscopio", "matraz", "lupa" };
 
     public void Init(List<QuestionT> questions)
     {
-        for (int i = 0; i < MAX_COLLECTABLES; i++)
+        slots = new CollectableSlot[questions.Count];
+
+        // Asumiendo que questions.Count <= collectableNames 
+        for (int i = 0; i < questions.Count; i++)
         {
+            string spriteFilledName = "Coleccionables/" + collectableNames[i];
+            string spriteEmptyName = "Coleccionables/" + $"{collectableNames[i]}_contorno";
+
             slots[i] = new CollectableSlot();
-            slots[i].spriteFilled = spritesFilled[i];
-            slots[i].spriteEmpty = spritesEmpty[i];
+            slots[i].spriteFilled = Resources.Load<Sprite>(spriteFilledName);
+            slots[i].spriteEmpty = Resources.Load<Sprite>(spriteEmptyName);
 
             slots[i].icon = Instantiate(collectableIconPrefab, collectableBar.transform);
             slots[i].icon.sprite = slots[i].spriteEmpty;

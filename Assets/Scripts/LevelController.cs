@@ -209,7 +209,7 @@ public class LevelController : MonoBehaviour
             elapsedTimeMoving += Time.unscaledDeltaTime;
             if (elapsedTimeMoving > 30)
             {
-                Time.timeScale = Mathf.Min(1 + (elapsedTimeMoving - 30) / 270, 2);
+                Time.timeScale = Mathf.Min(1 + (elapsedTimeMoving - 30) / 330, 2);
             }
         }
 
@@ -234,7 +234,7 @@ public class LevelController : MonoBehaviour
             float adjustedMaxTimeBetweenObstacles = maxTimeBetweenObstacles;
             if (elapsedTimeMoving > 30)
             {
-                adjustedMaxTimeBetweenObstacles = minTimeBetweenObstacles + (maxTimeBetweenObstacles - minTimeBetweenObstacles) * Mathf.Max(1 - 0.8f * (elapsedTimeMoving - 30) / 270, 0.2f);
+                adjustedMaxTimeBetweenObstacles = minTimeBetweenObstacles + (maxTimeBetweenObstacles - minTimeBetweenObstacles) * Mathf.Max(1 - 0.8f * (elapsedTimeMoving - 30) / 330, 0.2f);
             }
             timeNextObstacle = elapsedTime + Random.Range(minTimeBetweenObstacles, adjustedMaxTimeBetweenObstacles) * Time.timeScale;
         }

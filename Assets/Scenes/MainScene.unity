@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 183629800}
-  - component: {fileID: 183629799}
+  - component: {fileID: 183629801}
   m_Layer: 0
   m_Name: PlayerData
   m_TagString: Untagged
@@ -278,29 +278,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &183629799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183629798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4f684f33966394ead5fdc0c6749381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    playerName: 
-    highScore: 0
-    hasRunner: 0
-    traveledDistance: 0
-    hasRat: 0
-    assertionErrors: 0
-    hasBunny: 0
-    jumpCount: 0
-    hasUndamaged: 0
-    hasScientist: 0
 --- !u!4 &183629800
 Transform:
   m_ObjectHideFlags: 0
@@ -316,6 +293,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &183629801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183629798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e04c74dfa46dd646ad79bdb3aeb6c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    playerName: 
+    highScore: 0
+    hasRunner: 0
+    traveledDistance: 0
+    hasRat: 0
+    assertionErrors: 0
+    hasBunny: 0
+    jumpCount: 0
+    hasUndamaged: 0
+    hasScientist: 0
+  RunData:
+    playerId: 0
+    levelId: 
+    distance: 0
+    jumps: 0
+    errors: 0
+    correct: 0
+    completed: 0
+    questions: []
 --- !u!1 &192081170
 GameObject:
   m_ObjectHideFlags: 0
