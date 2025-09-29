@@ -1743,15 +1743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectablePrefab: {fileID: 4296765802496020528, guid: ecae8f707ea91c14ca5b2362084474a7, type: 3}
   collectableBar: {fileID: 1441704068}
-  collectableIconPrefab: {fileID: 7760925953150570764, guid: 8ed2573f83fac9e429992478a02f62b5, type: 3}
-  spritesFilled:
-  - {fileID: 21300000, guid: 0e858826c53fbf6428210b3a4a7c98e0, type: 3}
-  - {fileID: 21300000, guid: 94a6f33670bfc0a4995bab5c8a0687fe, type: 3}
-  - {fileID: 21300000, guid: cca5605704a3b5f428ba42de183b8e36, type: 3}
-  spritesEmpty:
-  - {fileID: 21300000, guid: e3740f5fa5948ce499525b7913038be4, type: 3}
-  - {fileID: 21300000, guid: 057120e089c822c4c88d1e9be1ef4be4, type: 3}
-  - {fileID: 21300000, guid: f7d63587535545240a055d73dc278ec6, type: 3}
+  collectableIconPrefab: {fileID: 1472827978603134985, guid: 8ed2573f83fac9e429992478a02f62b5, type: 3}
 --- !u!1 &866482068
 GameObject:
   m_ObjectHideFlags: 0

@@ -86,7 +86,7 @@ public class GameOverController : MonoBehaviour
         textAciertos.SetText($"{stats.correctCount}/{stats.GetTotalAssertions()} ({stats.GetCorrectPercentage()}%)");
         textFallos.SetText($"{stats.errorCount}/{stats.GetTotalAssertions()} ({stats.GetErrorPercentage()}%)");
         textDistancia.SetText(stats.distance + " m.");
-        textObjetos.SetText(stats.collectedObjects + "/3");
+        textObjetos.SetText(stats.collectedObjects + "/" + GameController.Instance.GetQuestions().Count);
 
         playerData.RunData.distance = stats.distance;
         playerData.RunData.errors = stats.errorCount;
