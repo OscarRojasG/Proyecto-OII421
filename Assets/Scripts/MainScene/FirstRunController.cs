@@ -93,9 +93,11 @@ public class FirstRunController : MonoBehaviour
         bool errorOccurred = false;
 
 
+
         SaveData data = SaveSystem.GenerateUserData(nombre, email);
         PlayerData.Instance.Load(data);
 
+        PopupManager.LoadingShow();
         serverAPI.RegisterOnServer(
             nombre,
             email,
@@ -104,18 +106,31 @@ public class FirstRunController : MonoBehaviour
             {            // onError
                 errorOccurred = true;
                 PopupManager.LoadingHide();
-                PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", null);
+                // PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", null);
+            },
+            () =>
+            {
+                errorOccurred = true;
+                PopupManager.LoadingHide();
+                // PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", null);
             }
         );
 
         yield return new WaitUntil(() => done || errorOccurred);
 
-        if (errorOccurred) yield break;
+        if (errorOccurred)
+        {
+            PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", null);
+            yield break;
+        }
+
 
         PopupManager.LoadingHide();
 
+
         PopupManager.Show("Usuario registrado exitosamente", () =>
         {
+
 
             SaveSystem.Save(PlayerData.Instance.Data);
             hide();
