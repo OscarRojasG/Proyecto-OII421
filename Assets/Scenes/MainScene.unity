@@ -302,7 +302,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 183629798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e04c74dfa46dd646ad79bdb3aeb6c4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a4f684f33966394ead5fdc0c6749381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data:
@@ -316,15 +316,6 @@ MonoBehaviour:
     jumpCount: 0
     hasUndamaged: 0
     hasScientist: 0
-  RunData:
-    playerId: 0
-    levelId: 
-    distance: 0
-    jumps: 0
-    errors: 0
-    correct: 0
-    completed: 0
-    questions: []
 --- !u!1 &192081170
 GameObject:
   m_ObjectHideFlags: 0
