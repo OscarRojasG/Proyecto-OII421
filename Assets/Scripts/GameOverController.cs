@@ -16,6 +16,8 @@ public class GameOverController : MonoBehaviour
     private PlayerData playerData;
     private ServerAPI serverAPI;
 
+    private bool popupActive;
+
     private IEnumerator SendData()
     {
         bool done = false;
@@ -26,12 +28,14 @@ public class GameOverController : MonoBehaviour
             playerData.RunData,
             onSuccess: _ =>
             {
-
                 PopupManager.LoadingHide();
+
+                popupActive = true;
                 PopupManager.Show(
                     "Nivel cargado con éxito al servidor", () =>
                     {
                         done = true;
+                        popupActive = false;
                     });
             },
             onError: err =>
@@ -52,9 +56,13 @@ public class GameOverController : MonoBehaviour
         {
             bool accepted = false;
 
+            popupActive = true;
             PopupManager.Show(
                 "Could not reach server. Your progress will be uploaded later.",
-                onOk: () => accepted = true
+                onOk: () => {
+                    accepted = true;
+                    popupActive = false;
+                }
             );
 
             while (!accepted) yield return null; // wait until OK is clicked
@@ -77,8 +85,15 @@ public class GameOverController : MonoBehaviour
     private void Start()
     {
         serverAPI = gameObject.AddComponent<ServerAPI>();
-        retryButton.onClick.AddListener(() => StartCoroutine(Retry()));
-        exitButton.onClick.AddListener(() => StartCoroutine(ExitGame()));
+        retryButton.onClick.AddListener(() => {
+            if (popupActive) return;
+            StartCoroutine(Retry());
+        });
+        exitButton.onClick.AddListener(() =>
+        {
+            if (popupActive) return;
+            StartCoroutine(ExitGame());
+        });
 
         playerData = PlayerData.Instance;
         Stats stats = playerData.lastGameStats;

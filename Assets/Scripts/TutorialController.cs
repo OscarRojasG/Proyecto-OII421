@@ -275,7 +275,7 @@ public class CollectableEvent : TutorialEvent
 public class FinishEvent : TutorialEvent
 {
     private static new readonly string title = "¡Eso fue todo!";
-    private static new readonly string message = "Completarás el nivel cuando reúnas los 3 objetos mostrados en la barra. ¡Mucha suerte!";
+    private static new readonly string message = "Completarás el nivel cuando reúnas todos los objetos mostrados en la barra. ¡Mucha suerte!";
     private float elapsedTime = 0f;
     private float duration = 5f;
 

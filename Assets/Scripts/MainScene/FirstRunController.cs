@@ -37,6 +37,8 @@ public class FirstRunController : MonoBehaviour
     public OnSubmit onSubmit;
     private ServerAPI serverAPI;
 
+    private bool popupActive;
+
     void Start()
     {
         canvas = GameObject.Find("FirstRunCanvas").GetComponent<Canvas>();
@@ -74,6 +76,7 @@ public class FirstRunController : MonoBehaviour
 
     public void _onSubmit()
     {
+        if (popupActive) return;
         StartCoroutine(_onSubmitRoutine());
     }
 
@@ -83,7 +86,11 @@ public class FirstRunController : MonoBehaviour
 
         if (!isValidEmail(email))
         {
-            PopupManager.Show("Correo electrónico inválido. Debe ser @mail.pucv.cl.", null);
+            popupActive = true;
+            PopupManager.Show("Correo electrónico inválido. Debe ser @mail.pucv.cl.", () =>
+            {
+                popupActive = false;
+            });
             yield break;
         }
 
@@ -120,7 +127,11 @@ public class FirstRunController : MonoBehaviour
 
         if (errorOccurred)
         {
-            PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", null);
+            popupActive = true;
+            PopupManager.Show("No se pudo contactar al servidor, inténtelo de nuevo más tarde.", () =>
+            {
+                popupActive = false;
+            });
             yield break;
         }
 
@@ -128,13 +139,13 @@ public class FirstRunController : MonoBehaviour
         PopupManager.LoadingHide();
 
 
+        popupActive = true;
         PopupManager.Show("Usuario registrado exitosamente", () =>
         {
-
-
             SaveSystem.Save(PlayerData.Instance.Data);
             hide();
             onSubmit?.Invoke();
+            popupActive = false;
         });
     }
 
