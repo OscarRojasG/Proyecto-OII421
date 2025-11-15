@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 // using UnityEngine.UIElements;
 
@@ -23,8 +24,9 @@ public class MainSceneController : MonoBehaviour
     public Button playButton;
     public Button achievementsButton;
     public Button tutorialButton;
-    private Button sendDataButton;
 
+    public Slider volumeSlider;
+    public TextMeshProUGUI volumeValue;
 
 
     public TMP_InputField mailInputField;
@@ -94,14 +96,23 @@ public class MainSceneController : MonoBehaviour
             GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.ChangeScene("TutorialScene");
         });
+
+        float volume = GameController.Instance.GetVolume();
+        UpdateVolumeUI(volume);
+
+        volumeSlider.onValueChanged.AddListener((value) =>
+        {
+            GameController.Instance.SetVolume(value);
+            UpdateVolumeUI(value);
+        });
     }
 
-    void Update()
+    private void UpdateVolumeUI(float value)
     {
-        
+        int percentage = (int)(value * 100);
+        volumeValue.SetText(percentage.ToString() + "%");
+        volumeSlider.value = value;
     }
-
-
 
 
 }

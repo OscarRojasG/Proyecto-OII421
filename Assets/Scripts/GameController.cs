@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public SFXAudioController sfx;
 
     private string currentLevel;
+    private float volume = 0.5f;
 
     private void Awake()
     {
@@ -92,6 +93,15 @@ public class GameController : MonoBehaviour
         File.WriteAllText(path, progressJson);
         print(progressJson);
     }
-    // */
 
+    public void SetVolume(float value)
+    {
+        volume = value;
+    }
+
+    public float GetVolume()
+    {
+        return volume;
+    }
+    // */
 }

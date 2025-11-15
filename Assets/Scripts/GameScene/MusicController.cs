@@ -4,13 +4,16 @@ using UnityEngine.Audio;
 public class MusicController : MonoBehaviour
 {
     public AudioSource audioSource;
-    public GameController gameController;
+    public AudioMixer mixer;
     public AudioResource[] audios = new AudioResource[3];
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        audioSource.volume = 0.6f;
-        gameController = GameController.Instance;
+        GameController gameController = GameController.Instance;
+        float dB = Mathf.Log10(gameController.GetVolume()) * 20f;
+        mixer.SetFloat("MasterVolume", dB);
+
         switch (gameController.GetCurrentLevel())
         {
             case "1":
