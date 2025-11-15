@@ -27,6 +27,7 @@ public class FeedbackMainController : MonoBehaviour
     {
         continueButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             continueButtonAction();
             gameObject.SetActive(false);
         });

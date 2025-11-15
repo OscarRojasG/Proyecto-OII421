@@ -53,6 +53,7 @@ public class LevelSelectionController : MonoBehaviour
                 icon.enabled = false;
                 button.onClick.AddListener(() =>
                 {
+                    GameController.Instance.sfx.playButtonClick();
                     SceneController.Instance.ChangeScene("GameScene");
                     GameController.Instance.SetCurrentLevel(level);
                 });

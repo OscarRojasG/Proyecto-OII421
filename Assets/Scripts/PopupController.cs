@@ -21,16 +21,19 @@ public class PopupController : MonoBehaviour
         okButton.onClick.RemoveAllListeners();
         okButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             onOk?.Invoke();
             Destroy(gameObject);
         });
 
         if (cancelButton != null)
         {
+            GameController.Instance.sfx.playButtonClick();
             cancelButton.gameObject.SetActive(onCancel != null);
             cancelButton.onClick.RemoveAllListeners();
             cancelButton.onClick.AddListener(() =>
             {
+                GameController.Instance.sfx.playButtonClick();
                 onCancel?.Invoke();
                 Destroy(gameObject);
             });

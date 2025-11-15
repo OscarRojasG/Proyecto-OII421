@@ -17,6 +17,7 @@ public class FeedbackAssertionController : AssertionController
     {
         revisarButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             revisarAction();
         });
     }

@@ -8,6 +8,7 @@ public class BackButton : MonoBehaviour
     {
         this.GetComponent<Button>().onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.PreviousScene();
         });
     }

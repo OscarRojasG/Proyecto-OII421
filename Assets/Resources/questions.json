@@ -22,10 +22,6 @@
                             {
                                 "statement": "Los pares de histonas H2A, H2B, H3 y H4 se combinan para formar el octámero que junto con DNA estructura el nucleosoma.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "Cada nucleosoma está formado por un conjunto de histonas idénticas, entre las que destaca H1, ya que esta participa en su estructura.",
-                                "answer": false
                             }
                         ]
                     },
@@ -45,10 +41,6 @@
                             {
                                 "statement": "La adición de múltiples nucleosomas forma el nucléolo celular.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "La fibra de solenoide y cromatina dependen de la unión sucesiva de nucleosomas, que permiten organizar el ADN en un nivel de empaquetamiento más alto.",
-                                "answer": true
                             }
                         ]
                     },
@@ -67,10 +59,6 @@
                             },
                             {
                                 "statement": "Un nucleosoma contiene aproximadamente 136 pares de bases enrolladas alrededor de las histonas.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "El ADN que se enrolla alrededor del octámero de histonas en un nucleosoma comprende aproximadamente 2000 nucleótidos en total, incluyendo el ADN enlazador.",
                                 "answer": false
                             }
                         ]
@@ -91,10 +79,6 @@
                             {
                                 "statement": "Los nucleosomas conforman el primer nivel de empaquetamiento del material genético.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "El nucleosoma permite que el ADN se replique de forma más rápida al mantenerlo súper compactado.",
-                                "answer": false
                             }
                         ]
                     }
@@ -121,10 +105,6 @@
                             {
                                 "statement": "Cada cromosoma contiene genes completamente diferentes en cada célula del cuerpo humano.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Una célula puede no contener ciertos genes, siempre que no necesite cumplir con las funciones específicas de esos genes.",
-                                "answer": false
                             }
                         ]
                     },
@@ -144,10 +124,6 @@
                             {
                                 "statement": "La eucromatina, al estar menos compactada, no contiene información genética.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "El ADN está más compactado en forma de heterocromatina, esto disminuye la posibilidad de que se transcriban los genes en esa región.",
-                                "answer": true
                             }
                         ]
                     },
@@ -167,10 +143,6 @@
                             {
                                 "statement": "La expresión de los genes depende de factores como el tipo celular, señales externas y el nivel de compactación del ADN.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "La regulación de la expresión génica en los pluricelulares permite que existan diferentes tipos celulares con funciones especializadas.",
-                                "answer": true
                             }
                         ]
                     },
@@ -189,10 +161,6 @@
                             },
                             {
                                 "statement": "La imagen permite reconocer las mutaciones que presenta el cromosoma.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "La presencia de tinción intensa en ciertas regiones del núcleo indica inevitablemente que allí ocurrió una mutación.",
                                 "answer": false
                             }
                         ]
@@ -220,10 +188,6 @@
                             {
                                 "statement": "El centrómero es la región del cromosoma con mayor concentración de genes esenciales.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "El centrómero contiene un alto número de genes codificantes que se expresan activamente durante la división celular.",
-                                "answer": false
                             }
                         ]
                     },
@@ -242,10 +206,6 @@
                             },
                             {
                                 "statement": "El acortamiento de telómeros está relacionado con el envejecimiento celular.",
-                                "answer": true
-                            },
-                            {
-                                "statement": "El desgaste progresivo de los telómeros puede llevar a que una célula pierda su capacidad de división; esto se debe al envejecimiento celular.",
                                 "answer": true
                             }
                         ]
@@ -266,10 +226,6 @@
                             {
                                 "statement": "La compactación del ADN en los cromosomas permite que grandes cantidades de información genética se almacenen en el núcleo.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "La estructura altamente organizada de los cromosomas limita el empaquetamiento del ADN  afectando su funcionalidad.",
-                                "answer": false
                             }
                         ]
                     },
@@ -289,10 +245,6 @@
                             {
                                 "statement": "Los brazos p y q pueden diferir en la cantidad y tipo de genes que contienen.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "Los brazos corto (p) y largo (q) de un cromosoma siempre contienen el mismo número de genes y mantienen sus longitudes.",
-                                "answer": false
                             }
                         ]
                     }
@@ -319,10 +271,6 @@
                             {
                                 "statement": "Los nucleosomas que no están formados por histonas, generan la primera unidad estructural para la compactación del material genético.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Las  histonas y el enrollamiento del ADN generan  la primera unidad estructural de la compactación en forma de nucleosoma.\n",
-                                "answer": true
                             }
                         ]
                     },
@@ -342,10 +290,6 @@
                             {
                                 "statement": "La condensina participa en el plegamiento de la cromatina, pero esta solo está presente en meiosis para asegurar su adecuada compactación y posterior repartición.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "La condensina permite el plegamiento de la cromatina, asegurando la adecuada compactación en forma de cromosoma.",
-                                "answer": true
                             }
                         ]
                     },
@@ -364,10 +308,6 @@
                             },
                             {
                                 "statement": "La cohesina mantiene unidas las cromátidas hermanas hasta la anafase, donde se degrada para la correcta separación de cromátidas a cada polo.",
-                                "answer": true
-                            },
-                            {
-                                "statement": "La cohesina es quien mantiene unidas las cromátidas hermanas hasta anafase, donde se degrada permitiendo una correcta separación de cromátidas.",
                                 "answer": true
                             }
                         ]
@@ -388,10 +328,6 @@
                             {
                                 "statement": "Sin el esqueleto proteico, los cromosomas perderían su forma y estabilidad durante la división celular.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "El esqueleto proteico limita a los cromosomas, su presencia provoca pérdida de forma y estabilidad durante la división celular.",
-                                "answer": false
                             }
                         ]
                     }
@@ -418,10 +354,6 @@
                             {
                                 "statement": "Una de las funciones del nucleosoma es proteger el ADN de la degradación por parte de las proteasas.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "El nucleosoma  permite el acceso a las nucleasas para que compacten el material genético.",
-                                "answer": false
                             }
                         ]
                     },
@@ -441,10 +373,6 @@
                             {
                                 "statement": "El ADN es compactado para permitir un proceso de división celular.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "La compactación del DNA es irrelevante  ya que no se requiere de un nivel en particular para poder tener una división celular.",
-                                "answer": false
                             }
                         ]
                     },
@@ -464,10 +392,6 @@
                             {
                                 "statement": "Los nucleosomas que no están formados por histonas, generan la primera unidad estructural para la compactación del material genético.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Los nucleosomas formados por histonas, generan la primera unidad estructural para la compactación del material genético.",
-                                "answer": true
                             }
                         ]
                     },
@@ -487,10 +411,6 @@
                             {
                                 "statement": "La condensina permite el plegamiento de la fibra de cromatina , para asegurar la adecuada compactación y posterior repartición durante la meiosis.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "La condensina participa en el plegamiento de la cromatina, está presente en los procesos de división celular para asegurar una adecuada compactación y posterior repartición.\n",
-                                "answer": true
                             }
                         ]
                     }
@@ -519,10 +439,6 @@
                             {
                                 "statement": "En la profase, el número de cromosomas se duplica.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "En la profase se tienen la misma cantidad de cromosomas, pero tiene cromátidas hermanas debido a la duplicación del material genético.",
-                                "answer": true
                             }
                         ]
                     },
@@ -541,10 +457,6 @@
                             },
                             {
                                 "statement": "En profase, Las cromátidas hermanas se separan, cuando los cromosomas se alinean en el centro de la célula.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "En la profase, los cromosomas están formados por una sola cromátida, ya que la replicación ocurre después.",
                                 "answer": false
                             }
                         ]
@@ -565,10 +477,6 @@
                             {
                                 "statement": "La fragmentación de la envoltura nuclear es un paso esencial para el contacto entre el huso mitótico y los cromosomas.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "Durante este proceso la envoltura nuclear es esencial para posicionar los cromosomas.",
-                                "answer": false
                             }
                         ]
                     },
@@ -587,10 +495,6 @@
                             },
                             {
                                 "statement": "La migración de los centriolos ubicados en el centrosoma es innecesaria para organizar el huso mitótico.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "En esta fase se comienzan a sintetizar los centriolos que formarán el huso mitótico.",
                                 "answer": false
                             }
                         ]
@@ -618,10 +522,6 @@
                             {
                                 "statement": "En metafase, los cromosomas se alinean en el plano ecuatorial, formando la placa metafásica.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "En anafase los cromosomas se dirigen hacia los polos.",
-                                "answer": true
                             }
                         ]
                     },
@@ -640,10 +540,6 @@
                             },
                             {
                                 "statement": "En anafase, los cromosomas aún están unidos por el centrómero.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "En anafase los cromosomas se encuentran alineados en el plano ecuatorial.",
                                 "answer": false
                             }
                         ]
@@ -664,10 +560,6 @@
                             {
                                 "statement": "En metafase, el material genético aún se encuentra descondensado.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "En metafase los cromosomas se encuentran con el máximo nivel de compactación, a diferencia de la anafase que tiene el DNA en forma de cromatina.",
-                                "answer": false
                             }
                         ]
                     },
@@ -686,10 +578,6 @@
                             },
                             {
                                 "statement": "El ADN del centrómero desaparece con la unión del huso mitótico.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "En anafase desaparece el huso mitótico, permitiendo  la separación de los cromosomas.",
                                 "answer": false
                             }
                         ]
@@ -717,10 +605,6 @@
                             {
                                 "statement": "La envoltura nuclear se reorganiza alrededor de los cromosomas en cada polo.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "En metafase los cromosomas se encuentran con el máximo nivel de compactación, a diferencia de la anafase que tiene el DNA en forma de cromatina.",
-                                "answer": false
                             }
                         ]
                     },
@@ -740,10 +624,6 @@
                             {
                                 "statement": "El anillo contractil limita la separacion del citoplasma en células animales.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "La formación del anillo contráctil permite la  división celular en células animales,  debido que permite la separación física del citoplasma.",
-                                "answer": true
                             }
                         ]
                     },
@@ -763,10 +643,6 @@
                             {
                                 "statement": "En telofase, la célula permanece desorganizada, ya que la reorganización de los orgánulos solo ocurrirá en la siguiente fase.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "En telofase, la célula se encuentra en desorden, ya que la reorganización de los orgánulos ocurrirá en la siguiente fase del ciclo.",
-                                "answer": false
                             }
                         ]
                     },
@@ -785,10 +661,6 @@
                             },
                             {
                                 "statement": "En telofase, el ADN se compacta permitiendo que la célula regrese a sus funciones.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "Durante esta fase, el ADN permanece compactado, lo que facilita su preparación para regresar al estado interfásico.",
                                 "answer": false
                             }
                         ]
@@ -816,10 +688,6 @@
                             {
                                 "statement": "El FPM responde en la transición de G2 a M para así  iniciar el proceso de mitosis.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "El FPM se activa en el proceso de  transición de G2 a M permitiendo iniciar el proceso de mitosis.",
-                                "answer": true
                             }
                         ]
                     },
@@ -839,10 +707,6 @@
                             {
                                 "statement": "En ausencia de  ciclinas, las CDK se pueden activar de manera independiente.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Las ciclinas se sobreexpresan para unirse con su CDK, formando el complejo y permitiendo el avance del ciclo celular.",
-                                "answer": true
                             }
                         ]
                     },
@@ -862,10 +726,6 @@
                             {
                                 "statement": "Las CDK son esenciales para regular la transición de S a G2.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "Las CDK son innecesarias para coordinar el paso de S a G2.",
-                                "answer": false
                             }
                         ]
                     },
@@ -884,10 +744,6 @@
                             },
                             {
                                 "statement": "Con la detección de daño en el ADN, p53 induce a p21 para inhibir la actividad del complejo ciclina–cdk.",
-                                "answer": true
-                            },
-                            {
-                                "statement": "Con la detección de daño en el material genético, p53 activa a p21 para inhibir la actividad del complejo Ciclina–CDK.",
                                 "answer": true
                             }
                         ]
@@ -915,10 +771,6 @@
                             {
                                 "statement": "Las células somáticas se dividen por mitosis para evitar el crecimiento y reparación de los tejidos.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Las células somáticas poseen división por  mitosis permitiendo el crecimiento y reparación de los tejidos.",
-                                "answer": true
                             }
                         ]
                     },
@@ -937,10 +789,6 @@
                             },
                             {
                                 "statement": "El mecanismo principal que asegura la variabilidad genética corresponde a la mitosis.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "La mitosis es el proceso que genera más variabilidad genética en las células hijas.",
                                 "answer": false
                             }
                         ]
@@ -961,10 +809,6 @@
                             {
                                 "statement": "La presencia de mutaciones en p53 impiden la activación de p21, lo cual permite una división celular sin control.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "La presencia de mutaciones en p53 permiten la activación de p21, lo cual generará una división celular sin control.",
-                                "answer": false
                             }
                         ]
                     },
@@ -983,10 +827,6 @@
                             },
                             {
                                 "statement": "Errores durante la mitosis no afectan al  número de cromosomas en cada célula hija.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "Durante la mitosis nunca se generan errores que terminan con células con número alterado de cromosomas.",
                                 "answer": false
                             }
                         ]
@@ -1016,10 +856,6 @@
                             {
                                 "statement": "Durante la metafase I ocurre un ordenamiento predeterminado de los pares de cromosomas homólogos.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Las tétradas se disuelven completamente al inicio de metafase I, lo que permite una correcta alineación de los cromosomas en la placa ecuatorial.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1038,10 +874,6 @@
                             },
                             {
                                 "statement": "La posibilidad de distintos ordenamientos de los pares de cromosomas homólogos en la placa ecuatorial genera variabilidad genética.",
-                                "answer": true
-                            },
-                            {
-                                "statement": "Durante la metafase I, el posicionamiento aleatorio de los pares homólogos en la placa ecuatorial contribuye a la variabilidad genética.",
                                 "answer": true
                             }
                         ]
@@ -1062,10 +894,6 @@
                             {
                                 "statement": "La variabilidad genética resultante de metafase I, no indicaría un factor para la evolución de las especies.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Los mecanismos que generan variabilidad genética en la meiosis tienen repercusión en las futuras descendencias.",
-                                "answer": true
                             }
                         ]
                     },
@@ -1084,10 +912,6 @@
                             },
                             {
                                 "statement": "El proceso de metafase I se caracteriza por no presentar el complejo sinaptonémico.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "El complejo sinaptonémico se mantiene durante toda la metafase I y anafase I, facilitando la separación de los cromosomas.",
                                 "answer": false
                             }
                         ]
@@ -1115,10 +939,6 @@
                             {
                                 "statement": "En telofase I carece de la formación de núcleos, debido que solamente se encuentran presentes en telofase II.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Durante telofase I, se restituye completamente la envoltura nuclear, la cual permanece intacta en profase II.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1138,10 +958,6 @@
                             {
                                 "statement": "El huso meiótico se reorganiza entre la telofase I y la profase II, asegurando la correcta separación de las cromátidas hermanas en anafase II.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "El huso meiótico se mantiene constante desde telofase I hasta el final de la profase II.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1161,10 +977,6 @@
                             {
                                 "statement": "La telofase I y la profase II corresponden a fases equivalentes.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "La rápida reorganización celular entre telofase I y profase II permite continuar con la meiosis sin tener que entrar a interfase.",
-                                "answer": true
                             }
                         ]
                     },
@@ -1184,10 +996,6 @@
                             {
                                 "statement": "Durante la transición entre telofase I y profase II, el material genético se mantiene parcialmente compactado, esto permite una rápida reorganización y avance hacia la meiosis II.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "Durante la transición entre estas fases, el ADN se descompacta completamente para permitir su correcto funcionamiento.",
-                                "answer": false
                             }
                         ]
                     }
@@ -1214,10 +1022,6 @@
                             {
                                 "statement": "El crossing-over que ocurre en profase I es el primero en generar variabilidad genética, luego ocurre en profase II.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "El crossing-over ocurre únicamente durante la profase II, cuando los cromosomas se alinean nuevamente.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1237,10 +1041,6 @@
                             {
                                 "statement": "La formación del complejo sinaptonémico se genera al azar entre los cromosomas presentes en el núcleo.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "El complejo sinaptonémico se forma de manera específica entre cromosomas homólogos, facilitando el proceso de crossing-over.",
-                                "answer": true
                             }
                         ]
                     },
@@ -1260,10 +1060,6 @@
                             {
                                 "statement": "El huso se unirá en profase I a las tétradas y  esto permitirá separar los cromosomas homólogos en anafase I.",
                                 "answer": true
-                            },
-                            {
-                                "statement": "El huso meiótico comienza a organizarse en profase I, aunque aún no interactúa con los pares de cromosomas homólogos.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1283,10 +1079,6 @@
                             {
                                 "statement": "Profase I permite variabilidad genética mediante intercambio de segmentos cromosómicos; es por ello que el material genético no está compactado en forma de cromosomas.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Durante la profase I, el material genético comienza a compactarse progresivamente hasta adoptar una estructura visible en forma de cromosomas.",
-                                "answer": true
                             }
                         ]
                     }
@@ -1313,10 +1105,6 @@
                             {
                                 "statement": "El crossing-over en profase I impide el intercambio de segmentos entre cromátidas homólogas, generando más variabilidad genética.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "El crossing-over en profase I, limita  el intercambio de segmentos entre cromátidas homólogas, potenciando la variabilidad genética resultante.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1336,10 +1124,6 @@
                             {
                                 "statement": "La disposición aleatoria de los cromosomas homólogos en la metafase I produce una baja cantidad de combinaciones distintas en cada gameto.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "La disposición aleatoria de los cromosomas homólogos en la metafase I produce la más alta cantidad de combinaciones distintas en cada polo.",
-                                "answer": true
                             }
                         ]
                     },
@@ -1359,10 +1143,6 @@
                             {
                                 "statement": "Durante la profase I, los cromosomas se aparean y forman tétradas independientes sin  la unión con el complejo sinaptonémico.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Durante la profase II, los cromosomas homólogos forman tétradas con  presencia del complejo sinaptonémico.",
-                                "answer": false
                             }
                         ]
                     },
@@ -1381,10 +1161,6 @@
                             },
                             {
                                 "statement": "En la anafase I se separan los cromosomas homólogos y en  anafase II se separan para formar cromosomas simples.",
-                                "answer": true
-                            },
-                            {
-                                "statement": "En la anafase I  los cromosomas homólogos se separan y en  anafase II se  forman los cromosomas simples tras la separación de las cromátidas hermanas.",
                                 "answer": true
                             }
                         ]
@@ -1412,10 +1188,6 @@
                             {
                                 "statement": "Los gametos son células haploides que no necesitan restablecer el número diploide tras la fecundación.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Los gametos son células haploides que  tras la fecundación deben volver a ser diploide para su desarrollo.",
-                                "answer": true
                             }
                         ]
                     },
@@ -1434,10 +1206,6 @@
                             },
                             {
                                 "statement": "En la ovogénesis, las células siempre son haploides hasta el final del proceso.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "En la ovogénesis, las células comienzan y terminan con una dotación haploide.",
                                 "answer": false
                             }
                         ]
@@ -1458,10 +1226,6 @@
                             {
                                 "statement": "La recombinación genética durante la gametogénesis es indiferente a la variabilidad genética.",
                                 "answer": false
-                            },
-                            {
-                                "statement": "Durante la gametogénesis el proceso de croosing-over incrementa la variabilidad genética.",
-                                "answer": true
                             }
                         ]
                     },
@@ -1480,10 +1244,6 @@
                             },
                             {
                                 "statement": "La diferenciación celular y la meiosis son procesos simultáneos que ocurren durante la misma etapa de la gametogénesis.",
-                                "answer": false
-                            },
-                            {
-                                "statement": "Durante la gametogénesis ocurre una diferenciación celular.",
                                 "answer": false
                             }
                         ]

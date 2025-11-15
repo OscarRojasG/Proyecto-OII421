@@ -3,8 +3,8 @@ guid: 59589a745cc853f439545d15a3769335
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2308583736281517313
-    second: mitosis_0
+      213: 4817167142056575754
+    second: metafase_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mitosis_0
+      name: metafase_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 698
-        height: 692
+        x: 15
+        y: 6
+        width: 676
+        height: 676
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10dcd4f3dacb90020800000000000000
-      internalID: 2308583736281517313
+      spriteID: a0347f54ef30ad240800000000000000
+      internalID: 4817167142056575754
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      mitosis_0: 2308583736281517313
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

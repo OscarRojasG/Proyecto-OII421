@@ -19,6 +19,7 @@ public class MainSceneController : MonoBehaviour
 
     public Canvas MainScreenCanvas;
 
+
     public Button playButton;
     public Button achievementsButton;
     public Button tutorialButton;
@@ -51,7 +52,7 @@ public class MainSceneController : MonoBehaviour
         };
 
         canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
-        sendDataButton = GameObject.Find("EnviarDatos").GetComponent<Button>();
+        // sendDataButton = GameObject.Find("EnviarDatos").GetComponent<Button>();
 
         pd = PlayerData.Instance;
 
@@ -78,16 +79,19 @@ public class MainSceneController : MonoBehaviour
         }
         playButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.ChangeScene("LevelSelection");
         });
 
         achievementsButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.ChangeScene("AchievementsScene");
         });
 
         tutorialButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.ChangeScene("TutorialScene");
         });
     }

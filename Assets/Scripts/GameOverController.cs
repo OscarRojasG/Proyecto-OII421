@@ -84,13 +84,17 @@ public class GameOverController : MonoBehaviour
 
     private void Start()
     {
+        GameController.Instance.sfx.playGameOver();
+        popupActive = false;
         serverAPI = gameObject.AddComponent<ServerAPI>();
         retryButton.onClick.AddListener(() => {
+            GameController.Instance.sfx.playButtonClick();
             if (popupActive) return;
             StartCoroutine(Retry());
         });
         exitButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             if (popupActive) return;
             StartCoroutine(ExitGame());
         });

@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
     private QuestionData questionData;
     private ProgressData progressData;
+    public SFXAudioController sfx;
 
     private string currentLevel;
 

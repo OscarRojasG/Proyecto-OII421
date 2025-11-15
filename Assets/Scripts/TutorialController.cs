@@ -21,8 +21,8 @@ public abstract class TutorialEvent
 
 public class WelcomeEvent : TutorialEvent
 {
-    private static new readonly string title = "¡Bienvenido a Bio Lab Escape!";
-    private static new readonly string message = "Este eres tú, un científico atrapado en un laboratorio que debe recuperar los objetos de su equipamiento";
+    private static new readonly string title = "ï¿½Bienvenido a Bio Lab Escape!";
+    private static new readonly string message = "Este eres tï¿½, un cientï¿½fico atrapado en un laboratorio que debe recuperar los objetos de su equipamiento";
     private float elapsedTime = 0f;
     private float duration = 6f;
 
@@ -49,8 +49,8 @@ public class WelcomeEvent : TutorialEvent
 
 public class ObstacleEvent : TutorialEvent
 {
-    private static new readonly string title = "Tu misión:";
-    private static new readonly string message = "Recuperar cada objeto... ¡pero cuidado! Aparecerán obstáculos que deberás esquivar";
+    private static new readonly string title = "Tu misiï¿½n:";
+    private static new readonly string message = "Recuperar cada objeto... ï¿½pero cuidado! Aparecerï¿½n obstï¿½culos que deberï¿½s esquivar";
     private PlayerController player;
     private ObstacleController barrel;
     private ObstacleController virus;
@@ -114,16 +114,16 @@ public class ObstacleEvent : TutorialEvent
 
 public class CollectableEvent : TutorialEvent
 {
-    private static readonly string startTitle = "¡Bien hecho!";
-    private static readonly string startMessage = "Ahora recoge alguno de tus objetos, pero prepárate, porque deberás responder una pregunta para quedártelo";
+    private static readonly string startTitle = "ï¿½Bien hecho!";
+    private static readonly string startMessage = "Ahora recoge alguno de tus objetos, pero prepï¿½rate, porque deberï¿½s responder una pregunta para quedï¿½rtelo";
 
-    private static readonly string questionPanelTitle = "¡Marca las afirmaciones correctas!";
-    private static readonly string questionPanelMessage = "(¡Ojo! Puede haber más de una opción correcta). Solo si aciertas todas, podrás recuperar el objeto";
+    private static readonly string questionPanelTitle = "ï¿½Marca las afirmaciones correctas!";
+    private static readonly string questionPanelMessage = "(ï¿½Ojo! Puede haber mï¿½s de una opciï¿½n correcta). Solo si aciertas todas, podrï¿½s recuperar el objeto";
 
-    private static readonly string feedbackSuccessTitle = "¡Felicitaciones, conseguiste el objeto!";
-    private static readonly string feedbackSuccessMessage = "En caso de error en tus respuestas, aquí podrás revisar las explicaciones de cada una";
-    private static readonly string feedbackFailureTitle = "¡Casi! Fallaste esta vez...";
-    private static readonly string feedbackFailureMessage = "Pero no te preocupes. Aquí podrás revisar tus errores y las explicaciones de cada respuesta";
+    private static readonly string feedbackSuccessTitle = "ï¿½Felicitaciones, conseguiste el objeto!";
+    private static readonly string feedbackSuccessMessage = "En caso de error en tus respuestas, aquï¿½ podrï¿½s revisar las explicaciones de cada una";
+    private static readonly string feedbackFailureTitle = "ï¿½Casi! Fallaste esta vez...";
+    private static readonly string feedbackFailureMessage = "Pero no te preocupes. Aquï¿½ podrï¿½s revisar tus errores y las explicaciones de cada respuesta";
 
     private CollectableManager collectableManager;
     private float elapsedTime = 0f;
@@ -142,25 +142,25 @@ public class CollectableEvent : TutorialEvent
         this.collectableManager = collectableManager;
 
         Question question = new Question();
-        question.question = "¿Qué afirmaciones son correctas en relación a las partes de la célula?";
+        question.question = "ï¿½Quï¿½ afirmaciones son correctas en relaciï¿½n a las partes de la cï¿½lula?";
 
         question.assertions = new Assertion[4];
 
         string[] statements = {
-            "El núcleo celular contiene el material genético de la célula.",
-            "Las mitocondrias se encargan de producir proteínas.",
-            "El retículo endoplasmático rugoso tiene ribosomas en su superficie.",
-            "Los cloroplastos están presentes en todas las células animales."
+            "El nï¿½cleo celular contiene el material genï¿½tico de la cï¿½lula.",
+            "Las mitocondrias se encargan de producir proteï¿½nas.",
+            "El retï¿½culo endoplasmï¿½tico rugoso tiene ribosomas en su superficie.",
+            "Los cloroplastos estï¿½n presentes en todas las cï¿½lulas animales."
         };
 
         bool[] answers = { true, false, true, false };
 
         string[] feedback =
         {
-            "El núcleo es la parte de la célula que guarda el ADN y contiene la información genética necesaria para controlar las funciones y actividades de la célula.",
-            "Las mitocondrias son las \"centrales energéticas\" de la célula; su función principal es producir energía en forma de ATP. La síntesis de proteínas la realizan los ribosomas.",
-            "El retículo endoplasmático rugoso se llama así porque su superficie está cubierta de ribosomas, que son los encargados de fabricar proteínas.",
-            "Los cloroplastos son organelos que realizan la fotosíntesis y solo se encuentran en las células vegetales, no en las células animales."
+            "El nï¿½cleo es la parte de la cï¿½lula que guarda el ADN y contiene la informaciï¿½n genï¿½tica necesaria para controlar las funciones y actividades de la cï¿½lula.",
+            "Las mitocondrias son las \"centrales energï¿½ticas\" de la cï¿½lula; su funciï¿½n principal es producir energï¿½a en forma de ATP. La sï¿½ntesis de proteï¿½nas la realizan los ribosomas.",
+            "El retï¿½culo endoplasmï¿½tico rugoso se llama asï¿½ porque su superficie estï¿½ cubierta de ribosomas, que son los encargados de fabricar proteï¿½nas.",
+            "Los cloroplastos son organelos que realizan la fotosï¿½ntesis y solo se encuentran en las cï¿½lulas vegetales, no en las cï¿½lulas animales."
         };
 
         for (int i = 0; i < 4; i++)
@@ -274,8 +274,8 @@ public class CollectableEvent : TutorialEvent
 
 public class FinishEvent : TutorialEvent
 {
-    private static new readonly string title = "¡Eso fue todo!";
-    private static new readonly string message = "Completarás el nivel cuando reúnas todos los objetos mostrados en la barra. ¡Mucha suerte!";
+    private static new readonly string title = "ï¿½Eso fue todo!";
+    private static new readonly string message = "Completarï¿½s el nivel cuando reï¿½nas todos los objetos mostrados en la barra. ï¿½Mucha suerte!";
     private float elapsedTime = 0f;
     private float duration = 5f;
 
@@ -316,6 +316,7 @@ public class TutorialController : MonoBehaviour
     {
         skipTutorial.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.PreviousScene();
         });
 

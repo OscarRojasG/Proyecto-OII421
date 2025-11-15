@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    public float jumpForce = 5f; // Fuerza del salto
+    public float jumpForce = 1000f; // Fuerza del salto
     private Rigidbody2D rb;
     private bool isGrounded;
     private PlayerData playerData;

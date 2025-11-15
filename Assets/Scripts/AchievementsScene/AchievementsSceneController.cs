@@ -75,6 +75,7 @@ public class AchievementsSceneController : MonoBehaviour
         // Create a TextMeshProUGUI component in the scene and assign it to ach1Text
         backButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SceneController.Instance.ChangeScene("MainScene");
         });
     }

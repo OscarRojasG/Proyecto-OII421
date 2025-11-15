@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
+    public AudioSource audioSource;
     public PlayerController player;
     public LivesController livesController;
     public TextMeshProUGUI distanceText;
     private PlayerData playerData;
+    private Coroutine volumeFadeCoroutine;
+    private float volumeFadeDuration = 0.5f;
 
     public CollectableManager collectableManager;
     public ObstacleManager obstacleManager;
@@ -71,6 +74,7 @@ public class LevelController : MonoBehaviour
 
         player.SetCollideObstacleAction((ObstacleController obstacleController) =>
         {
+            GameController.Instance.sfx.playChoque();
             collisionCount++;
             player.Blink(0.5f);
             livesController.RemoveLife();
@@ -85,6 +89,8 @@ public class LevelController : MonoBehaviour
         {
             GameQuestion gameQuestion = collectableController.GetGameQuestion();
             float startTime = Time.unscaledTime;
+            if (volumeFadeCoroutine != null) StopCoroutine(volumeFadeCoroutine);
+            volumeFadeCoroutine = StartCoroutine(FadeVolume(0.3f, volumeFadeDuration));
 
             questionPanelController.SetQuestion(gameQuestion);
             questionPanelController.gameObject.SetActive(true);
@@ -94,6 +100,7 @@ public class LevelController : MonoBehaviour
 
             questionPanelController.SetContinueAction((AssertionController[] assertionControllers) =>
             {
+                GameController.Instance.sfx.playRespuestaCorrecta();
                 bool allCorrect = true;
                 FeedbackAssertion[] feedbackAssertions = new FeedbackAssertion[4];
 
@@ -139,6 +146,7 @@ public class LevelController : MonoBehaviour
                 {
                     collectableManager.AddCollectable(gameQuestion);
                     questionManager.MarkQuestionAsSolved(gameQuestion);
+                    livesController.AddLife();
                 }
                 // if (allCorrect && collectableManager.AllCollectablesObtained())
                 if (autoComplete || collectableManager.AllCollectablesObtained())
@@ -156,6 +164,8 @@ public class LevelController : MonoBehaviour
                     {
                         PausePhysics();
                     }
+                    if (volumeFadeCoroutine != null) StopCoroutine(volumeFadeCoroutine);
+                    volumeFadeCoroutine = StartCoroutine(FadeVolume(0.6f, volumeFadeDuration));
                 });
             });
 
@@ -164,13 +174,17 @@ public class LevelController : MonoBehaviour
 
         pauseButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             pauseScreen.Show();
+            audioSource.Pause();
             PausePhysics();
         });
 
         pauseScreen.SetContinueAction(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             StartPhysics();
+            audioSource.Play();
             pauseScreen.Hide();
         });
 
@@ -182,6 +196,8 @@ public class LevelController : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
+
+            GameController.Instance.sfx.playButtonClick();
             playerData.OnLevelFinish(collisionCount, assertionCount, errorCount, (int)(elapsedTime * 10), levelCompleted, collectableManager.GetObtainedCount());
             StartPhysics(); // Importante setear TimeScale = 1 antes de cambiar de escena
             SceneController.Instance.ChangeScene("GameOverScene");
@@ -218,7 +234,7 @@ public class LevelController : MonoBehaviour
             elapsedTimeMoving += Time.unscaledDeltaTime;
             if (elapsedTimeMoving > 30)
             {
-                Time.timeScale = Mathf.Min(1 + (elapsedTimeMoving - 30) / 330, 2);
+                Time.timeScale = Mathf.Min(1 + (elapsedTimeMoving - 30) / 300, 1.75f);
             }
         }
 
@@ -261,5 +277,20 @@ public class LevelController : MonoBehaviour
     {
         Time.timeScale = 1;
         player.enabled = true;
+    }
+
+    private IEnumerator FadeVolume(float targetVolume, float duration)
+    {
+        if (audioSource == null) yield break;
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, Mathf.Clamp01(elapsed / duration));
+            yield return null;
+        }
+        audioSource.volume = targetVolume;
+        volumeFadeCoroutine = null;
     }
 }

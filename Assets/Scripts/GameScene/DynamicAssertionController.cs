@@ -9,6 +9,7 @@ public class DynamicAssertionController : AssertionController
     {
         iconButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             SetPlayerAnswer(!GetPlayerAnswer());
         });
     }

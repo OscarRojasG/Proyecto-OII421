@@ -24,6 +24,8 @@ public class FeedbackDetailedController : MonoBehaviour
     {
         backButton.onClick.AddListener(() =>
         {
+
+            GameController.Instance.sfx.playButtonClick();
             backButtonAction();
             gameObject.SetActive(false);
         });

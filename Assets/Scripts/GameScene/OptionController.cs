@@ -13,6 +13,7 @@ public class OptionController : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playTuboEnsayo();
             onClickAction(this);
         });
     }

@@ -51,18 +51,21 @@ public class FeedbackPanelController : MonoBehaviour
 
         continueButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             continueButtonAction();
             Destroy(gameObject);
         });
 
         nextButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             currentIndex = (currentIndex + 1) % feedbackAssertions.Count;
             UpdateView();
         });
 
         prevButton.onClick.AddListener(() =>
         {
+            GameController.Instance.sfx.playButtonClick();
             currentIndex = (currentIndex + feedbackAssertions.Count - 1) % feedbackAssertions.Count;
             UpdateView();
         });
