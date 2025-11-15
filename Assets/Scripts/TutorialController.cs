@@ -21,8 +21,8 @@ public abstract class TutorialEvent
 
 public class WelcomeEvent : TutorialEvent
 {
-    private static new readonly string title = "�Bienvenido a Bio Lab Escape!";
-    private static new readonly string message = "Este eres t�, un cient�fico atrapado en un laboratorio que debe recuperar los objetos de su equipamiento";
+    private static new readonly string title = "¡Bienvenido a Bio Lab Escape!";
+    private static new readonly string message = "Este eres tú, un científico atrapado en un laboratorio que debe recuperar los objetos de su equipamiento";
     private float elapsedTime = 0f;
     private float duration = 6f;
 
@@ -49,8 +49,8 @@ public class WelcomeEvent : TutorialEvent
 
 public class ObstacleEvent : TutorialEvent
 {
-    private static new readonly string title = "Tu misi�n:";
-    private static new readonly string message = "Recuperar cada objeto... �pero cuidado! Aparecer�n obst�culos que deber�s esquivar";
+    private static new readonly string title = "Tu misión:";
+    private static new readonly string message = "Recuperar cada objeto... ¡pero cuidado! Aparecerán obstáculos que deberás esquivar";
     private PlayerController player;
     private ObstacleController barrel;
     private ObstacleController virus;
@@ -114,16 +114,16 @@ public class ObstacleEvent : TutorialEvent
 
 public class CollectableEvent : TutorialEvent
 {
-    private static readonly string startTitle = "�Bien hecho!";
-    private static readonly string startMessage = "Ahora recoge alguno de tus objetos, pero prep�rate, porque deber�s responder una pregunta para qued�rtelo";
+    private static readonly string startTitle = "¡Bien hecho!";
+    private static readonly string startMessage = "Ahora recoge alguno de tus objetos, pero prepárate, porque deberás responder una pregunta para quedártelo";
 
-    private static readonly string questionPanelTitle = "�Marca las afirmaciones correctas!";
-    private static readonly string questionPanelMessage = "(�Ojo! Puede haber m�s de una opci�n correcta). Solo si aciertas todas, podr�s recuperar el objeto";
+    private static readonly string questionPanelTitle = "¡Marca las afirmaciones correctas!";
+    private static readonly string questionPanelMessage = "(¡Ojo! Puede haber más de una opción correcta). Solo si aciertas todas, podrás recuperar el objeto";
 
-    private static readonly string feedbackSuccessTitle = "�Felicitaciones, conseguiste el objeto!";
-    private static readonly string feedbackSuccessMessage = "En caso de error en tus respuestas, aqu� podr�s revisar las explicaciones de cada una";
-    private static readonly string feedbackFailureTitle = "�Casi! Fallaste esta vez...";
-    private static readonly string feedbackFailureMessage = "Pero no te preocupes. Aqu� podr�s revisar tus errores y las explicaciones de cada respuesta";
+    private static readonly string feedbackSuccessTitle = "¡Felicitaciones, conseguiste el objeto!";
+    private static readonly string feedbackSuccessMessage = "En caso de error en tus respuestas, aquí podrás revisar las explicaciones de cada una";
+    private static readonly string feedbackFailureTitle = "¡Casi! Fallaste esta vez...";
+    private static readonly string feedbackFailureMessage = "Pero no te preocupes. Aquí podrás revisar tus errores y las explicaciones de cada respuesta";
 
     private CollectableManager collectableManager;
     private float elapsedTime = 0f;
@@ -142,25 +142,25 @@ public class CollectableEvent : TutorialEvent
         this.collectableManager = collectableManager;
 
         Question question = new Question();
-        question.question = "�Qu� afirmaciones son correctas en relaci�n a las partes de la c�lula?";
+        question.question = "¿Qué afirmaciones son correctas en relación a las partes de la célula?";
 
         question.assertions = new Assertion[4];
 
         string[] statements = {
-            "El n�cleo celular contiene el material gen�tico de la c�lula.",
-            "Las mitocondrias se encargan de producir prote�nas.",
-            "El ret�culo endoplasm�tico rugoso tiene ribosomas en su superficie.",
-            "Los cloroplastos est�n presentes en todas las c�lulas animales."
+            "El núcleo celular contiene el material genético de la célula.",
+            "Las mitocondrias se encargan de producir proteínas.",
+            "El retículo endoplasmático rugoso tiene ribosomas en su superficie.",
+            "Los cloroplastos están presentes en todas las células animales."
         };
 
         bool[] answers = { true, false, true, false };
 
         string[] feedback =
         {
-            "El n�cleo es la parte de la c�lula que guarda el ADN y contiene la informaci�n gen�tica necesaria para controlar las funciones y actividades de la c�lula.",
-            "Las mitocondrias son las \"centrales energ�ticas\" de la c�lula; su funci�n principal es producir energ�a en forma de ATP. La s�ntesis de prote�nas la realizan los ribosomas.",
-            "El ret�culo endoplasm�tico rugoso se llama as� porque su superficie est� cubierta de ribosomas, que son los encargados de fabricar prote�nas.",
-            "Los cloroplastos son organelos que realizan la fotos�ntesis y solo se encuentran en las c�lulas vegetales, no en las c�lulas animales."
+            "El núcleo es la parte de la célula que guarda el ADN y contiene la información genética necesaria para controlar las funciones y actividades de la célula.",
+            "Las mitocondrias son las \"centrales energéticas\" de la célula; su función principal es producir energía en forma de ATP. La síntesis de proteínas la realizan los ribosomas.",
+            "El retículo endoplasmático rugoso se llama así porque su superficie está cubierta de ribosomas, que son los encargados de fabricar proteínas.",
+            "Los cloroplastos son organelos que realizan la fotosíntesis y solo se encuentran en las células vegetales, no en las células animales."
         };
 
         for (int i = 0; i < 4; i++)
@@ -274,8 +274,8 @@ public class CollectableEvent : TutorialEvent
 
 public class FinishEvent : TutorialEvent
 {
-    private static new readonly string title = "�Eso fue todo!";
-    private static new readonly string message = "Completar�s el nivel cuando re�nas todos los objetos mostrados en la barra. �Mucha suerte!";
+    private static new readonly string title = "¡Eso fue todo!";
+    private static new readonly string message = "Completarás el nivel cuando reúnas todos los objetos mostrados en la barra. ¡Mucha suerte!";
     private float elapsedTime = 0f;
     private float duration = 5f;
 
